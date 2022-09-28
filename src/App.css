@@ -1,16 +1,22 @@
+.body {
+    background-image: url("https://i.pinimg.com/originals/0b/e9/8f/0be98fab67529e61370ae2bb0145c49e.jpg");
+    background-size: cover;
+    background-attachment: scroll;
+}
 .app-wrapper {
     display: grid;
     grid-template-areas:
     "header header"
     "nav content";
-    grid-template-rows: 60px 1fr;
-    grid-template-columns: 2fr 10fr;
-    grid-gap: 10px;
-    width: 1200px;
+    grid-template-rows: 70px 1fr;
+    grid-template-columns: 250px 1fr;
     margin: 0 auto;
+    width: 1200px;
 }
 
-.app-wrapper-content {
+.content {
     grid-area: content;
-    background-color: bisque;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    margin: 15px;
 }

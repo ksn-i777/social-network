@@ -1,13 +1,14 @@
 import React from "react";
-import Picture from "./Picture/Picture";
-import Photo from "./Photo/Photo";
+import s from './Profile.module.css'
 import Posts from "./Posts/Posts";
+import NewPost from "./NewPost/NewPost";
+import About from "./About/About";
 
 function Profile() {
     return(
-        <div>
-            <Picture />
-            <Photo />
+        <div className={s.profile}>
+            <About />
+            <NewPost />
             <Posts />
         </div>
     )

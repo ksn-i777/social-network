@@ -12,15 +12,17 @@ import {BrowserRouter, Route} from "react-router-dom";
 function App() {
     return (
         <BrowserRouter>
-            <div className="app-wrapper">
-                <Header/>
-                <Nav/>
-                <div className="app-wrapper-content">
-                    <Route path={'/profile'} component={Profile}></Route>
-                    <Route path={'/messages'} component={Messages}></Route>
-                    <Route path={'/news'} component={News}></Route>
-                    <Route path={'/music'} component={Music}></Route>
-                    <Route path={'/settings'} component={Settings}></Route>
+            <div className="body">
+                <div className="app-wrapper">
+                    <Header/>
+                    <Nav/>
+                    <div className="content">
+                        <Route path={'/profile'} component={Profile}></Route>
+                        <Route path={'/messages'} component={Messages}></Route>
+                        <Route path={'/news'} component={News}></Route>
+                        <Route path={'/music'} component={Music}></Route>
+                        <Route path={'/settings'} component={Settings}></Route>
+                    </div>
                 </div>
             </div>
         </BrowserRouter>

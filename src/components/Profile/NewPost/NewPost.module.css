@@ -1,0 +1,18 @@
+.new {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+.input {
+    border-radius: 15px;
+    border: none;
+    text-align: center;
+}
+
+.button {
+    border-radius: 15px;
+    border: none;
+    background-color: rgb(70, 130, 180);
+    color: white;
+    cursor: pointer;
+}
