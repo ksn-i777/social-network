@@ -1,0 +1,27 @@
+.dialogs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.dialogs a {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8px;
+}
+
+.dialogs .active {
+    display: block;
+    background-color: rgba(255, 255, 255, 1);
+    color: black;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 8px;
+}
+
