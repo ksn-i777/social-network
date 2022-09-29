@@ -2,6 +2,7 @@
     background-image: url("https://i.pinimg.com/originals/0b/e9/8f/0be98fab67529e61370ae2bb0145c49e.jpg");
     background-size: cover;
     background-attachment: scroll;
+    height: 100vh;
 }
 .app-wrapper {
     display: grid;
