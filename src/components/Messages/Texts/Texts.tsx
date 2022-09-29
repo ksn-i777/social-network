@@ -14,18 +14,12 @@ let textsData = [
     {id: 9, message: '999'},
 ];
 
+let texts = textsData.map(el => <Text id={el.id} message={el.message} />);
+
 function Texts() {
     return(
         <div className={s.texts}>
-            <Text id={textsData[0].id} message={textsData[0].message} />
-            <Text id={textsData[1].id} message={textsData[1].message} />
-            <Text id={textsData[2].id} message={textsData[2].message} />
-            <Text id={textsData[3].id} message={textsData[3].message} />
-            <Text id={textsData[4].id} message={textsData[4].message} />
-            <Text id={textsData[5].id} message={textsData[5].message} />
-            <Text id={textsData[6].id} message={textsData[6].message} />
-            <Text id={textsData[7].id} message={textsData[7].message} />
-            <Text id={textsData[8].id} message={textsData[8].message} />
+            {texts}
         </div>
     )
 }

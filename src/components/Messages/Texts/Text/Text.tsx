@@ -9,7 +9,7 @@ type TextPropsType = {
 function Text(props: TextPropsType) {
     return(
         <div className={s.text}>
-            <div id={''+props.id}>{props.message}</div>
+            <div id={`${props.id}`}>{props.message}</div>
         </div>
     )
 }
