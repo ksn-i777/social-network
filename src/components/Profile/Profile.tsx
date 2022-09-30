@@ -4,12 +4,16 @@ import Posts from "./Posts/Posts";
 import NewPost from "./NewPost/NewPost";
 import About from "./About/About";
 
-function Profile() {
+type ProfilePropsType = {
+    postsData: any;
+}
+
+function Profile(props: ProfilePropsType) {
     return(
         <div className={s.profile}>
             <About />
             <NewPost />
-            <Posts />
+            <Posts postsData={props.postsData}/>
         </div>
     )
 }

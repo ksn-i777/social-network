@@ -9,7 +9,13 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Route} from "react-router-dom";
 
-function App() {
+type AppPropsData = {
+    postsData: any;
+    usersData: any;
+    textsData: any;
+}
+
+function App(props: AppPropsData) {
     return (
         <BrowserRouter>
             <div className="body">
@@ -17,8 +23,8 @@ function App() {
                     <Header/>
                     <Nav/>
                     <div className="content">
-                        <Route path={'/profile'} component={Profile}></Route>
-                        <Route path={'/messages'} component={Messages}></Route>
+                        <Route path={'/profile'} render={() => <Profile postsData={props.postsData}/>}></Route>
+                        <Route path={'/messages'} render={() => <Messages usersData={props.usersData} textsData={props.textsData}/>}></Route>
                         <Route path={'/news'} component={News}></Route>
                         <Route path={'/music'} component={Music}></Route>
                         <Route path={'/settings'} component={Settings}></Route>
