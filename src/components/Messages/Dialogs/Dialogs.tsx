@@ -9,7 +9,7 @@ type DialogsPropsData = {
 function Dialogs(props: DialogsPropsData) {
     return(
         <div className={s.dialogs}>
-            {props.usersData.map((el: {id: number, name: string}) => <Dialog id={el.id} name={el.name} />)}
+            {props.usersData.map((el: {id: number, name: string, ava: string}) => <Dialog id={el.id} name={el.name} ava={el.ava} />)}
         </div>
     )
 }

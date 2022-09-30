@@ -10,9 +10,7 @@ import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Route} from "react-router-dom";
 
 type AppPropsData = {
-    postsData: any;
-    usersData: any;
-    textsData: any;
+    state: any;
 }
 
 function App(props: AppPropsData) {
@@ -21,10 +19,10 @@ function App(props: AppPropsData) {
             <div className="body">
                 <div className="app-wrapper">
                     <Header/>
-                    <Nav/>
+                    <Nav state={props.state.sidebar} />
                     <div className="content">
-                        <Route path={'/profile'} render={() => <Profile postsData={props.postsData}/>}></Route>
-                        <Route path={'/messages'} render={() => <Messages usersData={props.usersData} textsData={props.textsData}/>}></Route>
+                        <Route path={'/profile'} render={() => <Profile state={props.state.profilePage}/>}></Route>
+                        <Route path={'/messages'} render={() => <Messages state={props.state.messagesPage}/>}></Route>
                         <Route path={'/news'} component={News}></Route>
                         <Route path={'/music'} component={Music}></Route>
                         <Route path={'/settings'} component={Settings}></Route>

@@ -4,15 +4,14 @@ import Dialogs from "./Dialogs/Dialogs"
 import Texts from "./Texts/Texts"
 
 type MessagesPropsData = {
-    usersData: any;
-    textsData: any;
+    state: any;
 }
 
 function Messages(props: MessagesPropsData) {
     return(
         <div className={s.messages}>
-            <Dialogs usersData={props.usersData}/>
-            <Texts textsData={props.textsData}/>
+            <Dialogs usersData={props.state.usersData}/>
+            <Texts textsData={props.state.textsData}/>
         </div>
     )
 }

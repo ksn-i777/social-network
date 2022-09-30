@@ -5,7 +5,7 @@ import NewPost from "./NewPost/NewPost";
 import About from "./About/About";
 
 type ProfilePropsType = {
-    postsData: any;
+    state: any;
 }
 
 function Profile(props: ProfilePropsType) {
@@ -13,7 +13,7 @@ function Profile(props: ProfilePropsType) {
         <div className={s.profile}>
             <About />
             <NewPost />
-            <Posts postsData={props.postsData}/>
+            <Posts postsData={props.state.postsData}/>
         </div>
     )
 }

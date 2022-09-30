@@ -5,12 +5,16 @@ import {NavLink} from "react-router-dom";
 type DialogPropsType = {
     id: number;
     name: string;
+    ava: string;
 }
 
 function Dialog(props: DialogPropsType) {
     return(
         <div className={s.dialog}>
-            <div><NavLink to={'/messages/'+props.id} activeClassName={`${s.active}`}>{props.name}</NavLink></div>
+            <NavLink to={'/messages/'+props.id} activeClassName={`${s.active}`}>
+                <img src={`${props.ava}`} alt={'ava'} className={`${s.ava}`}/>
+                {props.name}
+            </NavLink>
         </div>
     )
 }
