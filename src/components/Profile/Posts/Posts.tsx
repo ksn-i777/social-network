@@ -11,7 +11,6 @@ function Posts(props: PostsPropsType) {
         <div className={s.posts}>
             {props.postsData.map((el: { id: number; message: string; likes: number; }) => <Post id={el.id} message={el.message} likes={el.likes}/>)}
         </div>
-
     )
 }
 
