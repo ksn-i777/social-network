@@ -11,7 +11,7 @@ function Friend(props: FriendPropsType) {
     return(
         <div className={s.friend}>
             <div id={`${props.id}`}>
-                {props.ava}
+                <img src={`${props.ava}`} alt={'ava'}/>
                 {props.name}
             </div>
         </div>
