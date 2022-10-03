@@ -3,7 +3,7 @@
     grid-template-columns: 1fr 11fr;
 }
 
-.dialog a {
+a {
     display: grid;
     grid-template-columns: 1fr 11fr;
     background-color: rgba(0, 0, 0, 0.2);
@@ -17,7 +17,7 @@
     width: 150px;
 }
 
-.dialog .active {
+.active {
     display: grid;
     grid-template-columns: 1fr 11fr;
     background-color: rgba(255, 255, 255, 1);

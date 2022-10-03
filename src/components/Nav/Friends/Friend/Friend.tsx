@@ -10,10 +10,8 @@ type FriendPropsType = {
 function Friend(props: FriendPropsType) {
     return(
         <div className={s.friend}>
-            <div id={`${props.id}`}>
-                <img src={`${props.ava}`} alt={'ava'}/>
-                {props.name}
-            </div>
+            <img className={s.ava} src={props.ava} alt="ava"/>
+            <div className={s.name} id={`${props.id}`}>{props.name}</div>
         </div>
     )
 }

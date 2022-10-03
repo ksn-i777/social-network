@@ -21,11 +21,11 @@ function App(props: AppPropsData) {
                     <Header/>
                     <Nav state={props.state.sidebar} />
                     <div className="content">
-                        <Route path={'/profile'} render={() => <Profile state={props.state.profilePage}/>}></Route>
-                        <Route path={'/messages'} render={() => <Messages state={props.state.messagesPage}/>}></Route>
-                        <Route path={'/news'} component={News}></Route>
-                        <Route path={'/music'} component={Music}></Route>
-                        <Route path={'/settings'} component={Settings}></Route>
+                        <Route path="/profile" render={() => <Profile state={props.state.profilePage}/>}></Route>
+                        <Route path="/messages" render={() => <Messages state={props.state.messagesPage}/>}></Route>
+                        <Route path="/news" component={News}></Route>
+                        <Route path="/music" component={Music}></Route>
+                        <Route path="/settings" component={Settings}></Route>
                     </div>
                 </div>
             </div>
