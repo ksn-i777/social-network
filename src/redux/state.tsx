@@ -9,6 +9,7 @@ let state = {
             {id: 4, message: 'How are you?', likes: 30},
             {id: 5, message: 'Hi. It is my first post', likes: 15},
         ],
+        newPostText: '',
     },
     messagesPage: {
         usersData: [
@@ -43,13 +44,19 @@ let state = {
     },
 };
 
-export let addPost = (inputText: string) => {
+export let addPost = () => {
     let newPost = {
         id: 6,
-        message: inputText,
+        message: state.profilePage.newPostText,
         likes: 0,
     }
     state.profilePage.postsData.push(newPost);
+    state.profilePage.newPostText = '';
+    rerenderApp(state);
+}
+
+export let changeWord = (changeText: any) => {
+    state.profilePage.newPostText = changeText;
     rerenderApp(state);
 }
 

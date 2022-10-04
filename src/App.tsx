@@ -17,7 +17,12 @@ function App(props: any) {
                     <Header/>
                     <Nav state={props.state.sidebar} />
                     <div className="content">
-                        <Route path="/profile" render={() => <Profile state={props.state.profilePage} addPost={props.addPost}/>}></Route>
+                        <Route path="/profile" render={() =>
+                            <Profile
+                            state={props.state.profilePage}
+                            addPost={props.addPost}
+                            changeWord={props.changeWord} />}>                                
+                        </Route>
                         <Route path="/messages" render={() => <Messages state={props.state.messagesPage}/>}></Route>
                         <Route path="/news" component={News}></Route>
                         <Route path="/music" component={Music}></Route>
