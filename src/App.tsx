@@ -9,11 +9,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Route} from "react-router-dom";
 
-type AppPropsData = {
-    state: any;
-}
-
-function App(props: AppPropsData) {
+function App(props: any) {
     return (
         <BrowserRouter>
             <div className="body">
@@ -21,7 +17,7 @@ function App(props: AppPropsData) {
                     <Header/>
                     <Nav state={props.state.sidebar} />
                     <div className="content">
-                        <Route path="/profile" render={() => <Profile state={props.state.profilePage}/>}></Route>
+                        <Route path="/profile" render={() => <Profile state={props.state.profilePage} addPost={props.addPost}/>}></Route>
                         <Route path="/messages" render={() => <Messages state={props.state.messagesPage}/>}></Route>
                         <Route path="/news" component={News}></Route>
                         <Route path="/music" component={Music}></Route>

@@ -1,3 +1,5 @@
+import {rerenderApp} from "../rerender";
+
 let state = {
     profilePage: {
         postsData: [
@@ -40,5 +42,15 @@ let state = {
         ],
     },
 };
+
+export let addPost = (inputText: string) => {
+    let newPost = {
+        id: 6,
+        message: inputText,
+        likes: 0,
+    }
+    state.profilePage.postsData.push(newPost);
+    rerenderApp(state);
+}
 
 export default state;
