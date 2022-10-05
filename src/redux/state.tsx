@@ -1,4 +1,6 @@
-import {rerenderApp} from "../rerender";
+let rerenderApp = (state: any) => {
+
+}
 
 let state = {
     profilePage: {
@@ -44,7 +46,7 @@ let state = {
     },
 };
 
-export let addPost = () => {
+export const addPost = () => {
     let newPost = {
         id: 6,
         message: state.profilePage.newPostText,
@@ -55,9 +57,13 @@ export let addPost = () => {
     rerenderApp(state);
 }
 
-export let changeWord = (changeText: any) => {
+export const changeWord = (changeText: any) => {
     state.profilePage.newPostText = changeText;
     rerenderApp(state);
+}
+
+export const subscribe = (observer: any) => {
+    rerenderApp = observer;
 }
 
 export default state;
