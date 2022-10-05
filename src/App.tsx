@@ -22,7 +22,11 @@ function App(props: any) {
                             state={props.state.profilePage}
                             dispatch={props.dispatch} />}>                                
                         </Route>
-                        <Route path="/messages" render={() => <Messages state={props.state.messagesPage}/>}></Route>
+                        <Route path="/messages" render={() =>
+                            <Messages
+                            state={props.state.messagesPage}
+                            dispatch={props.dispatch} />}>
+                        </Route>
                         <Route path="/news" component={News}></Route>
                         <Route path="/music" component={Music}></Route>
                         <Route path="/settings" component={Settings}></Route>

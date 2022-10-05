@@ -1,5 +1,7 @@
 const NEW_POST = 'NEW-POST';
 const NEW_WORD = 'NEW-WORD';
+const NEW_MESSAGE_TEXT = 'NEW-MESSAGE-TEXT';
+const NEW_MESSAGE = 'NEW-MESSAGE';
 
 let store = {
     _state: {
@@ -36,6 +38,7 @@ let store = {
                 {id: 8, message: '888'},
                 {id: 9, message: '999'},
             ],
+            newMessageText: '',
         },
         sidebar: {
             friendsData: [
@@ -56,7 +59,7 @@ let store = {
     },
 
     dispatch (action: any) {
-        if (action.type === 'NEW-POST') {
+        if (action.type === NEW_POST) {
             let newPost = {
                 id: 6,
                 message: this._state.profilePage.newPostText,
@@ -65,8 +68,19 @@ let store = {
             this._state.profilePage.postsData.push(newPost);
             this._state.profilePage.newPostText = '';
             this._callSubscriber(this._state);
-        } else if (action.type === 'NEW-WORD') {
+        } else if (action.type === NEW_WORD) {
             this._state.profilePage.newPostText = action.changeText;
+            this._callSubscriber(this._state);
+        } else if (action.type === NEW_MESSAGE_TEXT) {
+            this._state.messagesPage.newMessageText = action.newText;
+            this._callSubscriber(this._state);
+        } else if (action.type === NEW_MESSAGE) {
+            let newMessage = {
+                id: 1,
+                message: this._state.messagesPage.newMessageText,
+            }
+            this._state.messagesPage.textsData.push(newMessage);
+            this._state.messagesPage.newMessageText = '';
             this._callSubscriber(this._state);
         }
     },
@@ -83,6 +97,16 @@ export const newWordActionCreater = (text: any) => {
         changeText: text,
     }
 }
-
+export const newMessageTextActionCreater = (text: any) => {
+    return {
+        type: NEW_MESSAGE_TEXT,
+        newText: text,
+    }
+}
+export const newMessageActionCreater = () => {
+    return {
+        type: NEW_MESSAGE,
+    }
+}
 
 export default store;
