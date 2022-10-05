@@ -9,7 +9,7 @@ function Profile(props: any) {
     return(
         <div className={s.profile}>
             <About />
-            <NewPost changeWord={props.changeWord} newPostText={props.state.newPostText} addPost={props.addPost}/>
+            <NewPost dispatch={props.dispatch} newPostText={props.state.newPostText}/>
             <Posts postsData={props.state.postsData}/>
         </div>
     )

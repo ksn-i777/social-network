@@ -1,18 +1,20 @@
 import React from "react";
 import s from "./NewPost.module.css";
+import {newPostActionCreater, newWordActionCreater} from '../../../redux/store';
+
 
 function NewPost(props: any) {
     let ref = React.createRef<HTMLTextAreaElement>();
 
     let newPost = () => {
         if (ref.current?.value !== (null || '')) {
-            props.addPost(); 
+            props.dispatch (newPostActionCreater()); 
         }        
     }
 
     let newWord = () => {
         let newText = ref.current?.value;
-        props.changeWord(newText);
+        props.dispatch (newWordActionCreater(newText));
     }
 
     

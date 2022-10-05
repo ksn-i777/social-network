@@ -1,3 +1,6 @@
+const NEW_POST = 'NEW-POST';
+const NEW_WORD = 'NEW-WORD';
+
 let store = {
     _state: {
         profilePage: {
@@ -44,26 +47,42 @@ let store = {
     },
     _callSubscriber (state: any) {
     },
+
     getState () {
         return this._state
-    },
-    addPost () {
-        let newPost = {
-            id: 6,
-            message: this._state.profilePage.newPostText,
-            likes: 0,
-        }
-        this._state.profilePage.postsData.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state);
-    },
-    changeWord (changeText: any) {
-        this._state.profilePage.newPostText = changeText;
-        this._callSubscriber(this._state);
     },
     subscribe (observer: any) {
         this._callSubscriber = observer;
     },
+
+    dispatch (action: any) {
+        if (action.type === 'NEW-POST') {
+            let newPost = {
+                id: 6,
+                message: this._state.profilePage.newPostText,
+                likes: 0,
+            }
+            this._state.profilePage.postsData.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'NEW-WORD') {
+            this._state.profilePage.newPostText = action.changeText;
+            this._callSubscriber(this._state);
+        }
+    },
 }
+
+export const newPostActionCreater = () => {
+    return {
+        type: NEW_POST,
+    }
+}
+export const newWordActionCreater = (text: any) => {
+    return {
+        type: NEW_WORD,
+        changeText: text,
+    }
+}
+
 
 export default store;

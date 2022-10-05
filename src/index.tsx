@@ -4,9 +4,9 @@ import './index.css';
 import App from './App';
 import store from './redux/store'
 
-export let rerenderApp = (state: any) => {
+export let rerenderApp = (param: any) => {
     ReactDOM.render(
-        <App state={state} addPost={store.addPost.bind(store)} changeWord={store.changeWord.bind(store)}/>,
+        <App state={param} dispatch={store.dispatch.bind(store)}/>,
         document.getElementById('root')
     );
 }

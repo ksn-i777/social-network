@@ -20,8 +20,7 @@ function App(props: any) {
                         <Route path="/profile" render={() =>
                             <Profile
                             state={props.state.profilePage}
-                            addPost={props.addPost}
-                            changeWord={props.changeWord} />}>                                
+                            dispatch={props.dispatch} />}>                                
                         </Route>
                         <Route path="/messages" render={() => <Messages state={props.state.messagesPage}/>}></Route>
                         <Route path="/news" component={News}></Route>
