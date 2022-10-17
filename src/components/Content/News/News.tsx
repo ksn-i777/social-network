@@ -1,11 +1,9 @@
 import React from "react";
 
-function Settings() {
+export function News() {
     return(
         <div>
-            Settings
+           News
         </div>
     )
-}
-
-export default Settings;
+};

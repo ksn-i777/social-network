@@ -6,9 +6,9 @@ type DialogPropsType = {
     id: number;
     name: string;
     ava: string;
-}
+};
 
-function Dialog(props: DialogPropsType) {
+export function Dialog(props: DialogPropsType) {
     return(
         <div className={s.dialog}>
             <NavLink to={'/messages/'+props.id} activeClassName={s.active}>
@@ -17,6 +17,4 @@ function Dialog(props: DialogPropsType) {
             </NavLink>
         </div>
     )
-}
-
-export default Dialog;
+};

@@ -1,25 +1,31 @@
 import React from "react";
 import s from "./Texts.module.css";
-import Text from "./Text/Text";
-import { newMessageActionCreater, newMessageTextActionCreater } from "../../../redux/store";
+import {Text} from "./Text/Text";
+import {newMessageActionCreater, newMessageTextActionCreater, TextType} from "../../../redux/store";
 
-function Texts(props: any) {
+type TextsPropsType = {
+    textsData: Array<TextType>,
+    newMessageText: string,
+    dispatch: (action: any) => void,
+};
+
+export function Texts(props: TextsPropsType) {
 
     let ref = React.createRef<HTMLTextAreaElement>();
 
     const newMessage = () => {
         let newTextMessage = ref.current?.value;
-        props.dispatch (newMessageTextActionCreater(newTextMessage));
-    }
+        props.dispatch(newMessageTextActionCreater(newTextMessage));
+    };
     const sendNewMessage = () => {
         if (ref.current?.value !== (null || '')) {
-            props.dispatch (newMessageActionCreater()); 
-        } 
-    }
-    return(
+            props.dispatch(newMessageActionCreater());
+        }
+    };
+    return (
         <div>
             <div className={s.texts}>
-                {props.textsData.map((el: {id: number, message: string}) => <Text id={el.id} message={el.message} />)}
+                {props.textsData.map((el: { id: number, message: string }) => <Text id={el.id} message={el.message}/>)}
             </div>
             <div>
                 <textarea value={props.newMessageText} ref={ref} onChange={newMessage}></textarea>
@@ -29,6 +35,4 @@ function Texts(props: any) {
             </div>
         </div>
     )
-}
-
-export default Texts;
+};

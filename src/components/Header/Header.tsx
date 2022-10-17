@@ -1,12 +1,10 @@
 import React from "react";
-import s from "./Header.module.css"
+import s from "./Header.module.css";
 
-function Header() {
+export function Header() {
     return(
         <header className={s.header}>
             <div className={s.title}>Social Network</div>
         </header>
     )
-}
-
-export default Header;
+};

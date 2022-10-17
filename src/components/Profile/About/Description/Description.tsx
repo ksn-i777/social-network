@@ -1,7 +1,7 @@
 import React from "react";
-import s from './Description.module.css'
+import s from './Description.module.css';
 
-function Description() {
+export function Description() {
     return(
         <div className={s.about}>
             <h3 className={s.h3}>About me</h3>
@@ -12,6 +12,4 @@ function Description() {
             </p>
         </div>
     )
-}
-
-export default Description;
+};

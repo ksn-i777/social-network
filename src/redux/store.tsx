@@ -3,7 +3,48 @@ const NEW_WORD = 'NEW-WORD';
 const NEW_MESSAGE_TEXT = 'NEW-MESSAGE-TEXT';
 const NEW_MESSAGE = 'NEW-MESSAGE';
 
-let store = {
+export type StateType = {
+    profilePage: ProfilePageType,
+    messagesPage: MessagesPageType,
+    navbar: NavbarType,
+};
+
+export type ProfilePageType = {
+    postsData: Array<PostType>,
+    newPostText: string,
+};
+export type PostType = {
+    id: number,
+    message: string,
+    likes: number,
+};
+
+export type MessagesPageType = {
+    usersData: Array<UserType>,
+    textsData: Array<TextType>,
+    newMessageText: string,
+};
+export type UserType = {
+    id: number,
+    name: string,
+    ava: string,
+};
+export type TextType = {
+    id: number,
+    message: string,
+};
+
+export type NavbarType = {
+    friendsData: Array<FriendType>,
+};
+export type FriendType = {
+    id: number,
+    name: string,
+    ava: string,
+};
+
+
+export let store = {
     _state: {
         profilePage: {
             postsData: [
@@ -40,7 +81,7 @@ let store = {
             ],
             newMessageText: '',
         },
-        sidebar: {
+        navbar: {
             friendsData: [
                 {id: 1, name: 'Serg Sergeev', ava: 'https://sun9-49.userapi.com/impf/cUB52CTR3gVxO2ELF6mDtWvOqQqVp5uPyyuH4g/WNNDIhckWcY.jpg?size=536x559&quality=96&sign=770bd9ea6958e0bb4533c1ff4f59d46b&type=album'},
                 {id: 2, name: 'Eva Ivanova', ava: 'https://cpad.ask.fm/952/205/196/-69996983-1sqedpc-htihnh1g7el9hf0/original/avatar.jpg'},
@@ -108,5 +149,3 @@ export const newMessageActionCreater = () => {
         type: NEW_MESSAGE,
     }
 }
-
-export default store;

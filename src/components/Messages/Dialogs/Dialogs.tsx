@@ -1,17 +1,16 @@
 import React from "react";
 import s from "./Dialogs.module.css";
-import Dialog from "./Dialog/Dialog";
+import {Dialog} from "./Dialog/Dialog";
+import {UserType} from "../../../redux/store";
 
 type DialogsPropsData = {
-    usersData: any;
-}
+    usersData: Array<UserType>;
+};
 
-function Dialogs(props: DialogsPropsData) {
+export function Dialogs(props: DialogsPropsData) {
     return(
         <div className={s.dialogs}>
-            {props.usersData.map((el: {id: number, name: string, ava: string}) => <Dialog id={el.id} name={el.name} ava={el.ava} />)}
+            {props.usersData.map((el) => <Dialog id={el.id} name={el.name} ava={el.ava} />)}
         </div>
     )
-}
-
-export default Dialogs;
+};
