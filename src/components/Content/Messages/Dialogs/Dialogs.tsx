@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Dialogs.module.css";
 import {Dialog} from "./Dialog/Dialog";
-import {UserType} from "../../../redux/store";
+import {UserType} from "../../../../redux/store";
 
 type DialogsPropsData = {
     usersData: Array<UserType>;

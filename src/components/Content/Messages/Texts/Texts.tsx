@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Texts.module.css";
 import {Text} from "./Text/Text";
-import {newMessageActionCreater, newMessageTextActionCreater, TextType} from "../../../redux/store";
+import {newMessageActionCreater, newMessageTextActionCreater, TextType} from "../../../../redux/store";
 
 type TextsPropsType = {
     textsData: Array<TextType>,

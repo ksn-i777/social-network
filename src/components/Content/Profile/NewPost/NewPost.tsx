@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./NewPost.module.css";
-import {newPostActionCreater, newWordActionCreater} from '../../../redux/store';
+import {newPostActionCreater, newWordActionCreater} from "../../../../redux/store";
 
 type NewPostPropsType = {
     dispatch: (action: any) => void,
