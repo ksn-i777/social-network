@@ -22,9 +22,9 @@ export function Content(props: ContentPropsType) {
             <Route
                 path="/messages" render={() => <Messages messagesPage={props.state.messagesPage} dispatch={props.dispatch}/>}>
             </Route>
-            <Route path="/news" render={() => <News/>}></Route>
-            <Route path="/news" render={() => <Music/>}></Route>
-            <Route path="/news" render={() => <Settings/>}></Route>
+            <Route path="/news" component={News}></Route>
+            <Route path="/music" render={() => <Music/>}></Route>
+            <Route path="/settings" render={() => <Settings/>}></Route>
         </div>
 
     );
