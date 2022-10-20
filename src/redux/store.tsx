@@ -89,14 +89,18 @@ export let store = {
             ],
         },
     },
+    // нашлась функция ререндера дерева, которую искали ниже по коду,
+    // но она не делает ничего полезного, т.к. нет функционала, который она получит ниже
     _callSubscriber (state: any) {
     },
 
     getState () {
         return this._state
     },
-    subscribe (observer: any) {
-        this._callSubscriber = observer;
+    // здесь функция ререндера из этого файла переопределяется на функцию ререндера из файла индекс
+    // получена функция ререндера из индекса с помощью колл бэка subscribe 
+    subscribe (rerenderFunction: any) {
+        this._callSubscriber = rerenderFunction;
     },
 
     dispatch (action: any) {
@@ -108,6 +112,8 @@ export let store = {
             }
             this._state.profilePage.postsData.push(newPost);
             this._state.profilePage.newPostText = '';
+            // метод стора = вызов функции ререндера дерева из файла индекс с передачей ей стэйта
+            // т.к. функция не определена мы выпрыгиваем наверх (замыкание) и ищем такую функцию
             this._callSubscriber(this._state);
         } else if (action.type === NEW_WORD) {
             this._state.profilePage.newPostText = action.changeText;
