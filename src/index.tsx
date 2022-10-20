@@ -10,7 +10,10 @@ export let rerenderApp = (state: StateType) => {
     ReactDOM.render(
         // компонента, обеспечивающая изменения контента при кликах по навигационному меню
         <BrowserRouter>
-            <App state={state} dispatch={store.dispatch.bind(store)}/>
+            <App 
+                state={state}
+                // байндим диспатч к стору, чтобы контекст зис внутри логики ссылался на стор
+                dispatch={store.dispatch.bind(store)}/>
         </BrowserRouter> , document.getElementById('root')
     );
 }
