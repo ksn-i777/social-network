@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Texts.module.css";
 import {Text} from "./Text/Text";
-import {newMessageActionCreater, newMessageTextActionCreater, TextType} from "../../../../redux/store";
+import {actionAddNewMessage, actionNewMessageText, TextType} from "../../../../redux/store";
 
 type TextsPropsType = {
     textsData: Array<TextType>,
@@ -15,11 +15,11 @@ export function Texts(props: TextsPropsType) {
 
     const newMessage = () => {
         let newTextMessage = ref.current?.value;
-        props.dispatch(newMessageTextActionCreater(newTextMessage));
+        props.dispatch(actionNewMessageText(newTextMessage));
     };
     const sendNewMessage = () => {
         if (ref.current?.value !== (null || '')) {
-            props.dispatch(newMessageActionCreater());
+            props.dispatch(actionAddNewMessage());
         }
     };
     return (

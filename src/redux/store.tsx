@@ -1,5 +1,5 @@
-const NEW_POST = 'NEW-POST';
-const NEW_WORD = 'NEW-WORD';
+const NEW_POST_TEXT = 'NEW-POST-TEXT';
+const ADD_NEW_POST = 'ADD-NEW-POST';
 const NEW_MESSAGE_TEXT = 'NEW-MESSAGE-TEXT';
 const NEW_MESSAGE = 'NEW-MESSAGE';
 
@@ -90,11 +90,11 @@ export let store = {
         },
     },
 
-    // ОПИСАНИЕ ООП, КОТОРОЕ ИСПОЛЬЗУЕТСЯ ДАЛЕЕ => 36-37 УРОКИ
+    // ОПИСАНИЕ ООП, КОТОРОЕ ИСПОЛЬЗУЕТСЯ ДАЛЕЕ => 36-38 УРОКИ
 
     // нашлась функция ререндера дерева, которую искали ниже по коду,
     // но она не делает ничего полезного, т.к. нет функционала, который она получит ниже
-    _callSubscriber (state: any) {
+    _callSubscriber (state: StateType) {
     },
 
     getState () {
@@ -102,12 +102,14 @@ export let store = {
     },
     // здесь функция ререндера из этого файла переопределяется на функцию ререндера из файла индекс
     // получена функция ререндера из индекса с помощью колл бэка subscribe 
-    subscribe (rerenderFunction: any) {
+    subscribe (rerenderFunction: (state: StateType) => void) {
         this._callSubscriber = rerenderFunction;
     },
 
+    // метод, заменяющий отдельные методы, которые были до этого, забрав их логику внутрь себя в завизимости от свойства тип объекта экшн
     dispatch (action: any) {
-        if (action.type === NEW_POST) {
+        // вместо метода addPost
+        if (action.type === ADD_NEW_POST) {
             let newPost = {
                 id: 6,
                 message: this._state.profilePage.newPostText,
@@ -118,12 +120,15 @@ export let store = {
             // метод стора = вызов функции ререндера дерева из файла индекс с передачей ей стэйта
             // т.к. функция не определена мы выпрыгиваем наверх (замыкание) и ищем такую функцию
             this._callSubscriber(this._state);
-        } else if (action.type === NEW_WORD) {
-            this._state.profilePage.newPostText = action.changeText;
+            // вместо метода, отслеживающего изменение текста поста в инпуте profilePage
+        } else if (action.type === NEW_POST_TEXT) {
+            this._state.profilePage.newPostText = action.newText;
             this._callSubscriber(this._state);
+            // вместо метода, отслеживающего изменение текста сообщения в инпуте messagesPage
         } else if (action.type === NEW_MESSAGE_TEXT) {
             this._state.messagesPage.newMessageText = action.newText;
             this._callSubscriber(this._state);
+            // вместо метода addMessage
         } else if (action.type === NEW_MESSAGE) {
             let newMessage = {
                 id: 1,
@@ -135,26 +140,31 @@ export let store = {
         }
     },
 }
-
-export const newPostActionCreater = () => {
+// колл-бэк, запускающий метод отслеживающий изменение текста поста в инпуте profilePage
+export const actionNewPostText = (text: string | undefined) => {
     return {
-        type: NEW_POST,
+        type: NEW_POST_TEXT,
+        newText: text,
     }
 }
-export const newWordActionCreater = (text: any) => {
+// колл-бэк, запускающий метод добавления поста
+export const actionAddNewPost = () => {
     return {
-        type: NEW_WORD,
-        changeText: text,
+        type: ADD_NEW_POST,
     }
 }
-export const newMessageTextActionCreater = (text: any) => {
+// колл-бэк, запускающий метод отслеживающий изменение текста сообщения в инпуте messagesPage
+export const actionNewMessageText = (text: string | undefined) => {
     return {
         type: NEW_MESSAGE_TEXT,
         newText: text,
     }
 }
-export const newMessageActionCreater = () => {
+// колл-бэк, запускающий метод добавления сообщения
+export const actionAddNewMessage = () => {
     return {
         type: NEW_MESSAGE,
     }
 }
+
+

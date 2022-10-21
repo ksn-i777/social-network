@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./NewPost.module.css";
-import {newPostActionCreater, newWordActionCreater} from "../../../../redux/store";
+import {actionAddNewPost, actionNewPostText} from '../../../../redux/store';
 
 type NewPostPropsType = {
     dispatch: (action: any) => void,
@@ -10,15 +10,17 @@ type NewPostPropsType = {
 export function NewPost(props: NewPostPropsType) {
     let ref = React.createRef<HTMLTextAreaElement>();
 
-    let newPost = () => {
-        if (ref.current?.value !== (null || '')) {
-            props.dispatch (newPostActionCreater()); 
-        }        
-    };
+
 
     let newWord = () => {
         let newText = ref.current?.value;
-        props.dispatch (newWordActionCreater(newText));
+        props.dispatch (actionNewPostText(newText));
+    };
+
+    let newPost = () => {
+        if (ref.current?.value !== '') {
+            props.dispatch (actionAddNewPost());
+        }
     };
 
     return (
