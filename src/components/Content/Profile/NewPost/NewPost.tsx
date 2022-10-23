@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import s from "./NewPost.module.css";
 import {actionAddNewPost, actionNewPostText} from '../../../../redux/store';
 
@@ -8,25 +8,22 @@ type NewPostPropsType = {
 };
 
 export function NewPost(props: NewPostPropsType) {
-    let ref = React.createRef<HTMLTextAreaElement>();
-
-
-
-    let newWord = () => {
-        let newText = ref.current?.value;
+    
+    let onChangeNewPostText = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let newText = e.currentTarget.value
         props.dispatch (actionNewPostText(newText));
     };
 
-    let newPost = () => {
-        if (ref.current?.value !== '') {
+    let addNewPost = () => {
+        if (props.newPostText !== '') {
             props.dispatch (actionAddNewPost());
         }
     };
 
     return (
         <div className={s.new}>
-            <textarea value={props.newPostText} onChange={ newWord } ref={ref} className={s.input} placeholder={'Enter a message'} />
-            <button onClick={ newPost } className={s.button}>Add post</button>
+            <textarea value={props.newPostText} onChange={onChangeNewPostText} className={s.input} placeholder={'Enter a message'} />
+            <button onClick={addNewPost} className={s.button}>Add post</button>
         </div>
 
     )
