@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from "react";
 import s from "./Texts.module.css";
 import {Text} from "./Text/Text";
-import {actionAddNewMessage, actionNewMessageText, TextType} from "../../../../redux/store";
+import {actionAddNewMessage, actionNewMessageText} from "../../../../redux/messages-reducer";
+import {TextType} from '../../../../redux/store';
 
 type TextsPropsType = {
     textsData: Array<TextType>,

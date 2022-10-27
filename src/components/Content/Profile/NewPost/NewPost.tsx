@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from "react";
 import s from "./NewPost.module.css";
-import {actionAddNewPost, actionNewPostText} from '../../../../redux/store';
+import {actionAddNewPost, actionNewPostText} from '../../../../redux/profile-reducer';
 
 type NewPostPropsType = {
     dispatch: (action: any) => void,
