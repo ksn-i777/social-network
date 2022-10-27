@@ -1,7 +1,13 @@
 .body {
     background-image: url("https://i.pinimg.com/originals/0b/e9/8f/0be98fab67529e61370ae2bb0145c49e.jpg");
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
     background-attachment: scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
 }
 .app-wrapper {
     display: grid;

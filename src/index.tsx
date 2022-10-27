@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import {BrowserRouter} from "react-router-dom";
 import {App} from './App';
-import {store, StateType} from './redux/store'
+import {StateType} from './redux/store'
+import {store} from './redux/redux-store'
 
 // функция первоначального рендера дерева и ререндера его при изменении стэйта
 export let rerenderApp = (state: StateType) => {
@@ -20,4 +21,7 @@ export let rerenderApp = (state: StateType) => {
 // вызов функции рендера/ререндера с передачей ей стэйта
 rerenderApp(store.getState());
 // запускает ререндер дерева из файла сторе, отдали функцию ререндера в тот мир
-store.subscribe(rerenderApp);
+store.subscribe(() => {
+    let state = store.getState()
+    rerenderApp(state)
+});
