@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./Dialog.module.css";
+import s from "./User.module.css";
 import {NavLink} from "react-router-dom";
 
 type DialogPropsType = {
@@ -8,7 +8,7 @@ type DialogPropsType = {
     ava: string;
 };
 
-export function Dialog(props: DialogPropsType) {
+export function User(props: DialogPropsType) {
     return(
         <div className={s.dialog}>
             <NavLink to={'/messages/'+props.id} activeClassName={s.active}>
@@ -17,4 +17,4 @@ export function Dialog(props: DialogPropsType) {
             </NavLink>
         </div>
     )
-};
+}

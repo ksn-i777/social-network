@@ -5,13 +5,16 @@ import {App} from './App';
 import {BrowserRouter} from "react-router-dom";
 import {store} from './redux/redux-store'
 import {EmptyObject} from 'redux';
+import {StoreContext} from './StoreContext';
 
 // функция первоначального рендера дерева и ререндера его при изменении стэйта
 export let rerenderApp = (state: EmptyObject) => {
     ReactDOM.render(
         // компонента, обеспечивающая изменения контента при кликах по навигационному меню
         <BrowserRouter>
-            <App store={store}/>
+            <StoreContext.Provider value={store}>
+                <App/>
+            </StoreContext.Provider>
         </BrowserRouter> , document.getElementById('root')
     );
 }

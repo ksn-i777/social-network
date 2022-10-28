@@ -34,4 +34,4 @@ export function Texts(props: TextsPropsType) {
             </div>
         </div>
     )
-};
+}

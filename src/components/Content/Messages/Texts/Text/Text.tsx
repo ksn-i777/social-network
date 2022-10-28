@@ -12,4 +12,4 @@ export function Text(props: TextPropsType) {
             <div id={`${props.id}`}>{props.message}</div>
         </div>
     )
-};
+}

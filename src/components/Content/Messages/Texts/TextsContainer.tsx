@@ -1,25 +1,29 @@
 import React from "react";
 import {actionAddNewMessage, actionNewMessageText} from "../../../../redux/messages-reducer";
 import {Texts} from './Texts';
+import {StoreContext} from '../../../../StoreContext';
 
-type TextsContainerPropsType = {
-    store: any,
-};
+export function TextsContainer() {
 
-export function TextsContainer(props: TextsContainerPropsType) {
+    return (
+        <StoreContext.Consumer>
+            {(store) => {
 
-    const changeNewMessageText = (newText: string) => {
-        props.store.dispatch(actionNewMessageText(newText));
-    };
+                const changeNewMessageText = (newText: string) => {
+                    store.dispatch(actionNewMessageText(newText));
+                };
 
-    const sendNewMessage = () => {
-        props.store.dispatch(actionAddNewMessage());
-    };
+                const sendNewMessage = () => {
+                    store.dispatch(actionAddNewMessage());
+                };
 
-    return <Texts
-                changeNewMessageText={changeNewMessageText}
-                sendNewMessage={sendNewMessage}
-                textsData={props.store.getState().messagesPage.textsData}
-                newMessageText={props.store.getState().messagesPage.newMessageText}
-            />
+                return <Texts
+                            changeNewMessageText={changeNewMessageText}
+                            sendNewMessage={sendNewMessage}
+                            textsData={store.getState().messagesPage.textsData}
+                            newMessageText={store.getState().messagesPage.newMessageText}
+                />
+            }}
+        </StoreContext.Consumer>
+    )
 }

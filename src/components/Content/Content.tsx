@@ -7,18 +7,14 @@ import {Music} from "./Music/Music";
 import {Settings} from "./Settings/Settings";
 import {Route} from "react-router-dom";
 
-type ContentPropsType = {
-    store: any,
-};
-
-export function Content(props: ContentPropsType) {
+export function Content() {
     return (
         <div className={s.content}>
             <Route
-                path="/profile" render={() => <Profile store={props.store}/>}>
+                path="/profile" render={() => <Profile/>}>
             </Route>
             <Route
-                path="/messages" render={() => <Messages store={props.store}/>}>
+                path="/messages" render={() => <Messages/>}>
             </Route>
             <Route path="/news" render={() => <News/>}></Route>
             <Route path="/music" render={() => <Music/>}></Route>

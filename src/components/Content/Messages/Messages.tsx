@@ -1,17 +1,18 @@
 import React from "react";
 import s from "./Messages.module.css";
-import {Dialogs} from "./Dialogs/Dialogs";
+import {Users} from "./Users/Users";
 import {TextsContainer} from './Texts/TextsContainer';
+import {StoreContext} from '../../../StoreContext';
 
-type MessagesPropsType = {
-    store: any,
-};
-
-export function Messages(props: MessagesPropsType) {
+export function Messages() {
     return(
         <div className={s.messages}>
-            <Dialogs usersData={props.store.getState().messagesPage.usersData}/>
-            <TextsContainer store={props.store}/>
+            <StoreContext.Consumer>
+                {(store) => {
+                    return <Users usersData={store.getState().messagesPage.usersData}/>
+                }}
+            </StoreContext.Consumer>
+            <TextsContainer/>
         </div>
     )
-};
+}

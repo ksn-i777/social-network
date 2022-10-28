@@ -3,17 +3,18 @@ import s from './Profile.module.css';
 import {About} from "./About/About";
 import {NewPostContainer} from './NewPost/NewPostContainer';
 import {Posts} from './Posts/Posts';
+import {StoreContext} from '../../../StoreContext';
 
-type ProfilePropsType = {
-    store: any,
-};
-
-export function Profile(props: ProfilePropsType) {
+export function Profile() {
     return(
         <div className={s.profile}>
             <About/>
-            <NewPostContainer store={props.store}/>
-            <Posts postsData={props.store.getState().profilePage.postsData}/>
+            <NewPostContainer/>
+            <StoreContext.Consumer>
+                {(store) => {
+                    return <Posts postsData={store.getState().profilePage.postsData}/>
+                }}
+            </StoreContext.Consumer>
         </div>
     )
 }

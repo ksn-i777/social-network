@@ -1,20 +1,23 @@
 import React from "react";
 import {actionAddNewPost, actionNewPostText} from '../../../../redux/profile-reducer';
 import {NewPost} from './NewPost';
+import {StoreContext} from '../../../../StoreContext';
 
-type NewPostContainerPropsType = {
-    store: any,
-};
 
-export function NewPostContainer(props: NewPostContainerPropsType) {
-    
-    let changeNewPostText = (newText: string) => {
-        props.store.dispatch (actionNewPostText(newText));
-    };
+export function NewPostContainer() {
 
-    let addNewPost = () => {
-        props.store.dispatch (actionAddNewPost());
-    };
+    return (
+        <StoreContext.Consumer>
+            {(store) => {
+                let changeNewPostText = (newText: string) => {
+                    store.dispatch (actionNewPostText(newText));
+                };
 
-    return <NewPost changeNewPostText={changeNewPostText} addNewPost={addNewPost} newPostText={props.store.getState().profilePage.newPostText}/>
+                let addNewPost = () => {
+                    store.dispatch (actionAddNewPost());
+                };
+                return <NewPost changeNewPostText={changeNewPostText} addNewPost={addNewPost} newPostText={store.getState().profilePage.newPostText}/>
+            }}
+        </StoreContext.Consumer>
+    )
 }
