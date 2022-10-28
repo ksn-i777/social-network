@@ -11,36 +11,36 @@ export type StateType = {
 export type ProfilePageType = {
     postsData: Array<PostType>,
     newPostText: string,
-};
+}; //copy in reducer
 export type PostType = {
     id: number,
     message: string,
     likes: number,
-};
+}; //copy in reducer
 
 export type MessagesPageType = {
     usersData: Array<UserType>,
     textsData: Array<TextType>,
     newMessageText: string,
-};
+}; //copy in reducer
 export type UserType = {
     id: number,
     name: string,
     ava: string,
-};
+}; //copy in reducer
 export type TextType = {
     id: number,
     message: string,
-};
+}; //copy in reducer
 
 export type NavbarType = {
     onlineFriendsData: Array<OnlineFriendType>,
-};
+}; //copy in reducer
 export type OnlineFriendType = {
     id: number,
     name: string,
     ava: string,
-};
+}; //copy in reducer
 
 export let store = {
     _state: {

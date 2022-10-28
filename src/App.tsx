@@ -3,11 +3,9 @@ import './App.css';
 import {Header} from './components/Header/Header';
 import {Nav} from "./components/Nav/Nav";
 import {Content} from "./components/Content/Content";
-import {StateType} from "./redux/store";
 
 type AppPropsType = {
-    state: StateType,
-    dispatch: (action: any) => void,
+    store: any,
 };
 
 export function App(props: AppPropsType) {
@@ -15,10 +13,10 @@ export function App(props: AppPropsType) {
         <div className="body">
             <div className="app-wrapper">
                 <Header/>
-                <Nav navbar={props.state.navbar} />
-                <Content state={props.state} dispatch={props.dispatch}/>
+                <Nav navbar={props.store.getState().navbar}/>
+                <Content store={props.store}/>
             </div>
         </div>
 
     );
-};
+}

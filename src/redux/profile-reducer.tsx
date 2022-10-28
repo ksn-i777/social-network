@@ -1,7 +1,17 @@
 const NEW_POST_TEXT = 'NEW-POST-TEXT';
 const ADD_NEW_POST = 'ADD-NEW-POST';
 
-let initialState = {
+export type ProfilePageType = {
+    postsData: Array<PostType>,
+    newPostText: string,
+};
+export type PostType = {
+    id: number,
+    message: string,
+    likes: number,
+};
+
+let initialState:ProfilePageType = {
     postsData: [
         {id: 1, message: 'Yaaahhhooo', likes: 77},
         {id: 2, message: 'Happy birthday to me!', likes: 100},

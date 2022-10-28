@@ -1,20 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {BrowserRouter} from "react-router-dom";
 import {App} from './App';
-import {StateType} from './redux/store'
+import {BrowserRouter} from "react-router-dom";
 import {store} from './redux/redux-store'
+import {EmptyObject} from 'redux';
 
 // функция первоначального рендера дерева и ререндера его при изменении стэйта
-export let rerenderApp = (state: StateType) => {
+export let rerenderApp = (state: EmptyObject) => {
     ReactDOM.render(
         // компонента, обеспечивающая изменения контента при кликах по навигационному меню
         <BrowserRouter>
-            <App 
-                state={state}
-                // байндим диспатч к стору, чтобы контекст зис внутри логики ссылался на стор
-                dispatch={store.dispatch.bind(store)}/>
+            <App store={store}/>
         </BrowserRouter> , document.getElementById('root')
     );
 }

@@ -6,8 +6,8 @@ import {Description} from "./Description/Description";
 export function About() {
     return(
         <div className={s.about}>
-            <Photo />
-            <Description />
+            <Photo/>
+            <Description/>
         </div>
     )
 };

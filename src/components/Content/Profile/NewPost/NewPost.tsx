@@ -1,9 +1,9 @@
 import React, {ChangeEvent} from "react";
 import s from "./NewPost.module.css";
-import {actionAddNewPost, actionNewPostText} from '../../../../redux/profile-reducer';
 
 type NewPostPropsType = {
-    dispatch: (action: any) => void,
+    changeNewPostText: (newText: string) => void,
+    addNewPost: () => void,
     newPostText: string,
 };
 
@@ -11,20 +11,20 @@ export function NewPost(props: NewPostPropsType) {
     
     let onChangeNewPostText = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let newText = e.currentTarget.value
-        props.dispatch (actionNewPostText(newText));
+        props.changeNewPostText(newText);
     };
 
-    let addNewPost = () => {
+    let onAddNewPost = () => {
         if (props.newPostText !== '') {
-            props.dispatch (actionAddNewPost());
+            props.addNewPost();
         }
     };
 
     return (
         <div className={s.new}>
             <textarea value={props.newPostText} onChange={onChangeNewPostText} className={s.input} placeholder={'Enter a message'} />
-            <button onClick={addNewPost} className={s.button}>Add post</button>
+            <button onClick={onAddNewPost} className={s.button}>Add post</button>
         </div>
 
     )
-};
+}

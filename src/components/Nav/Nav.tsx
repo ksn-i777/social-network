@@ -2,7 +2,7 @@ import React from "react";
 import s from './Nav.module.css';
 import {NavLink} from "react-router-dom";
 import {OnlineFriends} from "./OnlineFriends/OnlineFriends";
-import {NavbarType} from "../../redux/store";
+import {NavbarType} from '../../redux/navbar-reducer';
 
 type NavPropsType = {
     navbar: NavbarType;
@@ -19,4 +19,4 @@ export function Nav(props: NavPropsType) {
             <div className={s.div}><OnlineFriends onlineFriendsData={props.navbar.onlineFriendsData}/></div>
         </nav>
     )
-};
+}

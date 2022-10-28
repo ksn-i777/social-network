@@ -1,21 +1,19 @@
 import React from "react";
 import s from './Profile.module.css';
 import {About} from "./About/About";
-import {NewPost} from "./NewPost/NewPost";
-import {Posts} from "./Posts/Posts";
-import {ProfilePageType} from "../../../redux/store";
+import {NewPostContainer} from './NewPost/NewPostContainer';
+import {Posts} from './Posts/Posts';
 
 type ProfilePropsType = {
-    profilePage: ProfilePageType,
-    dispatch: (action: any) => void,
+    store: any,
 };
 
 export function Profile(props: ProfilePropsType) {
     return(
         <div className={s.profile}>
-            <About />
-            <NewPost dispatch={props.dispatch} newPostText={props.profilePage.newPostText}/>
-            <Posts postsData={props.profilePage.postsData}/>
+            <About/>
+            <NewPostContainer store={props.store}/>
+            <Posts postsData={props.store.getState().profilePage.postsData}/>
         </div>
     )
-};
+}
