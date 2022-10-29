@@ -35,19 +35,23 @@ let initialState:MessagesPageType = {
 }
 
 export function messagesReducer (state = initialState, action: any) {
+
+    let copyState = {...state}
+
     // вместо метода, отслеживающего изменение текста сообщения в инпуте messagesPage
     if (action.type === NEW_MESSAGE_TEXT) {
-        state.newMessageText = action.newText;
+        copyState.newMessageText = action.newText;
         // вместо метода addMessage
     } else if (action.type === NEW_MESSAGE) {
         let newMessage = {
             id: 6,
-            message: state.newMessageText,
+            message: copyState.newMessageText,
         }
-        state.textsData.push(newMessage);
-        state.newMessageText = '';
+        copyState.textsData = [...state.textsData]
+        copyState.textsData.push(newMessage);
+        copyState.newMessageText = '';
     }
-    return state;
+    return copyState;
 }
 // колл-бэк, запускающий метод отслеживающий изменение текста сообщения в инпуте messagesPage
 export const actionNewMessageText = (text: string | undefined) => {

@@ -23,19 +23,23 @@ let initialState:ProfilePageType = {
 }
 
 export function profileReducer (state = initialState, action: any) {
+
+    let copyState = {...state}
+
     if (action.type === NEW_POST_TEXT) {
-        state.newPostText = action.newText;
+        copyState.newPostText = action.newText;
         // вместо метода addPost
     } else if (action.type === ADD_NEW_POST) {
         let newPost = {
             id: 6,
-            message: state.newPostText,
+            message: copyState.newPostText,
             likes: 0,
         }
-        state.postsData.push(newPost);
-        state.newPostText = '';
+        copyState.postsData = [...state.postsData]
+        copyState.postsData.push(newPost);
+        copyState.newPostText = '';
     }
-    return state;
+    return copyState;
 }
 // колл-бэк, запускающий метод отслеживающий изменение текста поста в инпуте profilePage
 export const actionNewPostText = (text: string | undefined) => {
