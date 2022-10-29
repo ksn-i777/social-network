@@ -1,7 +1,13 @@
 import {createStore, combineReducers} from "redux";
-import {profileReducer} from './profile-reducer';
-import {messagesReducer} from './messages-reducer';
-import {navbarReducer} from './navbar-reducer';
+import {profileReducer, ProfilePageType} from './profile-reducer';
+import {messagesReducer, MessagesPageType} from './messages-reducer';
+import {navbarReducer, NavbarType} from './navbar-reducer';
+
+export type StateType = {
+    profilePage: ProfilePageType,
+    messagesPage: MessagesPageType,
+    navbar: NavbarType,
+};
 
 let reducers = combineReducers({
     profilePage: profileReducer,

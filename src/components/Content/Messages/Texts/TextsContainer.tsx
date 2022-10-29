@@ -1,29 +1,25 @@
 import React from "react";
 import {actionAddNewMessage, actionNewMessageText} from "../../../../redux/messages-reducer";
 import {Texts} from './Texts';
-import {StoreContext} from '../../../../StoreContext';
+import {connect} from "react-redux";
+import {StateType} from "../../../../redux/redux-store";
 
-export function TextsContainer() {
-
-    return (
-        <StoreContext.Consumer>
-            {(store) => {
-
-                const changeNewMessageText = (newText: string) => {
-                    store.dispatch(actionNewMessageText(newText));
-                };
-
-                const sendNewMessage = () => {
-                    store.dispatch(actionAddNewMessage());
-                };
-
-                return <Texts
-                            changeNewMessageText={changeNewMessageText}
-                            sendNewMessage={sendNewMessage}
-                            textsData={store.getState().messagesPage.textsData}
-                            newMessageText={store.getState().messagesPage.newMessageText}
-                />
-            }}
-        </StoreContext.Consumer>
-    )
+const mapStateToProps = (state: StateType) => {
+    return {
+        textsData: state.messagesPage.textsData,
+        newMessageText: state.messagesPage.newMessageText,
+    }
 }
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        changeNewMessageText: (newText: string) => {
+            dispatch(actionNewMessageText(newText));
+        },
+        sendNewMessage: () => {
+            dispatch(actionAddNewMessage())
+        },
+    }
+}
+
+export const TextsContainer = connect(mapStateToProps, mapDispatchToProps)(Texts)

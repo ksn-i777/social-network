@@ -3,18 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import {App} from './App';
 import {BrowserRouter} from "react-router-dom";
-import {store} from './redux/redux-store'
-import {EmptyObject} from 'redux';
-import {StoreContext} from './StoreContext';
+import {store, StateType} from './redux/redux-store'
+import {Provider} from 'react-redux';
 
 // функция первоначального рендера дерева и ререндера его при изменении стэйта
-export let rerenderApp = (state: EmptyObject) => {
+export let rerenderApp = (state: StateType) => {
     ReactDOM.render(
         // компонента, обеспечивающая изменения контента при кликах по навигационному меню
         <BrowserRouter>
-            <StoreContext.Provider value={store}>
+            <Provider store={store}>
                 <App/>
-            </StoreContext.Provider>
+            </Provider>
         </BrowserRouter> , document.getElementById('root')
     );
 }

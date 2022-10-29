@@ -1,8 +1,7 @@
 import React from "react";
 import s from './Nav.module.css';
 import {NavLink} from "react-router-dom";
-import {OnlineFriends} from "./OnlineFriends/OnlineFriends";
-import {StoreContext} from '../../StoreContext';
+import {OnlineFriendsContainer} from "./OnlineFriends/OnlineFriendsContainer";
 
 export function Nav() {
     return(
@@ -12,14 +11,7 @@ export function Nav() {
             <div className={s.div}><NavLink to="/news" activeClassName={s.active}>News</NavLink></div>
             <div className={s.div}><NavLink to="/music" activeClassName={s.active}>Music</NavLink></div>
             <div className={s.div}><NavLink to="/settings" activeClassName={s.active}>Settings</NavLink></div>
-            <div className={s.div}>
-                <StoreContext.Consumer>
-                    {(store) => {
-                        return <OnlineFriends onlineFriendsData={store.getState().navbar.onlineFriendsData}/>
-                    }}
-                </StoreContext.Consumer>
-
-            </div>
+            <div className={s.div}><OnlineFriendsContainer/></div>
         </nav>
     )
 }

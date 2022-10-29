@@ -6,7 +6,7 @@ export type StateType = {
     profilePage: ProfilePageType,
     messagesPage: MessagesPageType,
     navbar: NavbarType,
-};
+}; //copy in redux-store
 
 export type ProfilePageType = {
     postsData: Array<PostType>,

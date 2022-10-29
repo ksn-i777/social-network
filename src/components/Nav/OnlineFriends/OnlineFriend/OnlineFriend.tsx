@@ -1,6 +1,6 @@
 import React from "react";
 import s from './OnlineFriend.module.css';
-import {OnlineFriendType} from "../../../../redux/store";
+import {OnlineFriendType} from "../../../../redux/navbar-reducer";
 
 type OnlineFriendPropsType = OnlineFriendType;
 
