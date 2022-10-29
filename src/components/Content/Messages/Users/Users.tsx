@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Users.module.css";
-import {User} from "./User/User";
+import {User} from "./User";
 import {UserType} from '../../../../redux/messages-reducer';
 
 type DialogsPropsData = {

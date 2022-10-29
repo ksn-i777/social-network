@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from "react";
 import s from "./Texts.module.css";
-import {Text} from "./Text/Text";
+import {Text} from "./Text";
 import {TextType} from "../../../../redux/messages-reducer";
 
 type TextsPropsType = {

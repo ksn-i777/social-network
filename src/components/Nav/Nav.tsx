@@ -7,6 +7,7 @@ export function Nav() {
     return(
         <nav className={s.nav}>
             <div className={s.div}><NavLink to="/profile" activeClassName={s.active}>Profile</NavLink></div>
+            <div className={s.div}><NavLink to="/friends" activeClassName={s.active}>Friends</NavLink></div>
             <div className={s.div}><NavLink to="/messages" activeClassName={s.active}>Messages</NavLink></div>
             <div className={s.div}><NavLink to="/news" activeClassName={s.active}>News</NavLink></div>
             <div className={s.div}><NavLink to="/music" activeClassName={s.active}>Music</NavLink></div>
