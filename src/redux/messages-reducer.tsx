@@ -1,11 +1,7 @@
 const NEW_MESSAGE_TEXT = 'NEW-MESSAGE-TEXT';
-const NEW_MESSAGE = 'NEW-MESSAGE';
+const ADD_NEW_MESSAGE = 'ADD-NEW-MESSAGE';
 
-export type MessagesPageType = {
-    usersData: Array<UserType>,
-    textsData: Array<TextType>,
-    newMessageText: string,
-};
+
 export type UserType = {
     id: number,
     name: string,
@@ -15,6 +11,20 @@ export type TextType = {
     id: number,
     message: string,
 };
+export type MessagesPageType = {
+    usersData: Array<UserType>,
+    textsData: Array<TextType>,
+    newMessageText: string,
+};
+
+export type NewMessageActionType = {
+    type: 'NEW-MESSAGE-TEXT',
+    newText: string,
+}
+export type AddNewMessageActionType = {
+    type: 'ADD-NEW-MESSAGE',
+}
+export type MessagesActionsType = NewMessageActionType | AddNewMessageActionType
 
 let initialState:MessagesPageType = {
     usersData: [
@@ -34,7 +44,7 @@ let initialState:MessagesPageType = {
     newMessageText: '',
 }
 
-export function messagesReducer (state = initialState, action: any) {
+export function messagesReducer (state = initialState, action: MessagesActionsType):MessagesPageType {
 
     let copyState = {...state}
 
@@ -42,7 +52,7 @@ export function messagesReducer (state = initialState, action: any) {
     if (action.type === NEW_MESSAGE_TEXT) {
         copyState.newMessageText = action.newText;
         // вместо метода addMessage
-    } else if (action.type === NEW_MESSAGE) {
+    } else if (action.type === ADD_NEW_MESSAGE) {
         let newMessage = {
             id: 6,
             message: copyState.newMessageText,
@@ -54,15 +64,15 @@ export function messagesReducer (state = initialState, action: any) {
     return copyState;
 }
 // колл-бэк, запускающий метод отслеживающий изменение текста сообщения в инпуте messagesPage
-export const actionNewMessageText = (text: string | undefined) => {
+export const actionNewMessageText = (text: string):NewMessageActionType => {
     return {
         type: NEW_MESSAGE_TEXT,
         newText: text,
     }
 }
 // колл-бэк, запускающий метод добавления сообщения
-export const actionAddNewMessage = () => {
+export const actionAddNewMessage = ():AddNewMessageActionType => {
     return {
-        type: NEW_MESSAGE,
+        type: ADD_NEW_MESSAGE,
     }
 }

@@ -2,6 +2,14 @@ import {profileReducer} from './profile-reducer';
 import {messagesReducer} from './messages-reducer';
 import {navbarReducer} from './navbar-reducer';
 
+export type StoreType = {
+    _state: StateType,
+    _callSubscriber: (state: StateType) => void,
+    getState: () => StateType,
+    subscribe: (rerenderFunction: (state: StateType) => void) => void,
+    dispatch: (action: any) => void,
+}
+
 export type StateType = {
     profilePage: ProfilePageType,
     messagesPage: MessagesPageType,
@@ -42,7 +50,7 @@ export type OnlineFriendType = {
     ava: string,
 }; //copy in reducer
 
-export let store = {
+export let store: StoreType = {
     _state: {
         profilePage: {
             postsData: [
@@ -84,8 +92,7 @@ export let store = {
 
     // нашлась функция ререндера дерева, которую искали ниже по коду,
     // но она не делает ничего полезного, т.к. нет функционала, который она получит ниже
-    _callSubscriber (state: StateType) {
-    },
+    _callSubscriber (state: StateType) {},
 
     getState () {
         return this._state

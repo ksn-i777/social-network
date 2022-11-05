@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Friend.module.css"
 
-type FriendType = {
+type FriendPropsType = {
     id: number,
     name: string,
     followed: boolean,
@@ -15,7 +15,7 @@ type FriendType = {
     changeOnUnfollow: () => void,
 }
 
-export function Friend(props: FriendType) {
+export function Friend(props: FriendPropsType) {
     return(
         <div className={s.friend}>
             <div className={s.photoButton}>

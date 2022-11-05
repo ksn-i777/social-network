@@ -1,10 +1,11 @@
-export type NavbarType = {
-    onlineFriendsData: Array<OnlineFriendType>,
-};
+
 export type OnlineFriendType = {
     id: number,
     name: string,
     ava: string,
+};
+export type NavbarType = {
+    onlineFriendsData: Array<OnlineFriendType>,
 };
 
 let initialState: NavbarType = {
@@ -15,6 +16,6 @@ let initialState: NavbarType = {
     ],
 }
 
-export function navbarReducer (state = initialState, action: any) {
+export function navbarReducer (state = initialState, action: any):NavbarType {
     return state;
 }

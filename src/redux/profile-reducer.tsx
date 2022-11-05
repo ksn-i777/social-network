@@ -1,15 +1,26 @@
 const NEW_POST_TEXT = 'NEW-POST-TEXT';
 const ADD_NEW_POST = 'ADD-NEW-POST';
 
-export type ProfilePageType = {
-    postsData: Array<PostType>,
-    newPostText: string,
-};
+
 export type PostType = {
     id: number,
     message: string,
     likes: number,
 };
+export type ProfilePageType = {
+    postsData: Array<PostType>,
+    newPostText: string,
+};
+
+export type NewPostTextActionType = {
+    type: 'NEW-POST-TEXT',
+    newText: string,
+}
+export type AddNewPostActionType = {
+    type: 'ADD-NEW-POST',    
+}
+export type ProfileActionsType = NewPostTextActionType | AddNewPostActionType
+
 
 let initialState:ProfilePageType = {
     postsData: [
@@ -22,7 +33,7 @@ let initialState:ProfilePageType = {
     newPostText: '',
 }
 
-export function profileReducer (state = initialState, action: any) {
+export function profileReducer (state = initialState, action: ProfileActionsType):ProfilePageType {
 
     let copyState = {...state}
 
@@ -42,14 +53,14 @@ export function profileReducer (state = initialState, action: any) {
     return copyState;
 }
 // колл-бэк, запускающий метод отслеживающий изменение текста поста в инпуте profilePage
-export const actionNewPostText = (text: string | undefined) => {
+export const newPostTextAC = (text: string):NewPostTextActionType => {
     return {
         type: NEW_POST_TEXT,
         newText: text,
     }
 }
 // колл-бэк, запускающий метод добавления поста
-export const actionAddNewPost = () => {
+export const addNewPostAC = ():AddNewPostActionType => {
     return {
         type: ADD_NEW_POST,
     }

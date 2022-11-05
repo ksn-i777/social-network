@@ -2,13 +2,13 @@ import React from "react";
 import {FriendType} from "../../../redux/friends-reducer";
 import {Friend} from "./Friend"
 
-type FriendsType = {
+type FriendsPropsType = {
     friendsData: Array<FriendType>,
     changeOnFollow: (userId: number) => void,
     changeOnUnfollow: (userId: number) => void,
 }
 
-export function Friends(props: FriendsType) {
+export function Friends(props: FriendsPropsType) {
 
     const changeOnFollow = (id: number) => {
         props.changeOnFollow(id)

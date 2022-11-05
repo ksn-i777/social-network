@@ -2,8 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {StateType} from "../../../redux/redux-store";
 import {Friends} from "./Friends";
-import {followAC} from "../../../redux/friends-reducer";
-import {unfollowAC} from "../../../redux/friends-reducer";
+import {followAC, unfollowAC, FriendsActionsType} from "../../../redux/friends-reducer";
 
 const mapStateToProps = (state: StateType) => {
     return {
@@ -11,7 +10,7 @@ const mapStateToProps = (state: StateType) => {
     }
 }
 
-const mapDispachToProps = (dispatch: any) => {
+const mapDispachToProps = (dispatch: (AC: FriendsActionsType) => void) => {
     return {
         changeOnFollow: (userId: number) => {
             dispatch(followAC(userId))

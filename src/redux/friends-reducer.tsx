@@ -1,9 +1,6 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 
-export type FriendsPageType = {
-    friendsData: Array<FriendType>,
-};
 export type FriendType = {
     id: number,
     name: string,
@@ -15,6 +12,20 @@ export type FriendType = {
     },
     photo: string,
 };
+export type FriendsPageType = {
+    friendsData: Array<FriendType>,
+};
+
+export type FollowActionType = {
+    type: 'FOLLOW',
+    userId: number,
+}
+export type UnfollowActionType = {
+    type: 'UNFOLLOW',
+    userId: number,
+}
+export type FriendsActionsType = FollowActionType | UnfollowActionType
+
 
 let initialState:FriendsPageType = {
     friendsData: [
@@ -26,7 +37,7 @@ let initialState:FriendsPageType = {
     ],
 }
 
-export function friendsReducer (state = initialState, action: any) {
+export function friendsReducer (state = initialState, action: FriendsActionsType):FriendsPageType {
 
     let copyState = {...state}
 
@@ -50,5 +61,5 @@ export function friendsReducer (state = initialState, action: any) {
     console.log(copyState)
     return copyState
 }
-export const followAC = (userId: number) => {return {type: FOLLOW, userId}}
-export const unfollowAC = (userId: number) => {return {type: UNFOLLOW, userId}}
+export const followAC = (userId: number):FollowActionType => {return {type: FOLLOW, userId}}
+export const unfollowAC = (userId: number):UnfollowActionType => {return {type: UNFOLLOW, userId}}

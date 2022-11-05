@@ -2,9 +2,7 @@ import React from "react";
 import s from './OnlineFriend.module.css';
 import {OnlineFriendType} from "../../../../redux/navbar-reducer";
 
-type OnlineFriendPropsType = OnlineFriendType;
-
-export function OnlineFriend(props: OnlineFriendPropsType) {
+export function OnlineFriend(props: OnlineFriendType) {
     return(
         <div className={s.onlineFriend}>
             <img className={s.ava} src={props.ava} alt="ava"/>
