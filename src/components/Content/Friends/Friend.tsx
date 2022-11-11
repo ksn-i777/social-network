@@ -2,20 +2,20 @@ import React from "react";
 import s from "./Friend.module.css"
 
 type FriendPropsType = {
-    id: number,
-    name: string,
-    followed: boolean,
-    status: string,
-    location: {
-        country: string,
-        city: string,
+    id:number,
+    name:string,
+    followed:boolean,
+    status:string,
+    location:{
+        country:string,
+        city:string,
     },
-    photo: string,
-    changeOnFollow: () => void,
-    changeOnUnfollow: () => void,
+    photo:string,
+    changeOnFollow():void,
+    changeOnUnfollow():void,
 }
 
-export function Friend(props: FriendPropsType) {
+export function Friend(props:FriendPropsType) {
     return(
         <div className={s.friend}>
             <div className={s.photoButton}>

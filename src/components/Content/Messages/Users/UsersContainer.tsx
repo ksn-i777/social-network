@@ -2,8 +2,9 @@ import React from "react";
 import {Users} from "./Users";
 import {connect} from "react-redux";
 import {StateType} from "../../../../redux/redux-store";
+import {UsersDataType} from '../../../../redux/messages-reducer';
 
-const mapStateToProps = (state: StateType) => {
+function mapStateToProps(state:StateType):UsersDataType {
     return {
         usersData: state.messagesPage.usersData,
     }

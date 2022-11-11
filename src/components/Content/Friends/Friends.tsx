@@ -3,18 +3,18 @@ import {FriendType} from "../../../redux/friends-reducer";
 import {Friend} from "./Friend"
 
 type FriendsPropsType = {
-    friendsData: Array<FriendType>,
-    changeOnFollow: (userId: number) => void,
-    changeOnUnfollow: (userId: number) => void,
+    friendsData:Array<FriendType>,
+    changeOnFollow(userId:number):void,
+    changeOnUnfollow(userId:number):void,
 }
 
 export function Friends(props: FriendsPropsType) {
 
-    const changeOnFollow = (id: number) => {
+    function changeOnFollow(id:number):void {
         props.changeOnFollow(id)
     }
 
-    const changeOnUnfollow = (id: number) => {
+    function changeOnUnfollow(id:number):void {
         props.changeOnUnfollow(id)
     }
 

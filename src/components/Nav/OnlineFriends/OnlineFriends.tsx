@@ -5,12 +5,12 @@ import {OnlineFriendType} from '../../../redux/navbar-reducer';
 
 
 type OnlineFriendsPropsType = {
-    onlineFriendsData: Array<OnlineFriendType>,
+    onlineFriendsData:Array<OnlineFriendType>,
 };
 
-export function OnlineFriends(props: OnlineFriendsPropsType) {
+export function OnlineFriends(props:OnlineFriendsPropsType) {
 
-    let onlineFriends = props.onlineFriendsData.map((el) => <OnlineFriend key={el.id} id={el.id} name={el.name} ava={el.ava}/>)
+    const onlineFriends = props.onlineFriendsData.map((el) => <OnlineFriend key={el.id} id={el.id} name={el.name} ava={el.ava}/>)
     
     return (
         <div className={s.onlineFriends}>{onlineFriends}</div>

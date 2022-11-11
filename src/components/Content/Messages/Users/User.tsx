@@ -3,7 +3,7 @@ import s from "./User.module.css";
 import {NavLink} from "react-router-dom";
 import {UserType} from '../../../../redux/messages-reducer';
 
-export function User(props: UserType) {
+export function User(props:UserType) {
     return(
         <div className={s.dialog}>
             <NavLink to={'/messages/'+props.id} activeClassName={s.active}>

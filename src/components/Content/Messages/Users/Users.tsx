@@ -3,11 +3,11 @@ import s from "./Users.module.css";
 import {User} from "./User";
 import {UserType} from '../../../../redux/messages-reducer';
 
-type DialogsPropsData = {
-    usersData: Array<UserType>;
+type UsersPropsData = {
+    usersData:Array<UserType>;
 };
 
-export function Users(props: DialogsPropsData) {
+export function Users(props:UsersPropsData) {
     return(
         <div className={s.dialogs}>
             {props.usersData.map((el) => <User key={el.id} id={el.id} name={el.name} ava={el.ava} />)}

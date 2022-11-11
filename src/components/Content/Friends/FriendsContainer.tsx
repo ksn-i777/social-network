@@ -2,20 +2,20 @@ import React from "react";
 import {connect} from "react-redux";
 import {StateType} from "../../../redux/redux-store";
 import {Friends} from "./Friends";
-import {followAC, unfollowAC, FriendsActionsType} from "../../../redux/friends-reducer";
+import {followAC, unfollowAC, FriendsActionsType, FriendsPageType} from '../../../redux/friends-reducer';
 
-const mapStateToProps = (state: StateType) => {
+function mapStateToProps(state: StateType):FriendsPageType {
     return {
         friendsData: state.friendsPage.friendsData,
     }
 }
 
-const mapDispachToProps = (dispatch: (AC: FriendsActionsType) => void) => {
+function mapDispachToProps(dispatch:(AC:FriendsActionsType) => void) {
     return {
-        changeOnFollow: (userId: number) => {
+        changeOnFollow: (userId:number) => {
             dispatch(followAC(userId))
         },
-        changeOnUnfollow: (userId: number) => {
+        changeOnUnfollow: (userId:number) => {
             dispatch(unfollowAC(userId))
         }
     }

@@ -2,29 +2,29 @@ const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 
 export type FriendType = {
-    id: number,
-    name: string,
-    followed: boolean,
-    status: string,
-    location: {
-        country: string,
-        city: string,
+    id:number,
+    name:string,
+    followed:boolean,
+    status:string,
+    location:{
+        country:string,
+        city:string,
     },
-    photo: string,
+    photo:string,
 };
 export type FriendsPageType = {
-    friendsData: Array<FriendType>,
+    friendsData:Array<FriendType>,
 };
 
 export type FollowActionType = {
-    type: 'FOLLOW',
-    userId: number,
-}
+    type:typeof FOLLOW,
+    userId:number,
+};
 export type UnfollowActionType = {
-    type: 'UNFOLLOW',
-    userId: number,
-}
-export type FriendsActionsType = FollowActionType | UnfollowActionType
+    type:typeof UNFOLLOW,
+    userId:number,
+};
+export type FriendsActionsType = FollowActionType | UnfollowActionType;
 
 
 let initialState:FriendsPageType = {
@@ -35,11 +35,11 @@ let initialState:FriendsPageType = {
         {id: 4, name: 'Ivan', followed: false, status: 'blablabla4', location: {country: 'Uzbekistan', city: 'Taskent'}, photo: 'https://shapka-youtube.ru/wp-content/uploads/2021/02/avatarka-dlya-skaypa-dlya-parney.jpg'},
         {id: 5, name: 'Gleb', followed: true, status: 'blablabla5', location: {country: 'USA', city: 'Washington'}, photo: 'https://shapka-youtube.ru/wp-content/uploads/2021/02/avatarka-dlya-skaypa-dlya-parney.jpg'},
     ],
-}
+};
 
-export function friendsReducer (state = initialState, action: FriendsActionsType):FriendsPageType {
+export function friendsReducer(state = initialState, action:FriendsActionsType):FriendsPageType {
 
-    let copyState = {...state}
+    const copyState:FriendsPageType = {...state}
 
     if (action.type === FOLLOW) {
         copyState.friendsData = state.friendsData.map((el) => {
@@ -58,8 +58,11 @@ export function friendsReducer (state = initialState, action: FriendsActionsType
             return el
         })
     }
-    console.log(copyState)
     return copyState
 }
-export const followAC = (userId: number):FollowActionType => {return {type: FOLLOW, userId}}
-export const unfollowAC = (userId: number):UnfollowActionType => {return {type: UNFOLLOW, userId}}
+export function followAC(userId:number):FollowActionType {
+    return {type: FOLLOW, userId}
+}
+export function unfollowAC(userId:number):UnfollowActionType {
+    return {type: UNFOLLOW, userId}
+}

@@ -5,17 +5,17 @@ import {navbarReducer, NavbarType} from './navbar-reducer';
 import {friendsReducer, FriendsPageType} from './friends-reducer';
 
 export type StateType = {
-    profilePage: ProfilePageType,
-    friendsPage: FriendsPageType,
-    messagesPage: MessagesPageType,
-    navbar: NavbarType,
+    profilePage:ProfilePageType,
+    friendsPage:FriendsPageType,
+    messagesPage:MessagesPageType,
+    navbar:NavbarType,
 };
 
-let reducers = combineReducers({
+const reducers = combineReducers({
     profilePage: profileReducer,
     friendsPage: friendsReducer,
     messagesPage: messagesReducer,
     navbar: navbarReducer,
-})
+});
 
-export let store = createStore(reducers);
+export const store = createStore(reducers);

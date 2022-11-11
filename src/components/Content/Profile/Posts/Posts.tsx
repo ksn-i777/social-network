@@ -4,7 +4,7 @@ import {Post} from "./Post";
 import {PostType} from '../../../../redux/profile-reducer';
 
 type PostsPropsType = {
-    postsData: Array<PostType>;
+    postsData:Array<PostType>;
 };
 
 export function Posts(props: PostsPropsType) {

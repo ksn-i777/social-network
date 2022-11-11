@@ -2,25 +2,25 @@ import React, {ChangeEvent, KeyboardEvent} from "react";
 import s from "./NewPost.module.css";
 
 type NewPostPropsType = {
-    changeNewPostText: (newText: string) => void,
-    addNewPost: () => void,
     newPostText: string,
+    changeNewPostText(newText:string):void,
+    addNewPost():void,
 };
 
-export function NewPost(props: NewPostPropsType) {
+export function NewPost(props:NewPostPropsType) {
     
-    let onChangeNewPostText = (e: ChangeEvent<HTMLInputElement>) => {
-        let newText = e.currentTarget.value
+    function onChangeNewPostText(e:ChangeEvent<HTMLInputElement>):void {
+        const newText:string = e.currentTarget.value
         props.changeNewPostText(newText);
-    };
+    }
 
-    let onKeyAddNewPost = (e: KeyboardEvent<HTMLInputElement>) => {
+    function onKeyAddNewPost(e:KeyboardEvent<HTMLInputElement>):void|null {
         return e.code === "Enter" && props.newPostText !== '' ?  props.addNewPost() : null
     }
 
-    let onAddNewPost = () => {
+    function onAddNewPost():void|null {
         return props.newPostText !== '' ?  props.addNewPost() : null
-    };
+    }
     
     return (
         <div className={s.new}>

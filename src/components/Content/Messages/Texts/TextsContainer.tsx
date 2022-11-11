@@ -1,17 +1,22 @@
 import React from "react";
-import {actionAddNewMessage, actionNewMessageText, MessagesActionsType} from "../../../../redux/messages-reducer";
+import {
+    actionAddNewMessage,
+    actionNewMessageText,
+    MessagesActionsType,
+    TextsDataType
+} from '../../../../redux/messages-reducer';
 import {Texts} from './Texts';
 import {connect} from "react-redux";
 import {StateType} from "../../../../redux/redux-store";
 
-const mapStateToProps = (state: StateType) => {
+function mapStateToProps(state:StateType):TextsDataType {
     return {
         textsData: state.messagesPage.textsData,
         newMessageText: state.messagesPage.newMessageText,
     }
 }
 
-const mapDispatchToProps = (dispatch: (AC: MessagesActionsType) => void) => {
+function mapDispatchToProps(dispatch:(AC:MessagesActionsType) => void) {
     return {
         changeNewMessageText: (newText: string) => {
             dispatch(actionNewMessageText(newText));

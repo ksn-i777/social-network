@@ -4,23 +4,23 @@ import {Text} from "./Text";
 import {TextType} from "../../../../redux/messages-reducer";
 
 type TextsPropsType = {
-    changeNewMessageText: (newText: string) => void,
-    sendNewMessage: () => void,
-    textsData: Array<TextType>,
-    newMessageText: string,
+    newMessageText:string,
+    textsData:Array<TextType>,
+    changeNewMessageText(newText:string):void,
+    sendNewMessage():void,
 };
 
-export function Texts(props: TextsPropsType) {
+export function Texts(props:TextsPropsType) {
 
-    const onChangeNewMessageText = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let newText = e.currentTarget.value
+    function onChangeNewMessageText(e:ChangeEvent<HTMLTextAreaElement>):void {
+        const newText:string = e.currentTarget.value
         props.changeNewMessageText(newText);
-    };
-    const onSendNewMessage = () => {
+    }
+    function onSendNewMessage():void {
         if (props.newMessageText !== '') {
             props.sendNewMessage();
         }
-    };
+    }
     return (
         <div>
             <div className={s.texts}>

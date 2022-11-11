@@ -1,21 +1,20 @@
-
 export type OnlineFriendType = {
-    id: number,
-    name: string,
-    ava: string,
+    id:number,
+    name:string,
+    ava:string,
 };
 export type NavbarType = {
-    onlineFriendsData: Array<OnlineFriendType>,
+    onlineFriendsData:Array<OnlineFriendType>,
 };
 
-let initialState: NavbarType = {
+const initialState:NavbarType = {
     onlineFriendsData: [
         {id: 1, name: 'Serg Sergeev', ava: 'https://otvet.imgsmail.ru/download/1574387_76738d630770e903cbe0a47a813d08b5_800.jpg'},
         {id: 2, name: 'Eva Ivanova', ava: 'https://cpad.ask.fm/952/205/196/-69996983-1sqedpc-htihnh1g7el9hf0/original/avatar.jpg'},
         {id: 3, name: 'Leon Leonov', ava: 'https://otvet.imgsmail.ru/download/1574387_76738d630770e903cbe0a47a813d08b5_800.jpg'},
     ],
-}
+};
 
-export function navbarReducer (state = initialState, action: any):NavbarType {
-    return state;
+export function navbarReducer(navbar = initialState, action:any):NavbarType {
+    return navbar;
 }
