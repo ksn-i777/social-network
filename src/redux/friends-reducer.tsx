@@ -29,11 +29,11 @@ export type FriendsActionsType = FollowActionType | UnfollowActionType;
 
 let initialState:FriendsPageType = {
     friendsData: [
-        {id: 1, name: 'Alex', followed: true, status: 'blablabla1', location: {country: 'Belarus', city: 'Minsk'}, photo: 'https://shapka-youtube.ru/wp-content/uploads/2021/02/avatarka-dlya-skaypa-dlya-parney.jpg'},
-        {id: 2, name: 'Serg', followed: false, status: 'blablabla2', location: {country: 'Italy', city: 'Rome'}, photo: 'https://shapka-youtube.ru/wp-content/uploads/2021/02/avatarka-dlya-skaypa-dlya-parney.jpg'},
-        {id: 3, name: 'Petr', followed: true, status: 'blablabla3', location: {country: 'Kazahstan', city: 'Astana'}, photo: 'https://shapka-youtube.ru/wp-content/uploads/2021/02/avatarka-dlya-skaypa-dlya-parney.jpg'},
-        {id: 4, name: 'Ivan', followed: false, status: 'blablabla4', location: {country: 'Uzbekistan', city: 'Taskent'}, photo: 'https://shapka-youtube.ru/wp-content/uploads/2021/02/avatarka-dlya-skaypa-dlya-parney.jpg'},
-        {id: 5, name: 'Gleb', followed: true, status: 'blablabla5', location: {country: 'USA', city: 'Washington'}, photo: 'https://shapka-youtube.ru/wp-content/uploads/2021/02/avatarka-dlya-skaypa-dlya-parney.jpg'},
+        {id: 1, name: 'Alex', followed: true, status: 'blablabla1', location: {country: 'Belarus', city: 'Minsk'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
+        {id: 2, name: 'Serg', followed: false, status: 'blablabla2', location: {country: 'Italy', city: 'Rome'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
+        {id: 3, name: 'Petr', followed: true, status: 'blablabla3', location: {country: 'Kazahstan', city: 'Astana'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
+        {id: 4, name: 'Ivan', followed: false, status: 'blablabla4', location: {country: 'Uzbekistan', city: 'Taskent'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
+        {id: 5, name: 'Gleb', followed: true, status: 'blablabla5', location: {country: 'USA', city: 'Washington'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
     ],
 };
 

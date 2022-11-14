@@ -7,19 +7,10 @@ export type UserType = {
     name:string,
     ava:string,
 };
-export type UsersDataType = {
-    usersData:Array<UserType>
-}
-
 export type TextType = {
     id:number,
     message:string,
 };
-export type TextsDataType = {
-    textsData:Array<TextType>,
-    newMessageText:string,
-};
-
 export type MessagesPageType = {
     usersData:Array<UserType>,
     textsData:Array<TextType>,
@@ -37,11 +28,11 @@ export type MessagesActionsType = NewMessageActionType | AddNewMessageActionType
 
 const initialState:MessagesPageType = {
     usersData: [
-        {id: 1, name: 'Serg Sergeev', ava: 'https://cpad.ask.fm/952/205/196/-69996983-1sqedpc-htihnh1g7el9hf0/original/avatar.jpg'},
-        {id: 2, name: 'Eva Ivanova', ava: 'https://otvet.imgsmail.ru/download/1574387_76738d630770e903cbe0a47a813d08b5_800.jpg'},
-        {id: 3, name: 'Leon Leonov', ava: 'https://cpad.ask.fm/952/205/196/-69996983-1sqedpc-htihnh1g7el9hf0/original/avatar.jpg'},
-        {id: 4, name: 'Kira Kirova', ava: 'https://otvet.imgsmail.ru/download/1574387_76738d630770e903cbe0a47a813d08b5_800.jpg'},
-        {id: 5, name: 'Lera Lerova', ava: 'https://cpad.ask.fm/952/205/196/-69996983-1sqedpc-htihnh1g7el9hf0/original/avatar.jpg'},
+        {id: 1, name: 'Serg Sergeev', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
+        {id: 2, name: 'Eva Ivanova', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
+        {id: 3, name: 'Leon Leonov', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
+        {id: 4, name: 'Kira Kirova', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
+        {id: 5, name: 'Lera Lerova', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
     ],
     textsData: [
         {id: 1, message: '111'},

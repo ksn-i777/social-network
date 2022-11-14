@@ -1,7 +1,6 @@
 .content {
-    grid-area: content;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(21, 34, 42, 0.9);
+    border: 1px solid rgba(112, 128, 144, 0.9);
     border-radius: 8px;
-    margin: 15px;
 }
 

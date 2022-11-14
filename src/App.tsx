@@ -9,8 +9,10 @@ export function App() {
         <div className="body">
             <div className="app-wrapper">
                 <Header/>
-                <Nav/>
-                <Content/>
+                <div className={'nav-content'}>
+                    <Nav/>
+                    <Content/>
+                </div>
             </div>
         </div>
 

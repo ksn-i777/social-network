@@ -4,15 +4,23 @@
     gap: 15px;
 }
 .input {
-    border-radius: 15px;
+    border-radius: 8px;
     border: none;
     text-align: center;
+    outline: none;
 }
 
 .button {
-    border-radius: 15px;
+    outline: none;
+    border-radius: 8px;
     border: none;
-    background-color: rgb(70, 130, 180);
+    background-color: rgba(112, 128, 144, 1);
     color: white;
     cursor: pointer;
+}
+
+.button:hover {
+    background-color:aquamarine;
+    color: green;
+    border: 1px solid green;
 }

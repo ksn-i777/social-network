@@ -1,23 +1,22 @@
 .nav {
-    grid-area: nav;
     border-radius: 15px;
-    margin: 15px 0 0 15px;
-}
-
-.nav .div {
-    width: 235px;
 }
 
 .nav a {
-    width: 90%;
-    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    background-color: rgba(21, 34, 42, 0.9);
+    border: 1px solid rgba(112, 128, 144, 0.9);
+    border-radius: 8px;
     color: white;
     text-decoration: none;
     font-size: 20px;
-    margin: 0;
-    margin-bottom: 15px;
-    padding: 10px;
-    border-radius: 8px;
+    margin: 0 0 15px 0;
+}
+
+.nav a:hover {
+    background-color:aquamarine;
+    color: green;
+    border: 1px solid green;
 }
 
 .nav .active {

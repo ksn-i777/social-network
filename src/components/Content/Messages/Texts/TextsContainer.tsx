@@ -3,20 +3,30 @@ import {
     actionAddNewMessage,
     actionNewMessageText,
     MessagesActionsType,
-    TextsDataType
+    TextType
 } from '../../../../redux/messages-reducer';
 import {Texts} from './Texts';
 import {connect} from "react-redux";
 import {StateType} from "../../../../redux/redux-store";
 
-function mapStateToProps(state:StateType):TextsDataType {
+type mapStateToPropsType = {
+    textsData:Array<TextType>,
+    newMessageText:string,
+}
+
+type mapDispatchToPropsType = {
+    changeNewMessageText(newText: string):void,
+    sendNewMessage():void,
+}
+
+function mapStateToProps(state:StateType):mapStateToPropsType {
     return {
         textsData: state.messagesPage.textsData,
         newMessageText: state.messagesPage.newMessageText,
     }
 }
 
-function mapDispatchToProps(dispatch:(AC:MessagesActionsType) => void) {
+function mapDispatchToProps(dispatch:(AC:MessagesActionsType) => void):mapDispatchToPropsType {
     return {
         changeNewMessageText: (newText: string) => {
             dispatch(actionNewMessageText(newText));

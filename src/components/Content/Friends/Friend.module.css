@@ -1,37 +1,33 @@
 .friend {
     display: grid;
     grid-template-columns: 1fr 11fr;
-    gap: 20px;
+    gap: 15px;
+    margin: 15px 15px 0 15px;
     color: white;
     font-size: 15px;
-    padding: 5px;
-    margin: 5px;
     border-radius: 8px;
     align-items: center;
-    padding: 10px;
 }
 
 .photo {
     display: block;
     margin: 0 auto;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     object-fit: cover;
-    border-radius: 100%;
+    border-radius: 8px;
 }
 
 .button {
     display: flex;
-    margin: 0 auto;
+    margin: 10px auto 0;
     justify-content: center;
     align-items: center;
     width: 70px;
-    height: 20px;
-    border: 1px solid white;
-    border-radius: 5px;
+    height: 25px;
+    border: 1px solid rgba(112, 128, 144, 0.9);
+    border-radius: 8px;
     text-align: center;
-    margin-top: 5px;
-    background-color: rgba(0, 0, 0, 0.25);
     cursor: pointer;
 }
 
@@ -50,12 +46,10 @@
 .description {
     display: flex;
     justify-content: space-between;
-    width: 500px;
-    height: 70px;
-    border: 1px solid white;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.25);
-    padding: 5px 15px;
+    height: 65px;
+    border: 1px solid rgba(112, 128, 144, 0.9);
+    padding: 10px;
+    border-radius: 8px;
 }
 
 .nameStatus {

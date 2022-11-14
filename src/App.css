@@ -1,20 +1,25 @@
 .body {
-    background-image: url("https://i.pinimg.com/originals/0b/e9/8f/0be98fab67529e61370ae2bb0145c49e.jpg");
+    background-image: url("https://oir.mobi/uploads/posts/2022-08/1661337111_16-oir-mobi-p-fon-dlya-telegram-oboi-17.jpg");
     background-repeat: no-repeat;
     background-position: center center;
-    background-attachment: scroll;
+    background-attachment: fixed;
+    background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
 }
+
 .app-wrapper {
     display: grid;
-    grid-template-areas:
-    "header header"
-    "nav content";
     grid-template-rows: 70px 1fr;
-    grid-template-columns: 250px 1fr;
+    gap: 15px;
     margin: 0 auto;
     width: 1200px;
+    min-height: 100vh;
+}
+
+.nav-content {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    gap: 15px;
 }

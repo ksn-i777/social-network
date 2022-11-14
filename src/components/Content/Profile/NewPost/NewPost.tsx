@@ -29,7 +29,7 @@ export function NewPost(props:NewPostPropsType) {
                 onChange={onChangeNewPostText}
                 onKeyPress={onKeyAddNewPost}
                 className={s.input}
-                placeholder={'Enter a message'}
+                placeholder={'Enter a post message'}
             />
             <button onClick={onAddNewPost} className={s.button}>Add post</button>
         </div>

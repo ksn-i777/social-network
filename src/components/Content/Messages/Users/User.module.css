@@ -1,40 +1,37 @@
-.dialog {
-    display: grid;
-    grid-template-columns: 1fr 11fr;
-}
-
 a {
     display: grid;
     grid-template-columns: 1fr 11fr;
-    background-color: rgba(0, 0, 0, 0.25);
     color: white;
     text-decoration: none;
     font-size: 15px;
     padding: 5px;
-    margin: 5px;
-    border-radius: 8px;
+    border: 1px solid rgba(112, 128, 144, 0.9);
+    border-radius: 0 8px 8px 0;
     align-items: center;
-    width: 200px;
+}
+
+a:hover {
+    background-color:aquamarine;
+    color: green;
+    border: 1px solid green;
 }
 
 .active {
     display: grid;
     grid-template-columns: 1fr 11fr;
-    background-color: rgba(255, 255, 255, 1);
     color: black;
     text-decoration: none;
     font-size: 15px;
     padding: 5px;
-    margin: 5px;
-    border-radius: 8px;
+    border-radius: 0 8px 8px 0;
     align-items: center;
-    width: 200px;
+    background-color: rgba(255, 255, 255, 1);
 }
 
 .ava {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     object-fit: cover;
-    border-radius: 100%;
-    margin-right: 5px;
+    border-radius: 8px;
+    margin-right: 10px;
 }

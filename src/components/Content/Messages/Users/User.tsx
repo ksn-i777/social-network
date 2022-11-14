@@ -5,11 +5,9 @@ import {UserType} from '../../../../redux/messages-reducer';
 
 export function User(props:UserType) {
     return(
-        <div className={s.dialog}>
-            <NavLink to={'/messages/'+props.id} activeClassName={s.active}>
-                <img src={props.ava} alt="ava" className={s.ava}/>
-                {props.name}
-            </NavLink>
-        </div>
+        <NavLink to={'/messages/'+props.id} activeClassName={s.active}>
+            <img src={props.ava} alt="ava" className={s.ava}/>
+            {props.name}
+        </NavLink>
     )
 }
