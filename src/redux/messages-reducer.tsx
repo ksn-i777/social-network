@@ -44,7 +44,7 @@ const initialState:MessagesPageType = {
     newMessageText: '',
 };
 
-export function messagesReducer(state = initialState, action:MessagesActionsType):MessagesPageType {
+export function messagesReducer(state:MessagesPageType = initialState, action:MessagesActionsType):MessagesPageType {
 
     const copyState:MessagesPageType = {...state}
 

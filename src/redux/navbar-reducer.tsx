@@ -15,6 +15,6 @@ const initialState:NavbarType = {
     ],
 };
 
-export function navbarReducer(navbar = initialState, action:any):NavbarType {
+export function navbarReducer(navbar:NavbarType = initialState, action:any):NavbarType {
     return navbar;
 }

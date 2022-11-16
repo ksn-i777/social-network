@@ -2,9 +2,13 @@ import React from "react";
 import {connect} from "react-redux";
 import {OnlineFriends} from "./OnlineFriends";
 import {StateType} from "../../../redux/redux-store";
-import {NavbarType} from '../../../redux/navbar-reducer';
+import {OnlineFriendType} from '../../../redux/navbar-reducer';
 
-function mapStateToProps(state:StateType):NavbarType {
+type mapStateToPropsType = {
+    onlineFriendsData:Array<OnlineFriendType>,
+}
+
+function mapStateToProps(state:StateType):mapStateToPropsType {
     return {
         onlineFriendsData: state.navbar.onlineFriendsData,
     }

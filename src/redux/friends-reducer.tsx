@@ -37,7 +37,7 @@ let initialState:FriendsPageType = {
     ],
 };
 
-export function friendsReducer(state = initialState, action:FriendsActionsType):FriendsPageType {
+export function friendsReducer(state:FriendsPageType = initialState, action:FriendsActionsType):FriendsPageType {
 
     const copyState:FriendsPageType = {...state}
 

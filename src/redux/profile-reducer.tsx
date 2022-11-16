@@ -33,7 +33,7 @@ let initialState:ProfilePageType = {
     newPostText: '',
 };
 
-export function profileReducer(state = initialState, action:ProfileActionsType):ProfilePageType {
+export function profileReducer(state:ProfilePageType = initialState, action:ProfileActionsType):ProfilePageType {
 
     const copyState:ProfilePageType = {...state}
 
