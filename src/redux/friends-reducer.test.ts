@@ -3,11 +3,11 @@ import {followAC, FriendsPageType, friendsReducer, unfollowAC} from './friends-r
 test('correct following', () => {
     const startstate:FriendsPageType = {
         friendsData: [
-            {id: '1', name: 'Alex', followed: true, status: 'blablabla1', location: {country: 'Belarus', city: 'Minsk'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
-            {id: '2', name: 'Serg', followed: false, status: 'blablabla2', location: {country: 'Italy', city: 'Rome'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
-            {id: '3', name: 'Petr', followed: true, status: 'blablabla3', location: {country: 'Kazahstan', city: 'Astana'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
-            {id: '4', name: 'Ivan', followed: false, status: 'blablabla4', location: {country: 'Uzbekistan', city: 'Taskent'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
-            {id: '5', name: 'Gleb', followed: true, status: 'blablabla5', location: {country: 'USA', city: 'Washington'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
+            {id: '1', name: 'Alex', uniqueUrlName: '', photos: {small: '', large: ''}, status: '', followed: true},
+            {id: '2', name: 'Serg', uniqueUrlName: '', photos: {small: '', large: ''}, status: '', followed: false},
+            {id: '3', name: 'Petr', uniqueUrlName: '', photos: {small: '', large: ''}, status: '', followed: true},
+            {id: '4', name: 'Ivan', uniqueUrlName: '', photos: {small: '', large: ''}, status: '', followed: false},
+            {id: '5', name: 'Gleb', uniqueUrlName: '', photos: {small: '', large: ''}, status: '', followed: true},
         ]
     }
 
@@ -24,11 +24,11 @@ test('correct following', () => {
 test('correct unfollowing', () => {
     const startstate:FriendsPageType = {
         friendsData: [
-            {id: '1', name: 'Alex', followed: true, status: 'blablabla1', location: {country: 'Belarus', city: 'Minsk'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
-            {id: '2', name: 'Serg', followed: false, status: 'blablabla2', location: {country: 'Italy', city: 'Rome'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
-            {id: '3', name: 'Petr', followed: true, status: 'blablabla3', location: {country: 'Kazahstan', city: 'Astana'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
-            {id: '4', name: 'Ivan', followed: false, status: 'blablabla4', location: {country: 'Uzbekistan', city: 'Taskent'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
-            {id: '5', name: 'Gleb', followed: true, status: 'blablabla5', location: {country: 'USA', city: 'Washington'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
+            {id: '1', name: 'Alex', uniqueUrlName: '', photos: {small: '', large: ''}, status: '', followed: true},
+            {id: '2', name: 'Serg', uniqueUrlName: '', photos: {small: '', large: ''}, status: '', followed: false},
+            {id: '3', name: 'Petr', uniqueUrlName: '', photos: {small: '', large: ''}, status: '', followed: true},
+            {id: '4', name: 'Ivan', uniqueUrlName: '', photos: {small: '', large: ''}, status: '', followed: false},
+            {id: '5', name: 'Gleb', uniqueUrlName: '', photos: {small: '', large: ''}, status: '', followed: true},
         ]
     }
 

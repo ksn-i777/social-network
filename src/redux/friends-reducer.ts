@@ -1,18 +1,17 @@
-import {v1} from 'uuid';
-
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
+const SET_USERS = 'SET-USERS';
 
 export type FriendType = {
-    id:string,
-    name:string,
-    followed:boolean,
-    status:string,
-    location:{
-        country:string,
-        city:string,
-    },
-    photo:string,
+    id:string
+    name:string
+    uniqueUrlName:string
+    photos: {
+        small: string
+        large: string
+    }
+    status:string
+    followed:boolean
 };
 export type FriendsPageType = {
     friendsData:Array<FriendType>,
@@ -26,17 +25,16 @@ export type UnfollowActionType = {
     type:typeof UNFOLLOW,
     userId:string,
 };
-export type FriendsActionsType = FollowActionType | UnfollowActionType;
+export type SetUsersActionType = {
+    type:typeof SET_USERS,
+    users:Array<FriendType>,
+};
+
+export type FriendsActionsType = FollowActionType | UnfollowActionType | SetUsersActionType;
 
 
 const initialState:FriendsPageType = {
-    friendsData: [
-        {id: v1(), name: 'Alex', followed: true, status: 'blablabla1', location: {country: 'Belarus', city: 'Minsk'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
-        {id: v1(), name: 'Serg', followed: false, status: 'blablabla2', location: {country: 'Italy', city: 'Rome'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
-        {id: v1(), name: 'Petr', followed: true, status: 'blablabla3', location: {country: 'Kazahstan', city: 'Astana'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
-        {id: v1(), name: 'Ivan', followed: false, status: 'blablabla4', location: {country: 'Uzbekistan', city: 'Taskent'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
-        {id: v1(), name: 'Gleb', followed: true, status: 'blablabla5', location: {country: 'USA', city: 'Washington'}, photo: 'https://avatarko.ru/img/kartinka/25/zhivotnye_kot_prikol_text_24177.jpg'},
-    ],
+    friendsData: [],
 };
 
 export function friendsReducer(state:FriendsPageType = initialState, action:FriendsActionsType):FriendsPageType {
@@ -50,6 +48,9 @@ export function friendsReducer(state:FriendsPageType = initialState, action:Frie
         case UNFOLLOW:
             copyState.friendsData = state.friendsData.map(el => el.id === action.userId ? {...el, followed: false} : el)
             return copyState
+        case SET_USERS:
+            copyState.friendsData = action.users
+            return copyState
         default:
             return state
     }
@@ -60,3 +61,7 @@ export function followAC(userId:string):FollowActionType {
 export function unfollowAC(userId:string):UnfollowActionType {
     return {type: UNFOLLOW, userId}
 }
+export function setUsersAC(users:Array<FriendType>):SetUsersActionType {
+    return {type: SET_USERS, users}
+}
+

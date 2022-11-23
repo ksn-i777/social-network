@@ -4,13 +4,9 @@ import s from "./Friend.module.css"
 type FriendPropsType = {
     id:string,
     name:string,
-    followed:boolean,
-    status:string,
-    location:{
-        country:string,
-        city:string,
-    },
     photo:string,
+    status:string,
+    followed:boolean,
     changeOnFollow():void,
     changeOnUnfollow():void,
 }
@@ -19,7 +15,7 @@ export function Friend(props:FriendPropsType) {
     return(
         <div className={s.friend}>
             <div className={s.photoButton}>
-                <img className={s.photo} src={props.photo} alt="photoUser" />
+                <img className={s.photo} src={props.photo ? props.photo : 'https://www.freeiconspng.com/uploads/blue-user-icon-32.jpg'} alt="photoUser" />
                 {props.followed
                     ? <div onClick={props.changeOnUnfollow} className={`${s.button} ${s.buttonUnfollow}`}>Unfollow</div>
                     : <div onClick={props.changeOnFollow} className={`${s.button} ${s.buttonFollow}`}>Follow</div>
@@ -31,8 +27,8 @@ export function Friend(props:FriendPropsType) {
                     <div>{props.status}</div>
                 </div>
                 <div  className={s.location}>
-                    <div>{props.location.country}</div>
-                    <div>{props.location.city}</div>
+                    <div>{'country'}</div>
+                    <div>{'city'}</div>
                 </div>
             </div>
             
