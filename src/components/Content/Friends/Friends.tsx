@@ -12,10 +12,12 @@ type FriendsPropsType = {
 
 export function Friends(props: FriendsPropsType) {
 
-    if(props.friendsData.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(res => {
-            props.setUsers(res.data.items)
-        })
+    function getUsers() {
+        if(props.friendsData.length === 0) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(res => {
+                props.setUsers(res.data.items)
+            })
+        }
     }
 
     function changeOnFollow(id:string):void {
@@ -28,6 +30,7 @@ export function Friends(props: FriendsPropsType) {
 
     return (
         <div>
+            <button onClick={getUsers}>Get users</button>
             {props.friendsData.map((el) =>
                 <Friend
                     key={el.id}
