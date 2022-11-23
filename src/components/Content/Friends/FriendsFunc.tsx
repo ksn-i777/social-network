@@ -10,7 +10,7 @@ type FriendsPropsType = {
     setUsers(users:Array<FriendType>):void,
 }
 
-export function Friends(props: FriendsPropsType) {
+export function FriendsFunc(props: FriendsPropsType) {
 
     function getUsers() {
         if(props.friendsData.length === 0) {
@@ -18,14 +18,6 @@ export function Friends(props: FriendsPropsType) {
                 props.setUsers(res.data.items)
             })
         }
-    }
-
-    function changeOnFollow(id:string):void {
-        props.changeOnFollow(id)
-    }
-
-    function changeOnUnfollow(id:string):void {
-        props.changeOnUnfollow(id)
     }
 
     return (
@@ -39,8 +31,8 @@ export function Friends(props: FriendsPropsType) {
                     photo={el.photos.small}
                     status={el.status}
                     followed={el.followed}
-                    changeOnFollow={()=>{changeOnFollow(el.id)}}
-                    changeOnUnfollow={() => {changeOnUnfollow(el.id)}}
+                    changeOnFollow={()=>{props.changeOnFollow(el.id)}}
+                    changeOnUnfollow={() => {props.changeOnUnfollow(el.id)}}
                 />
             )}
         </div>
