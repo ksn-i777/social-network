@@ -4,17 +4,17 @@ import {Friend} from "./Friend"
 
 type FriendsPropsType = {
     friendsData:Array<FriendType>,
-    changeOnFollow(userId:number):void,
-    changeOnUnfollow(userId:number):void,
+    changeOnFollow(userId:string):void,
+    changeOnUnfollow(userId:string):void,
 }
 
 export function Friends(props: FriendsPropsType) {
 
-    function changeOnFollow(id:number):void {
+    function changeOnFollow(id:string):void {
         props.changeOnFollow(id)
     }
 
-    function changeOnUnfollow(id:number):void {
+    function changeOnUnfollow(id:string):void {
         props.changeOnUnfollow(id)
     }
 

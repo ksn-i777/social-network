@@ -9,8 +9,8 @@ type mapStateToPropsType = {
 }
 
 type mapDispachToPropsType = {
-    changeOnFollow(userId:number):void,
-    changeOnUnfollow(userId:number):void,
+    changeOnFollow(userId:string):void,
+    changeOnUnfollow(userId:string):void,
 }
 
 function mapStateToProps(state: StateType):mapStateToPropsType {
@@ -21,10 +21,10 @@ function mapStateToProps(state: StateType):mapStateToPropsType {
 
 function mapDispachToProps(dispatch:(AC:FriendsActionsType) => void):mapDispachToPropsType {
     return {
-        changeOnFollow: (userId:number) => {
+        changeOnFollow: (userId:string) => {
             dispatch(followAC(userId))
         },
-        changeOnUnfollow: (userId:number) => {
+        changeOnUnfollow: (userId:string) => {
             dispatch(unfollowAC(userId))
         }
     }

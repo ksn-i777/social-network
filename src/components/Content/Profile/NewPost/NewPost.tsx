@@ -14,12 +14,12 @@ export function NewPost(props:NewPostPropsType) {
         props.changeNewPostText(newText);
     }
 
-    function onKeyAddNewPost(e:KeyboardEvent<HTMLInputElement>):void|null {
-        return e.code === "Enter" && props.newPostText !== '' ?  props.addNewPost() : null
+    function onKeyAddNewPost(e:KeyboardEvent<HTMLInputElement>):void {
+        if ((e.code === "Enter" || e.code === "NumpadEnter") && props.newPostText !== '') {props.addNewPost()}
     }
 
-    function onAddNewPost():void|null {
-        return props.newPostText !== '' ?  props.addNewPost() : null
+    function onAddNewPost():void {
+        if(props.newPostText !== '') {props.addNewPost()}
     }
     
     return (

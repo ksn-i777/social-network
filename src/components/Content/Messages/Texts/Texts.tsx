@@ -24,7 +24,7 @@ export function Texts(props:TextsPropsType) {
     return (
         <div>
             <div className={s.texts}>
-                {props.textsData.map((el: { id: number, message: string }) => <Text key={el.id} id={el.id} message={el.message}/>)}
+                {props.textsData.map(el => <Text key={el.id} id={el.id} message={el.message}/>)}
             </div>
             <div>
                 <textarea value={props.newMessageText} onChange={onChangeNewMessageText}></textarea>

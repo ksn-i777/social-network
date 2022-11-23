@@ -2,7 +2,7 @@ import {profileReducer} from './profile-reducer';
 import {messagesReducer} from './messages-reducer';
 import {navbarReducer} from './navbar-reducer';
 
-export type StoreType = {
+type StoreType = {
     _state: StateType,
     _callSubscriber: (state: StateType) => void,
     getState: () => StateType,
@@ -10,24 +10,24 @@ export type StoreType = {
     dispatch: (action: any) => void,
 }
 
-export type StateType = {
+type StateType = {
     profilePage: ProfilePageType,
     messagesPage: MessagesPageType,
     navbar: NavbarType,
 }; //copy in redux-store
 
-export type ProfilePageType = {
+type ProfilePageType = {
     postsData: Array<PostType>,
     newPostText: string,
 }; //copy in reducer
-export type PostType = {
+type PostType = {
     id: number,
     message: string,
     likes: number,
     ava: string,
 }; //copy in reducer
 
-export type MessagesPageType = {
+type MessagesPageType = {
     usersData: Array<UserType>,
     textsData: Array<TextType>,
     newMessageText: string,
