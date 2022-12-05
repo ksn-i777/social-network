@@ -24,7 +24,7 @@ export function Friends(props: FriendsPropsType) {
     }
 
     return (
-        <div>
+        <div className={s.friends}>
             {props.friendsData.map((el) =>
                 <Friend
                     key={el.id}

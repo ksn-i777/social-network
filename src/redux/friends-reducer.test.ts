@@ -12,6 +12,7 @@ test('correct following', () => {
         currentPage: 1,
         pageSize: 5,
         totalUsersCount: 0,
+        preloaderStatus: false,
     }
 
     const action1 = followAC('2')
@@ -36,6 +37,7 @@ test('correct unfollowing', () => {
         currentPage: 1,
         pageSize: 5,
         totalUsersCount: 0,
+        preloaderStatus: false,
     }
 
     const action1 = unfollowAC('1')

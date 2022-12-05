@@ -3,6 +3,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const CHANGE_PRELOADER_STATUS = 'CHANGE_PRELOADER_STATUS'
 
 export type FriendType = {
     id: string
@@ -20,6 +21,7 @@ export type FriendsPageType = {
     currentPage: number,
     pageSize: number,
     totalUsersCount: number,
+    preloaderStatus: boolean,
 };
 
 export type FollowActionType = {
@@ -42,18 +44,24 @@ export type SetCurrentPageActionType = {
     type: typeof SET_CURRENT_PAGE,
     currentPage: number,
 };
+export type ChangePreloaderStatusActionType = {
+    type: typeof CHANGE_PRELOADER_STATUS,
+    newPreloaderStatus: boolean,
+};
 
 export type FriendsActionsType = FollowActionType
     | UnfollowActionType
     | SetUsersActionType
     | SetTotalUsersCountActionType
     | SetCurrentPageActionType
+    | ChangePreloaderStatusActionType
 
 const initialState:FriendsPageType = {
     friendsData: [],
     currentPage: 1,
     pageSize: 5,
     totalUsersCount: 0,
+    preloaderStatus: false,
 };
 
 export function friendsReducer(state:FriendsPageType = initialState, action:FriendsActionsType):FriendsPageType {
@@ -69,6 +77,8 @@ export function friendsReducer(state:FriendsPageType = initialState, action:Frie
             return {...state, totalUsersCount: action.totalUsersCount}
         case SET_CURRENT_PAGE:
             return {...state, currentPage: action.currentPage}
+        case CHANGE_PRELOADER_STATUS:
+            return {...state, preloaderStatus: action.newPreloaderStatus}
         default:
             return state
     }
@@ -87,4 +97,7 @@ export function setTotalUsersCountAC(totalUsersCount: number):SetTotalUsersCount
 }
 export function setCurrentPageAC(currentPage: number):SetCurrentPageActionType {
     return {type: SET_CURRENT_PAGE, currentPage}
+}
+export function changePreloaderStatusAC(newPreloaderStatus: boolean):ChangePreloaderStatusActionType {
+    return {type: CHANGE_PRELOADER_STATUS, newPreloaderStatus}
 }

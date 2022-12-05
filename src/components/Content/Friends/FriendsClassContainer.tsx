@@ -7,12 +7,14 @@ import {
     setUsersAC,
     setTotalUsersCountAC,
     setCurrentPageAC,
+    changePreloaderStatusAC,
     FriendsActionsType,
     FriendType,
     FriendsPageType
 } from '../../../redux/friends-reducer';
 import axios from 'axios';
 import {Friends} from './Friends'
+import { Preloader } from "../../Preloader/Preloader";
 
 type MapStateToPropsType = FriendsPageType
 
@@ -22,6 +24,7 @@ type MapDispachToPropsType = {
     setUsers: (users: Array<FriendType>) => void,
     setTotalUsersCount: (totalUsersCount: number) => void,
     setCurrentPage: (currentPage: number) => void,
+    changePreloaderStatus: (newPreloaderStatus: boolean) => void,
 }
 
 function mapStateToProps(state: StateType):MapStateToPropsType {
@@ -30,6 +33,7 @@ function mapStateToProps(state: StateType):MapStateToPropsType {
         currentPage: state.friendsPage.currentPage,
         pageSize: state.friendsPage.pageSize,
         totalUsersCount: state.friendsPage.totalUsersCount,
+        preloaderStatus: state.friendsPage.preloaderStatus,
     }
 }
 
@@ -49,6 +53,9 @@ function mapDispachToProps(dispatch:(AC:FriendsActionsType) => void):MapDispachT
         },
         setCurrentPage: (currentPage: number) => {
             dispatch(setCurrentPageAC(currentPage))
+        },
+        changePreloaderStatus: (newPreloaderStatus: boolean) => {
+            dispatch(changePreloaderStatusAC(newPreloaderStatus))
         }
     }
 }
@@ -56,7 +63,9 @@ function mapDispachToProps(dispatch:(AC:FriendsActionsType) => void):MapDispachT
 class FriendsClass extends React.Component<any, any> {
 
     componentDidMount() {
+        this.props.changePreloaderStatus(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(res => {
+            this.props.changePreloaderStatus(false)
             this.props.setUsers(res.data.items)
             this.props.setTotalUsersCount(res.data.totalCount)
         })
@@ -64,25 +73,27 @@ class FriendsClass extends React.Component<any, any> {
     }
 
     changeCurrentPage = (currentPageNumber: number) => {
+        this.props.changePreloaderStatus(true)
         this.props.setCurrentPage(currentPageNumber)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPageNumber}&count=${this.props.pageSize}`).then(res => {
+            this.props.changePreloaderStatus(false)
             this.props.setUsers(res.data.items)
             this.props.setTotalUsersCount(res.data.totalCount)
         })
     }
 
     render() {
-        return (
-            <Friends
-                friendsData={this.props.friendsData}
-                currentPage={this.props.currentPage}
-                pageSize={this.props.pageSize}
-                totalUsersCount={this.props.totalUsersCount}
-                changeOnFollow={this.props.changeOnFollow}
-                changeOnUnfollow={this.props.changeOnUnfollow}
-                changeCurrentPage={this.changeCurrentPage}
-            />
-        )
+        return this.props.preloaderStatus
+        ? <Preloader/>
+        : <Friends
+            friendsData={this.props.friendsData}
+            currentPage={this.props.currentPage}
+            pageSize={this.props.pageSize}
+            totalUsersCount={this.props.totalUsersCount}
+            changeOnFollow={this.props.changeOnFollow}
+            changeOnUnfollow={this.props.changeOnUnfollow}
+            changeCurrentPage={this.changeCurrentPage}
+        />
     }
 }
 
