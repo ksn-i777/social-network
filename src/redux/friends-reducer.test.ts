@@ -8,7 +8,10 @@ test('correct following', () => {
             {id: '3', name: 'Petr', uniqueUrlName: '', photos: {small: '', large: ''}, status: '', followed: true},
             {id: '4', name: 'Ivan', uniqueUrlName: '', photos: {small: '', large: ''}, status: '', followed: false},
             {id: '5', name: 'Gleb', uniqueUrlName: '', photos: {small: '', large: ''}, status: '', followed: true},
-        ]
+        ],
+        currentPage: 1,
+        pageSize: 5,
+        totalUsersCount: 0,
     }
 
     const action1 = followAC('2')
@@ -29,7 +32,10 @@ test('correct unfollowing', () => {
             {id: '3', name: 'Petr', uniqueUrlName: '', photos: {small: '', large: ''}, status: '', followed: true},
             {id: '4', name: 'Ivan', uniqueUrlName: '', photos: {small: '', large: ''}, status: '', followed: false},
             {id: '5', name: 'Gleb', uniqueUrlName: '', photos: {small: '', large: ''}, status: '', followed: true},
-        ]
+        ],
+        currentPage: 1,
+        pageSize: 5,
+        totalUsersCount: 0,
     }
 
     const action1 = unfollowAC('1')

@@ -1,0 +1,16 @@
+.pagesNumbersDiv {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 15px;
+}
+.currentPage {
+    color: white;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.page {
+    color: rgba(112, 128, 144, 0.9);
+    cursor: pointer;
+}
