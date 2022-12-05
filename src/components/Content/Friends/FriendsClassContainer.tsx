@@ -1,7 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
 import {StateType} from "../../../redux/redux-store";
-import {FriendsFunc} from "./FriendsFunc";
 import {
     followAC,
     unfollowAC,
@@ -12,7 +11,8 @@ import {
     FriendType,
     FriendsPageType
 } from '../../../redux/friends-reducer';
-import {FriendsClass} from './FriendsClass';
+import axios from 'axios';
+import {Friends} from './Friends'
 
 type MapStateToPropsType = FriendsPageType
 
@@ -53,4 +53,37 @@ function mapDispachToProps(dispatch:(AC:FriendsActionsType) => void):MapDispachT
     }
 }
 
-export const FriendsContainer = connect(mapStateToProps, mapDispachToProps)(FriendsClass)
+class FriendsClass extends React.Component<any, any> {
+
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(res => {
+            this.props.setUsers(res.data.items)
+            this.props.setTotalUsersCount(res.data.totalCount)
+        })
+        
+    }
+
+    changeCurrentPage = (currentPageNumber: number) => {
+        this.props.setCurrentPage(currentPageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPageNumber}&count=${this.props.pageSize}`).then(res => {
+            this.props.setUsers(res.data.items)
+            this.props.setTotalUsersCount(res.data.totalCount)
+        })
+    }
+
+    render() {
+        return (
+            <Friends
+                friendsData={this.props.friendsData}
+                currentPage={this.props.currentPage}
+                pageSize={this.props.pageSize}
+                totalUsersCount={this.props.totalUsersCount}
+                changeOnFollow={this.props.changeOnFollow}
+                changeOnUnfollow={this.props.changeOnUnfollow}
+                changeCurrentPage={this.changeCurrentPage}
+            />
+        )
+    }
+}
+
+export const FriendsClassContainer = connect(mapStateToProps, mapDispachToProps)(FriendsClass)
