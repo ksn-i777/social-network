@@ -13,13 +13,12 @@ export class FriendsClass extends React.Component<any, any> {
         })
     }
 
-    onChangeCurrentPage = (currentPageNumber: number) => {
+    onChangeCurrentPage(currentPageNumber: number) {
         this.props.setCurrentPage(currentPageNumber)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPageNumber}&count=${this.props.pageSize}`).then(res => {
             this.props.setUsers(res.data.items)
             this.props.setTotalUsersCount(res.data.totalCount)
         })
-        console.log(`${this.props.currentPage}`)
     }
 
     render() {
