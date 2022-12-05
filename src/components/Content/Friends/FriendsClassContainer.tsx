@@ -8,8 +8,6 @@ import {
     setTotalUsersCountAC,
     setCurrentPageAC,
     changePreloaderStatusAC,
-    FriendsActionsType,
-    FriendType,
     FriendsPageType
 } from '../../../redux/friends-reducer';
 import axios from 'axios';
@@ -17,15 +15,6 @@ import {Friends} from './Friends'
 import { Preloader } from "../../Preloader/Preloader";
 
 type MapStateToPropsType = FriendsPageType
-
-type MapDispachToPropsType = {
-    changeOnFollow: (userId: string) => void,
-    changeOnUnfollow: (userId: string) => void,
-    setUsers: (users: Array<FriendType>) => void,
-    setTotalUsersCount: (totalUsersCount: number) => void,
-    setCurrentPage: (currentPage: number) => void,
-    changePreloaderStatus: (newPreloaderStatus: boolean) => void,
-}
 
 function mapStateToProps(state: StateType):MapStateToPropsType {
     return {
@@ -37,12 +26,20 @@ function mapStateToProps(state: StateType):MapStateToPropsType {
     }
 }
 
+/* type MapDispachToPropsType = {
+    follow: (userId: string) => void,
+    unfollow: (userId: string) => void,
+    setUsers: (users: Array<FriendType>) => void,
+    setTotalUsersCount: (totalUsersCount: number) => void,
+    setCurrentPage: (currentPage: number) => void,
+    changePreloaderStatus: (newPreloaderStatus: boolean) => void,
+}
 function mapDispachToProps(dispatch:(AC:FriendsActionsType) => void):MapDispachToPropsType {
     return {
-        changeOnFollow: (userId: string) => {
+        follow: (userId: string) => {
             dispatch(followAC(userId))
         },
-        changeOnUnfollow: (userId: string) => {
+        unfollow: (userId: string) => {
             dispatch(unfollowAC(userId))
         },
         setUsers: (users: Array<FriendType>) => {
@@ -58,7 +55,7 @@ function mapDispachToProps(dispatch:(AC:FriendsActionsType) => void):MapDispachT
             dispatch(changePreloaderStatusAC(newPreloaderStatus))
         }
     }
-}
+} */
 
 class FriendsClass extends React.Component<any, any> {
 
@@ -90,11 +87,15 @@ class FriendsClass extends React.Component<any, any> {
             currentPage={this.props.currentPage}
             pageSize={this.props.pageSize}
             totalUsersCount={this.props.totalUsersCount}
-            changeOnFollow={this.props.changeOnFollow}
-            changeOnUnfollow={this.props.changeOnUnfollow}
+            follow={this.props.follow}
+            unfollow={this.props.unfollow}
             changeCurrentPage={this.changeCurrentPage}
         />
     }
 }
 
-export const FriendsClassContainer = connect(mapStateToProps, mapDispachToProps)(FriendsClass)
+const dispatchObj = {follow: followAC, unfollow: unfollowAC, setUsers: setUsersAC, setTotalUsersCount: setTotalUsersCountAC, setCurrentPage: setCurrentPageAC, changePreloaderStatus: changePreloaderStatusAC}
+// если переименоать АС в редюсере так, чтобы свойство и значение имели одинаковое название, то dispatchObj будет таким
+// dispatchObj = {follow, unfollow, setUsers, setTotalUsersCount, setCurrentPage, changePreloaderStatus}
+
+export const FriendsClassContainer = connect(mapStateToProps, dispatchObj)(FriendsClass)

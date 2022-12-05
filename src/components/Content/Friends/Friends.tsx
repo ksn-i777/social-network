@@ -8,8 +8,8 @@ type FriendsPropsType = {
     totalUsersCount: number,
     pageSize: number,
     currentPage: number,
-    changeOnFollow: (userId: string) => void,
-    changeOnUnfollow: (userId: string) => void,
+    follow: (userId: string) => void,
+    unfollow: (userId: string) => void,
     changeCurrentPage: (currentPageNumber: number) => void,
 }
 
@@ -33,8 +33,8 @@ export function Friends(props: FriendsPropsType) {
                     photo={el.photos.small}
                     status={el.status}
                     followed={el.followed}
-                    changeOnFollow={()=>{props.changeOnFollow(el.id)}}
-                    changeOnUnfollow={() => {props.changeOnUnfollow(el.id)}}
+                    changeOnFollow={()=>{props.follow(el.id)}}
+                    changeOnUnfollow={() => {props.unfollow(el.id)}}
                 />
             )}
             <div className={s.pagesNumbersDiv}>
