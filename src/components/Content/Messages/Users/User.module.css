@@ -1,4 +1,4 @@
-a {
+.navlink {
     display: grid;
     grid-template-columns: 1fr 11fr;
     color: white;
@@ -10,19 +10,32 @@ a {
     align-items: center;
 }
 
-a:hover {
-    background-color:aquamarine;
-    color: green;
-    border: 1px solid green;
+.navlink:hover {
+    color: aquamarine;
+    border: 1px solid aquamarine;
 }
 
-.active {
+.navlinkActive {
     display: grid;
     grid-template-columns: 1fr 11fr;
     color: black;
     text-decoration: none;
     font-size: 15px;
     padding: 5px;
+    border: 1px solid white;
+    border-radius: 0 8px 8px 0;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.navlinkActive:hover {
+    display: grid;
+    grid-template-columns: 1fr 11fr;
+    color: black;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 5px;
+    border: 1px solid white;
     border-radius: 0 8px 8px 0;
     align-items: center;
     background-color: rgba(255, 255, 255, 1);

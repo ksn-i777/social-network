@@ -9,7 +9,7 @@ type UsersPropsData = {
 
 export function Users(props:UsersPropsData) {
     return(
-        <div className={s.dialogs}>
+        <div className={s.users}>
             {props.usersData.map((el) => <User key={el.id} id={el.id} name={el.name} ava={el.ava} />)}
         </div>
     )

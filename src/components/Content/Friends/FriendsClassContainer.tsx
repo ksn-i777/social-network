@@ -1,6 +1,6 @@
-import React from "react";
-import {connect} from "react-redux";
-import {StateType} from "../../../redux/redux-store";
+import React from "react"
+import {connect} from "react-redux"
+import {RootType} from './../../../redux/store'
 import {
     followAC,
     unfollowAC,
@@ -9,14 +9,12 @@ import {
     setCurrentPageAC,
     changePreloaderStatusAC,
     FriendsPageType
-} from '../../../redux/friends-reducer';
-import axios from 'axios';
+} from '../../../redux/friends-reducer'
+import axios from 'axios'
 import {Friends} from './Friends'
-import { Preloader } from "../../Preloader/Preloader";
+import {Preloader} from './../../Preloader/Preloader'
 
-type MapStateToPropsType = FriendsPageType
-
-function mapStateToProps(state: StateType):MapStateToPropsType {
+function mapStateToProps(state: RootType):FriendsPageType {
     return {
         friendsData: state.friendsPage.friendsData,
         currentPage: state.friendsPage.currentPage,
@@ -66,7 +64,6 @@ class FriendsClass extends React.Component<any, any> {
             this.props.setUsers(res.data.items)
             this.props.setTotalUsersCount(res.data.totalCount)
         })
-        
     }
 
     changeCurrentPage = (currentPageNumber: number) => {

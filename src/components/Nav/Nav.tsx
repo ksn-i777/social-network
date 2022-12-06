@@ -6,12 +6,12 @@ import {OnlineFriendsContainer} from "./OnlineFriends/OnlineFriendsContainer";
 export function Nav() {
     return(
         <nav className={s.nav}>
-            <NavLink to="/profile" activeClassName={s.active}>Profile</NavLink>
-            <NavLink to="/friends" activeClassName={s.active}>Friends</NavLink>
-            <NavLink to="/messages" activeClassName={s.active}>Messages</NavLink>
-            <NavLink to="/news" activeClassName={s.active}>News</NavLink>
-            <NavLink to="/music" activeClassName={s.active}>Music</NavLink>
-            <NavLink to="/settings" activeClassName={s.active}>Settings</NavLink>
+            <NavLink to="/profile" className={s.navlink} activeClassName={s.navlinkActive}>Profile</NavLink>
+            <NavLink to="/friends" className={s.navlink} activeClassName={s.navlinkActive}>Friends</NavLink>
+            <NavLink to="/messages" className={s.navlink} activeClassName={s.navlinkActive}>Messages</NavLink>
+            <NavLink to="/news" className={s.navlink} activeClassName={s.navlinkActive}>News</NavLink>
+            <NavLink to="/music" className={s.navlink} activeClassName={s.navlinkActive}>Music</NavLink>
+            <NavLink to="/settings" className={s.navlink} activeClassName={s.navlinkActive}>Settings</NavLink>
             <OnlineFriendsContainer/>
         </nav>
     )

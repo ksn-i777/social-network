@@ -1,8 +1,10 @@
 .nav {
+    display: flex;
+    flex-direction: column;
     border-radius: 15px;
 }
 
-.nav a {
+.navlink {
     padding: 10px;
     background-color: rgba(21, 34, 42, 0.9);
     border: 1px solid rgba(112, 128, 144, 0.9);
@@ -13,13 +15,19 @@
     margin: 0 0 15px 0;
 }
 
-.nav a:hover {
-    background-color:aquamarine;
-    color: green;
-    border: 1px solid green;
+.navlink:hover {
+    color: aquamarine;
+    border: 1px solid aquamarine;
 }
 
-.nav .active {
+.navlinkActive {
     color: black;
     background-color: rgba(255, 255, 255, 1);
+    border: 1px solid white;
+}
+
+.navlinkActive:hover {
+    color: black;
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid white;
 }

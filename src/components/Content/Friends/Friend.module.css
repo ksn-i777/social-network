@@ -35,15 +35,13 @@
 }
 
 .buttonFollow:hover {
-    background-color:aquamarine;
-    color: green;
-    border: 1px solid green;
+    color: aquamarine;
+    border: 1px solid aquamarine;
 }
 
 .buttonUnfollow:hover {
-    background-color:darksalmon;
-    color: red;
-    border: 1px solid red;
+    color: darksalmon;
+    border: 1px solid darksalmon;
 }
 
 .description {

@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import s from "./Friend.module.css"
 
 type FriendPropsType = {
@@ -15,7 +16,7 @@ export function Friend(props:FriendPropsType) {
     return(
         <div className={s.friend}>
             <div className={s.photoButton}>
-                <img className={s.photo} src={props.photo ? props.photo : 'https://www.freeiconspng.com/uploads/blue-user-icon-32.jpg'} alt="photoUser" />
+                <NavLink to={'/profile/' + props.id} activeClassName={s.photo}><img className={s.photo} src={props.photo ? props.photo : 'https://www.freeiconspng.com/uploads/blue-user-icon-32.jpg'} alt="photoUser" /></NavLink>
                 {props.followed
                     ? <div onClick={props.changeOnUnfollow} className={`${s.button} ${s.buttonUnfollow}`}>Unfollow</div>
                     : <div onClick={props.changeOnFollow} className={`${s.button} ${s.buttonFollow}`}>Follow</div>

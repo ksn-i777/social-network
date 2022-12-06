@@ -4,6 +4,27 @@ import {addNewPostAC, newPostTextAC, ProfilePageType, profileReducer} from './pr
 test('correct add text of post', () => {
 
     const startState:ProfilePageType = {
+        profile: {
+            aboutMe: '',
+            contacts: {
+              facebook: '',
+              website: null,
+              vk: '',
+              twitter: '',
+              instagram: '',
+              youtube: null,
+              github: '',
+              mainLink: null
+            },
+            lookingForAJob: true,
+            lookingForAJobDescription: '',
+            fullName: '',
+            userId: 100500,
+            photos: {
+              small: '',
+              large: ''
+            }
+        },
         postsData: [
             {id: v1(), message: 'Yaaahhhooo', likes: 77, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
             {id: v1(), message: 'Happy birthday to me!', likes: 100, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
@@ -24,6 +45,27 @@ test('correct add text of post', () => {
 test('correct add post', () => {
 
     const startState:ProfilePageType = {
+        profile: {
+            aboutMe: '',
+            contacts: {
+              facebook: '',
+              website: null,
+              vk: '',
+              twitter: '',
+              instagram: '',
+              youtube: null,
+              github: '',
+              mainLink: null
+            },
+            lookingForAJob: true,
+            lookingForAJobDescription: '',
+            fullName: '',
+            userId: 100500,
+            photos: {
+              small: '',
+              large: ''
+            }
+        },
         postsData: [
             {id: v1(), message: 'Yaaahhhooo', likes: 77, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
             {id: v1(), message: 'Happy birthday to me!', likes: 100, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},

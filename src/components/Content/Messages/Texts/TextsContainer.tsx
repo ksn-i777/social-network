@@ -7,7 +7,7 @@ import {
 } from '../../../../redux/messages-reducer';
 import {Texts} from './Texts';
 import {connect} from "react-redux";
-import {StateType} from "../../../../redux/redux-store";
+import {RootType} from "../../../../redux/store";
 
 type mapStateToPropsType = {
     textsData:Array<TextType>,
@@ -19,7 +19,7 @@ type mapDispatchToPropsType = {
     sendNewMessage():void,
 }
 
-function mapStateToProps(state:StateType):mapStateToPropsType {
+function mapStateToProps(state:RootType):mapStateToPropsType {
     return {
         textsData: state.messagesPage.textsData,
         newMessageText: state.messagesPage.newMessageText,
