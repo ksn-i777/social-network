@@ -4,6 +4,7 @@ import { ProfilePageType, setProfileAC } from './../../../redux/profile-reducer'
 import { RootType } from './../../../redux/store'
 import { connect } from "react-redux"
 import axios from 'axios'
+import { withRouter } from "react-router-dom"
 
 function mapStateToProps(state: RootType):ProfilePageType {
     return {
@@ -12,18 +13,21 @@ function mapStateToProps(state: RootType):ProfilePageType {
         newPostText: state.profilePage.newPostText
     }
 }
-
 class ProfileClass extends React.Component<any, any> {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(res => {
-            this.props.setProfile(res.data)
-        })
+        if(this.props.match.params.userId) {
+            axios
+            .get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.match.params.userId}`)
+            .then(res => {this.props.setProfile(res.data)})
+        } else {this.props.setProfile()}
     }
 
     render() {
-        return <Profile {...this.props}/>
+        return <Profile profile={this.props.profile}/>
     }
 }
 
-export const ProfileClassContainer = connect(mapStateToProps, {setProfile: setProfileAC})(ProfileClass)
+const ProfileClassWithRouterContainer = withRouter(ProfileClass)
+
+export const ProfileClassContainer = connect(mapStateToProps, {setProfile: setProfileAC})(ProfileClassWithRouterContainer)

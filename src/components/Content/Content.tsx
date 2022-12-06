@@ -12,7 +12,7 @@ export function Content() {
     return (
         <div className={s.content}>
             <Route
-                path="/profile" render={() => <ProfileClassContainer/>}>
+                path="/profile/:userId?" render={() => <ProfileClassContainer/>}>
             </Route>
             <Route
                 path="/friends" render={() => <FriendsClassContainer/>}>

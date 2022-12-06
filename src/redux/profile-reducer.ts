@@ -110,5 +110,5 @@ export function addNewPostAC():AddNewPostActionType {
     return {type: ADD_NEW_POST}
 }
 export function setProfileAC(profile:any):SetProfileActionType {
-    return {type: SET_PROFILE, profile}
+    return profile ? {type: SET_PROFILE, profile} : {type: SET_PROFILE, profile: initialState.profile}
 }
