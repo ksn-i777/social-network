@@ -1,6 +1,6 @@
 import React from "react"
 import {connect} from "react-redux"
-import {RootType} from './../../../redux/store'
+import {RootType} from '../../../redux/store'
 import {
     followAC,
     unfollowAC,
@@ -12,7 +12,7 @@ import {
 } from '../../../redux/friends-reducer'
 import axios from 'axios'
 import {Friends} from './Friends'
-import {Preloader} from './../../Preloader/Preloader'
+import {Preloader} from '../../Preloader/Preloader'
 
 function mapStateToProps(state: RootType):FriendsPageType {
     return {
@@ -55,7 +55,7 @@ function mapDispachToProps(dispatch:(AC:FriendsActionsType) => void):MapDispachT
     }
 } */
 
-class FriendsClass extends React.Component<any, any> {
+class FriendsClassContainer extends React.Component<any, any> {
 
     componentDidMount() {
         this.props.changePreloaderStatus(true)
@@ -95,4 +95,4 @@ const dispatchObj = {follow: followAC, unfollow: unfollowAC, setUsers: setUsersA
 // если переименоать АС в редюсере так, чтобы свойство и значение имели одинаковое название, то dispatchObj будет таким
 // dispatchObj = {follow, unfollow, setUsers, setTotalUsersCount, setCurrentPage, changePreloaderStatus}
 
-export const FriendsClassContainer = connect(mapStateToProps, dispatchObj)(FriendsClass)
+export const FriendsContainer = connect(mapStateToProps, dispatchObj)(FriendsClassContainer)

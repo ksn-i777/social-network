@@ -1,7 +1,7 @@
 import React from 'react'
 import s from './Content.module.css'
 import {ProfileClassContainer} from './Profile/ProfileClassContainer'
-import {FriendsClassContainer} from './Friends/FriendsClassContainer'
+import {FriendsContainer} from './Friends/FriendsContainer'
 import {Messages} from './Messages/Messages'
 import {News} from './News/News'
 import {Music} from './Music/Music'
@@ -15,7 +15,7 @@ export function Content() {
                 path="/profile/:userId?" render={() => <ProfileClassContainer/>}>
             </Route>
             <Route
-                path="/friends" render={() => <FriendsClassContainer/>}>
+                path="/friends" render={() => <FriendsContainer/>}>
             </Route>
             <Route
                 path="/messages" render={() => <Messages/>}>

@@ -1,7 +1,7 @@
 import React from "react"
 import { Profile } from './Profile'
-import { ProfilePageType, setProfileAC } from './../../../redux/profile-reducer'
-import { RootType } from './../../../redux/store'
+import { ProfilePageType, setProfileAC } from '../../../redux/profile-reducer'
+import { RootType } from '../../../redux/store'
 import { connect } from "react-redux"
 import axios from 'axios'
 import { withRouter } from "react-router-dom"

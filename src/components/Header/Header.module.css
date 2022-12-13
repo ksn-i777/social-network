@@ -1,17 +1,23 @@
 .header {
-    margin: 0;
-    position: relative;
     background-color: rgba(21, 34, 42, 0.9);
     border: 1px solid rgba(112, 128, 144, 0.9);
     border-radius: 0 0 15px 15px;
     transform: translateY(-1px);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 .title {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: flex;
     color: white;
     font-size: 25px;
+    justify-content: center;
+    align-items: center;
 }
-
+.login {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 25px;
+    color: white;
+    font-size: 15px;
+}
