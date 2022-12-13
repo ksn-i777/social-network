@@ -3,8 +3,8 @@ import { Profile } from './Profile'
 import { ProfilePageType, setProfileAC } from '../../../redux/profile-reducer'
 import { RootType } from '../../../redux/store'
 import { connect } from "react-redux"
-import axios from 'axios'
 import { withRouter } from "react-router-dom"
+import {profileAPI} from '../../../api/api';
 
 function mapStateToProps(state: RootType):ProfilePageType {
     return {
@@ -13,13 +13,11 @@ function mapStateToProps(state: RootType):ProfilePageType {
         newPostText: state.profilePage.newPostText
     }
 }
-class ProfileClass extends React.Component<any, any> {
+class ProfileClassContainer extends React.Component<any, any> {
 
     componentDidMount() {
         if(this.props.match.params.userId) {
-            axios
-            .get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.match.params.userId}`)
-            .then(res => {this.props.setProfile(res.data)})
+            profileAPI.getProfile(this.props.match.params.userId).then(data => {this.props.setProfile(data)})
         } else {this.props.setProfile()}
     }
 
@@ -28,6 +26,6 @@ class ProfileClass extends React.Component<any, any> {
     }
 }
 
-const ProfileClassWithRouterContainer = withRouter(ProfileClass)
+const ProfileClassWithRouterContainer = withRouter(ProfileClassContainer)
 
-export const ProfileClassContainer = connect(mapStateToProps, {setProfile: setProfileAC})(ProfileClassWithRouterContainer)
+export const ProfileContainer = connect(mapStateToProps, {setProfile: setProfileAC})(ProfileClassWithRouterContainer)
