@@ -2,7 +2,7 @@ import React from "react"
 import {FriendType} from "../../../redux/friends-reducer"
 import {Friend} from "./Friend"
 import s from './Friends.module.css'
-import axios from 'axios';
+import {followAPI} from '../../../api/api';
 
 type FriendsPropsType = {
     friendsData: Array<FriendType>,
@@ -35,15 +35,14 @@ export function Friends(props: FriendsPropsType) {
                     status={el.status}
                     followed={el.followed}
                     createFollow={() => {
-                        axios
-                            .post(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {}, {withCredentials:true})
-                            .then(res => {if(res.data.resultCode === 0) {props.follow(el.id)}})
+                        followAPI.createFollow(el.id).then(data => {
+                            if(data.resultCode === 0) {props.follow(el.id)}
+                        })
                     }}
                     deleteFollow={() => {
-                        axios
-                            .delete(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {withCredentials:true})
-                            .then(res => {if(res.data.resultCode === 0) {props.unfollow(el.id)}})
-
+                        followAPI.deleteFollow(el.id).then(data => {
+                            if(data.resultCode === 0) {props.unfollow(el.id)}
+                        })
                     }}
                 />
             )}
