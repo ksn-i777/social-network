@@ -59,7 +59,9 @@ class FriendsClassContainer extends React.Component<any, any> {
 
     componentDidMount() {
         this.props.changePreloaderStatus(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(res => {
+        axios
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
+            .then(res => {
             this.props.changePreloaderStatus(false)
             this.props.setUsers(res.data.items)
             this.props.setTotalUsersCount(res.data.totalCount)
@@ -69,7 +71,9 @@ class FriendsClassContainer extends React.Component<any, any> {
     changeCurrentPage = (currentPageNumber: number) => {
         this.props.changePreloaderStatus(true)
         this.props.setCurrentPage(currentPageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPageNumber}&count=${this.props.pageSize}`).then(res => {
+        axios
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPageNumber}&count=${this.props.pageSize}`, {withCredentials:true})
+            .then(res => {
             this.props.changePreloaderStatus(false)
             this.props.setUsers(res.data.items)
             this.props.setTotalUsersCount(res.data.totalCount)

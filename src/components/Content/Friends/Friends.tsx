@@ -2,6 +2,7 @@ import React from "react"
 import {FriendType} from "../../../redux/friends-reducer"
 import {Friend} from "./Friend"
 import s from './Friends.module.css'
+import axios from 'axios';
 
 type FriendsPropsType = {
     friendsData: Array<FriendType>,
@@ -33,8 +34,17 @@ export function Friends(props: FriendsPropsType) {
                     photo={el.photos.small}
                     status={el.status}
                     followed={el.followed}
-                    changeOnFollow={()=>{props.follow(el.id)}}
-                    changeOnUnfollow={() => {props.unfollow(el.id)}}
+                    createFollow={()=>{
+                        axios
+                            .post(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {}, {withCredentials:true})
+                            .then(res => {props.follow(el.id)})
+                    }}
+                    deleteFollow={() => {
+                        axios
+                            .delete(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {withCredentials:true})
+                            .then(res => {props.unfollow(el.id)})
+
+                    }}
                 />
             )}
             <div className={s.pagesNumbersDiv}>

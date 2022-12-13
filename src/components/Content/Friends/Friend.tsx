@@ -8,8 +8,8 @@ type FriendPropsType = {
     photo:string,
     status:string,
     followed:boolean,
-    changeOnFollow():void,
-    changeOnUnfollow():void,
+    createFollow():void,
+    deleteFollow():void,
 }
 
 export function Friend(props:FriendPropsType) {
@@ -18,8 +18,8 @@ export function Friend(props:FriendPropsType) {
             <div className={s.photoButton}>
                 <NavLink to={'/profile/' + props.id} activeClassName={s.photo}><img className={s.photo} src={props.photo ? props.photo : 'https://www.freeiconspng.com/uploads/blue-user-icon-32.jpg'} alt="photoUser" /></NavLink>
                 {props.followed
-                    ? <div onClick={props.changeOnUnfollow} className={`${s.button} ${s.buttonUnfollow}`}>Unfollow</div>
-                    : <div onClick={props.changeOnFollow} className={`${s.button} ${s.buttonFollow}`}>Follow</div>
+                    ? <div onClick={props.deleteFollow} className={`${s.button} ${s.buttonUnfollow}`}>Unfollow</div>
+                    : <div onClick={props.createFollow} className={`${s.button} ${s.buttonFollow}`}>Follow</div>
                 }
             </div>
             <div className={s.description}>
