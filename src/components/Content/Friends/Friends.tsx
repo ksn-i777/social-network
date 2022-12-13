@@ -34,15 +34,15 @@ export function Friends(props: FriendsPropsType) {
                     photo={el.photos.small}
                     status={el.status}
                     followed={el.followed}
-                    createFollow={()=>{
+                    createFollow={() => {
                         axios
                             .post(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {}, {withCredentials:true})
-                            .then(res => {props.follow(el.id)})
+                            .then(res => {if(res.data.resultCode === 0) {props.follow(el.id)}})
                     }}
                     deleteFollow={() => {
                         axios
                             .delete(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {withCredentials:true})
-                            .then(res => {props.unfollow(el.id)})
+                            .then(res => {if(res.data.resultCode === 0) {props.unfollow(el.id)}})
 
                     }}
                 />
