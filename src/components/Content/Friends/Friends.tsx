@@ -9,9 +9,11 @@ type FriendsPropsType = {
     totalUsersCount: number,
     pageSize: number,
     currentPage: number,
+    disabledButtons: Array<string>,
     follow: (userId: string) => void,
     unfollow: (userId: string) => void,
     changeCurrentPage: (currentPageNumber: number) => void,
+    toggleButtonsDisabled: (disableStatus: boolean, buttonID: string) => void,
 }
 
 export function Friends(props: FriendsPropsType) {
@@ -33,15 +35,20 @@ export function Friends(props: FriendsPropsType) {
                     name={el.name}
                     photo={el.photos.small}
                     status={el.status}
+                    disabledButtons={props.disabledButtons}
                     followed={el.followed}
                     createFollow={() => {
+                        props.toggleButtonsDisabled(true, el.id)
                         followAPI.createFollow(el.id).then(data => {
                             if(data.resultCode === 0) {props.follow(el.id)}
+                            props.toggleButtonsDisabled(false, el.id)
                         })
                     }}
                     deleteFollow={() => {
+                        props.toggleButtonsDisabled(true, el.id)
                         followAPI.deleteFollow(el.id).then(data => {
                             if(data.resultCode === 0) {props.unfollow(el.id)}
+                            props.toggleButtonsDisabled(false, el.id)
                         })
                     }}
                 />

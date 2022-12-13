@@ -13,6 +13,7 @@ test('correct following', () => {
         pageSize: 5,
         totalUsersCount: 0,
         preloaderStatus: false,
+        disabledButtons: [],
     }
 
     const action1 = followAC('2')
@@ -38,6 +39,7 @@ test('correct unfollowing', () => {
         pageSize: 5,
         totalUsersCount: 0,
         preloaderStatus: false,
+        disabledButtons: [],
     }
 
     const action1 = unfollowAC('1')

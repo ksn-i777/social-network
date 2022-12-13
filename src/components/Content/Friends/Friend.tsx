@@ -8,6 +8,7 @@ type FriendPropsType = {
     photo:string,
     status:string,
     followed:boolean,
+    disabledButtons: Array<string>
     createFollow():void,
     deleteFollow():void,
 }
@@ -18,8 +19,18 @@ export function Friend(props:FriendPropsType) {
             <div className={s.photoButton}>
                 <NavLink to={'/profile/' + props.id} activeClassName={s.photo}><img className={s.photo} src={props.photo ? props.photo : 'https://www.freeiconspng.com/uploads/blue-user-icon-32.jpg'} alt="photoUser" /></NavLink>
                 {props.followed
-                    ? <div onClick={props.deleteFollow} className={`${s.button} ${s.buttonUnfollow}`}>Unfollow</div>
-                    : <div onClick={props.createFollow} className={`${s.button} ${s.buttonFollow}`}>Follow</div>
+                    ?
+                    <button
+                        disabled={props.disabledButtons.some(el => el === props.id)}
+                        onClick={props.deleteFollow}
+                        className={props.disabledButtons.some(el => el === props.id) ? `${s.button} ${s.disabled}` : `${s.button} ${s.buttonUnfollow}`}>Unfollow
+                    </button>
+                    :
+                    <button
+                        disabled={props.disabledButtons.some(el => el === props.id)}
+                        onClick={props.createFollow}
+                        className={props.disabledButtons.some(el => el === props.id) ? `${s.button} ${s.disabled}` : `${s.button} ${s.buttonFollow}`}>Follow
+                    </button>
                 }
             </div>
             <div className={s.description}>

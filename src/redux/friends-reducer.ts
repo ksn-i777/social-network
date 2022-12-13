@@ -4,6 +4,7 @@ const SET_USERS = 'SET_USERS'
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const CHANGE_PRELOADER_STATUS = 'CHANGE_PRELOADER_STATUS'
+const TOGGLE_BUTTONS_DISABLED = 'TOGGLE_BUTTONS_DISABLED'
 
 export type FriendType = {
     id: string
@@ -22,6 +23,7 @@ export type FriendsPageType = {
     pageSize: number,
     totalUsersCount: number,
     preloaderStatus: boolean,
+    disabledButtons: Array<string>,
 };
 
 export type FollowActionType = {
@@ -48,6 +50,11 @@ export type ChangePreloaderStatusActionType = {
     type: typeof CHANGE_PRELOADER_STATUS,
     newPreloaderStatus: boolean,
 };
+export type BeDisableButtonActionType = {
+    type: typeof TOGGLE_BUTTONS_DISABLED,
+    isDisabled: boolean,
+    buttonID: string,
+};
 
 export type FriendsActionsType = FollowActionType
     | UnfollowActionType
@@ -55,6 +62,7 @@ export type FriendsActionsType = FollowActionType
     | SetTotalUsersCountActionType
     | SetCurrentPageActionType
     | ChangePreloaderStatusActionType
+    | BeDisableButtonActionType
 
 const initialState:FriendsPageType = {
     friendsData: [],
@@ -62,6 +70,7 @@ const initialState:FriendsPageType = {
     pageSize: 5,
     totalUsersCount: 0,
     preloaderStatus: false,
+    disabledButtons: [],
 };
 
 export function friendsReducer(state:FriendsPageType = initialState, action:FriendsActionsType):FriendsPageType {
@@ -79,6 +88,8 @@ export function friendsReducer(state:FriendsPageType = initialState, action:Frie
             return {...state, currentPage: action.currentPage}
         case CHANGE_PRELOADER_STATUS:
             return {...state, preloaderStatus: action.newPreloaderStatus}
+        case TOGGLE_BUTTONS_DISABLED:
+            return action.isDisabled ? {...state, disabledButtons: [...state.disabledButtons, action.buttonID]} : {...state, disabledButtons: state.disabledButtons.filter(el => el !== action.buttonID)}
         default:
             return state
     }
@@ -100,4 +111,7 @@ export function setCurrentPageAC(currentPage: number):SetCurrentPageActionType {
 }
 export function changePreloaderStatusAC(newPreloaderStatus: boolean):ChangePreloaderStatusActionType {
     return {type: CHANGE_PRELOADER_STATUS, newPreloaderStatus}
+}
+export function toggleButtonsDisabledAC(isDisabled: boolean, buttonID: string):BeDisableButtonActionType {
+    return {type: TOGGLE_BUTTONS_DISABLED, isDisabled, buttonID}
 }

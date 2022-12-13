@@ -8,21 +8,12 @@ import {
     setTotalUsersCountAC,
     setCurrentPageAC,
     changePreloaderStatusAC,
+    toggleButtonsDisabledAC,
     FriendsPageType
 } from '../../../redux/friends-reducer'
 import {Friends} from './Friends'
 import {Preloader} from '../../Preloader/Preloader'
 import {friendsAPI} from '../../../api/api';
-
-function mapStateToProps(state: RootType):FriendsPageType {
-    return {
-        friendsData: state.friendsPage.friendsData,
-        currentPage: state.friendsPage.currentPage,
-        pageSize: state.friendsPage.pageSize,
-        totalUsersCount: state.friendsPage.totalUsersCount,
-        preloaderStatus: state.friendsPage.preloaderStatus,
-    }
-}
 
 /* type MapDispachToPropsType = {
     follow: (userId: string) => void,
@@ -84,14 +75,36 @@ class FriendsClassContainer extends React.Component<any, any> {
             currentPage={this.props.currentPage}
             pageSize={this.props.pageSize}
             totalUsersCount={this.props.totalUsersCount}
+            disabledButtons={this.props.disabledButtons}
+
             follow={this.props.follow}
             unfollow={this.props.unfollow}
             changeCurrentPage={this.changeCurrentPage}
+            toggleButtonsDisabled={this.props.toggleButtonsDisabled}
         />
     }
 }
 
-const dispatchObj = {follow: followAC, unfollow: unfollowAC, setUsers: setUsersAC, setTotalUsersCount: setTotalUsersCountAC, setCurrentPage: setCurrentPageAC, changePreloaderStatus: changePreloaderStatusAC}
+function mapStateToProps(state: RootType):FriendsPageType {
+    return {
+        friendsData: state.friendsPage.friendsData,
+        currentPage: state.friendsPage.currentPage,
+        pageSize: state.friendsPage.pageSize,
+        totalUsersCount: state.friendsPage.totalUsersCount,
+        preloaderStatus: state.friendsPage.preloaderStatus,
+        disabledButtons: state.friendsPage.disabledButtons,
+    }
+}
+
+const dispatchObj = {
+    follow: followAC,
+    unfollow: unfollowAC,
+    setUsers: setUsersAC,
+    setTotalUsersCount: setTotalUsersCountAC,
+    setCurrentPage: setCurrentPageAC,
+    changePreloaderStatus: changePreloaderStatusAC,
+    toggleButtonsDisabled: toggleButtonsDisabledAC,
+}
 // если переименоать АС в редюсере так, чтобы свойство и значение имели одинаковое название, то dispatchObj будет таким
 // dispatchObj = {follow, unfollow, setUsers, setTotalUsersCount, setCurrentPage, changePreloaderStatus}
 
