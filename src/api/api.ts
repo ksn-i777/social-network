@@ -11,19 +11,13 @@ export const authAPI = {
     },
 }
 
-export const profileAPI = {
+export const UsersAPI = {
     getProfile(id:number) {
         return commonAxiosInstance.get(`profile/${id}`).then(res => res.data)
-    }
-}
-
-export const friendsAPI = {
-    getFriends(currentPage:number, pageSize:number) {
+    },
+    getUsers(currentPage:number, pageSize:number) {
         return commonAxiosInstance.get(`users?page=${currentPage}&count=${pageSize}`).then(res => res.data)
     },
-}
-
-export const followAPI = {
     createFollow(id: string) {
         return commonAxiosInstance.post(`follow/${id}`, {}).then(res => res.data)
     },

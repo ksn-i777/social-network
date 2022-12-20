@@ -1,6 +1,6 @@
 import React from 'react'
 import s from './Content.module.css'
-import {ProfileContainer} from './Profile/ProfileClassContainer'
+import {ProfileContainer} from './Profile/ProfileContainer'
 import {FriendsContainer} from './Friends/FriendsContainer'
 import {Messages} from './Messages/Messages'
 import {News} from './News/News'

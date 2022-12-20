@@ -1,4 +1,5 @@
 import {v1} from 'uuid'
+import {UsersAPI} from '../api/api';
 
 const NEW_POST_TEXT = 'NEW-POST-TEXT'
 const ADD_NEW_POST = 'ADD-NEW-POST'
@@ -74,7 +75,10 @@ const initialState:ProfilePageType = {
         }
     },
     postsData: [
-        {id: v1(), message: 'Yaaahhhooo', likes: 77, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
+        {id: v1(), message: 'Yaaahhhoooo', likes: 77, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
+        {id: v1(), message: 'Yo', likes: 20, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
+        {id: v1(), message: 'Bla bla', likes: 30, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
+        {id: v1(), message: 'Iiiiiiiiiiiiiiiiiiiiiiiiii', likes: 50, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
         {id: v1(), message: 'Happy birthday to me!', likes: 100, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
         {id: v1(), message: 'Have a good day!', likes: 60, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
         {id: v1(), message: 'How are you?', likes: 30, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
@@ -109,6 +113,11 @@ export function newPostTextAC(newPostText:string):NewPostTextActionType {
 export function addNewPostAC():AddNewPostActionType {
     return {type: ADD_NEW_POST}
 }
-export function setProfileAC(profile:any):SetProfileActionType {
+export function setProfileAC(profile:ProfilePageType|null):SetProfileActionType {
     return profile ? {type: SET_PROFILE, profile} : {type: SET_PROFILE, profile: initialState.profile}
+}
+
+export const getUserTC = (userID: number) => (dispatch: (AC: SetProfileActionType) => void):void => {
+    if(userID) {UsersAPI.getProfile(userID).then(data => dispatch(setProfileAC(data)))}
+    else {dispatch(setProfileAC(null))}
 }

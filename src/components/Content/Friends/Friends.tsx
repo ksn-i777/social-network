@@ -2,18 +2,18 @@ import React from "react"
 import {FriendType} from "../../../redux/friends-reducer"
 import {Friend} from "./Friend"
 import s from './Friends.module.css'
-import {followAPI} from '../../../api/api';
 
 type FriendsPropsType = {
     friendsData: Array<FriendType>,
-    totalUsersCount: number,
-    pageSize: number,
     currentPage: number,
+    pageSize: number,
+    totalUsersCount: number,
     disabledButtons: Array<string>,
-    follow: (userId: string) => void,
-    unfollow: (userId: string) => void,
+
+    createFollow: (userId: string) => void,
+    deleteFollow: (userId: string) => void,
+
     changeCurrentPage: (currentPageNumber: number) => void,
-    toggleButtonsDisabled: (disableStatus: boolean, buttonID: string) => void,
 }
 
 export function Friends(props: FriendsPropsType) {
@@ -37,20 +37,8 @@ export function Friends(props: FriendsPropsType) {
                     status={el.status}
                     disabledButtons={props.disabledButtons}
                     followed={el.followed}
-                    createFollow={() => {
-                        props.toggleButtonsDisabled(true, el.id)
-                        followAPI.createFollow(el.id).then(data => {
-                            if(data.resultCode === 0) {props.follow(el.id)}
-                            props.toggleButtonsDisabled(false, el.id)
-                        })
-                    }}
-                    deleteFollow={() => {
-                        props.toggleButtonsDisabled(true, el.id)
-                        followAPI.deleteFollow(el.id).then(data => {
-                            if(data.resultCode === 0) {props.unfollow(el.id)}
-                            props.toggleButtonsDisabled(false, el.id)
-                        })
-                    }}
+                    createFollow={() => props.createFollow(el.id)}
+                    deleteFollow={() => props.deleteFollow(el.id)}
                 />
             )}
             <div className={s.pagesNumbersDiv}>

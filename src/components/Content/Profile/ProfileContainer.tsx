@@ -1,10 +1,9 @@
 import React from "react"
 import { Profile } from './Profile'
-import { ProfilePageType, setProfileAC } from '../../../redux/profile-reducer'
+import { getUserTC, ProfilePageType } from '../../../redux/profile-reducer'
 import { RootType } from '../../../redux/store'
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
-import {profileAPI} from '../../../api/api';
 
 function mapStateToProps(state: RootType):ProfilePageType {
     return {
@@ -16,9 +15,8 @@ function mapStateToProps(state: RootType):ProfilePageType {
 class ProfileClassContainer extends React.Component<any, any> {
 
     componentDidMount() {
-        if(this.props.match.params.userId) {
-            profileAPI.getProfile(this.props.match.params.userId).then(data => {this.props.setProfile(data)})
-        } else {this.props.setProfile()}
+        let userID = this.props.match.params.userId
+        this.props.getUserTC(userID)
     }
 
     render() {
@@ -28,4 +26,4 @@ class ProfileClassContainer extends React.Component<any, any> {
 
 const ProfileClassWithRouterContainer = withRouter(ProfileClassContainer)
 
-export const ProfileContainer = connect(mapStateToProps, {setProfile: setProfileAC})(ProfileClassWithRouterContainer)
+export const ProfileContainer = connect(mapStateToProps, {getUserTC})(ProfileClassWithRouterContainer)
