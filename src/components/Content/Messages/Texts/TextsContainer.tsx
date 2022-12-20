@@ -12,6 +12,7 @@ import {RootType} from "../../../../redux/store";
 type mapStateToPropsType = {
     textsData:Array<TextType>,
     newMessageText:string,
+    isAuth: boolean,
 }
 
 type mapDispatchToPropsType = {
@@ -23,6 +24,7 @@ function mapStateToProps(state:RootType):mapStateToPropsType {
     return {
         textsData: state.messagesPage.textsData,
         newMessageText: state.messagesPage.newMessageText,
+        isAuth: state.auth.isAuth,
     }
 }
 

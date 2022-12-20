@@ -6,11 +6,13 @@ import {UserType} from '../../../../redux/messages-reducer';
 
 type mapStateToPropsType = {
     usersData:Array<UserType>
+    isAuth: boolean
 }
 
 function mapStateToProps(state:RootType):mapStateToPropsType {
     return {
         usersData: state.messagesPage.usersData,
+        isAuth: state.auth.isAuth,
     }
 }
 

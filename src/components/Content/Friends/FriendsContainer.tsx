@@ -1,9 +1,17 @@
 import React from "react"
 import {connect} from "react-redux"
 import {RootType} from '../../../redux/store'
-import {FriendsPageType, getUsersTC, changeCurrentPageTC, createFollowTC, deleteFollowTC} from '../../../redux/friends-reducer'
+import {
+    FriendsPageType,
+    getUsersTC,
+    changeCurrentPageTC,
+    createFollowTC,
+    deleteFollowTC,
+    FriendType
+} from '../../../redux/friends-reducer'
 import {Friends} from './Friends'
 import {Preloader} from '../../Preloader/Preloader'
+import {Redirect} from 'react-router-dom';
 
 /* type MapDispachToPropsType = {
     follow: (userId: string) => void,
@@ -43,26 +51,39 @@ class FriendsClassContainer extends React.Component<any, any> {
     }
 
     render() {
-        return this.props.preloaderStatus
-        ? <Preloader/>
-        : <Friends
-            friendsData={this.props.friendsData}
-            currentPage={this.props.currentPage}
-            pageSize={this.props.pageSize}
-            totalUsersCount={this.props.totalUsersCount}
-            disabledButtons={this.props.disabledButtons}
+        return !this.props.isAuth
+            ? <Redirect to={'/login'}></Redirect>
+            : this.props.preloaderStatus
+                ? <Preloader/>
+                : <Friends
+                    friendsData={this.props.friendsData}
+                    currentPage={this.props.currentPage}
+                    pageSize={this.props.pageSize}
+                    totalUsersCount={this.props.totalUsersCount}
+                    disabledButtons={this.props.disabledButtons}
 
-            createFollow={this.props.createFollowTC}
-            deleteFollow={this.props.deleteFollowTC}
+                    createFollow={this.props.createFollowTC}
+                    deleteFollow={this.props.deleteFollowTC}
 
-            changeCurrentPage={(currentPageNumber: number) => {this.props.changeCurrentPageTC(currentPageNumber)}}
-        />
+                    changeCurrentPage={(currentPageNumber: number) => {this.props.changeCurrentPageTC(currentPageNumber)}}
+                />
     }
 }
 
-function mapStateToProps(state: RootType):FriendsPageType {
+type mapStateToPropsType = {
+    friendsData: Array<FriendType>,
+    currentPage: number,
+    pageSize: number,
+    totalUsersCount: number,
+    preloaderStatus: boolean,
+    disabledButtons: Array<string>,
+    isAuth: boolean,
+}
+
+function mapStateToProps(state: RootType):mapStateToPropsType {
     return {
         preloaderStatus: state.friendsPage.preloaderStatus,
+        isAuth: state.auth.isAuth,
 
         friendsData: state.friendsPage.friendsData,
         currentPage: state.friendsPage.currentPage,
