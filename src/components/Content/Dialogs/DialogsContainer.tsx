@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ComponentType} from "react";
 import s from "./Dialogs.module.css";
 import {
     actionAddNewMessage,
@@ -11,32 +11,29 @@ import {RootType} from '../../../redux/store';
 import {connect} from 'react-redux';
 import {Users} from './Users/Users';
 import {Messages} from './Messages/Messages';
-import {Redirect} from 'react-router-dom';
+import { withAuthRedirect } from "../../../hoc/withAuthRedirect";
 
-type DialogsFuncContainerPropsType = {
+type DialogsPropsType = {
     usersData:Array<UserType>
     messagesData:Array<MessageType>
     newMessageText:string
-    changeNewMessageText(newText: string):void
-    sendNewMessage():void
-    isAuth: boolean
+    changeNewMessageText(newText: string):void,
+    sendNewMessage():void,
 }
 
-function DialogsFuncContainer(props:DialogsFuncContainerPropsType) {
-    return props.isAuth
-        ?
+function Dialogs(props:DialogsPropsType) {
+    return (
         <div className={s.messages}>
             <Users usersData={props.usersData}/>
             <Messages messagesData={props.messagesData} newMessageText={props.newMessageText} changeNewMessageText={props.changeNewMessageText} sendNewMessage={props.sendNewMessage}/>
         </div>
-        : <Redirect to={'/login'}></Redirect>
+    )
 }
 
 type mapStateToPropsType = {
     usersData:Array<UserType>
     messagesData:Array<MessageType>
     newMessageText:string
-    isAuth: boolean
 }
 type mapDispatchToPropsType = {
     changeNewMessageText(newText: string):void,
@@ -48,7 +45,6 @@ function mapStateToProps(state:RootType):mapStateToPropsType {
         usersData: state.dialogsPage.usersData,
         messagesData: state.dialogsPage.messagesData,
         newMessageText: state.dialogsPage.newMessageText,
-        isAuth: state.auth.isAuth,
     }
 }
 function mapDispatchToProps(dispatch:(AC:MessagesActionsType) => void):mapDispatchToPropsType {
@@ -62,4 +58,6 @@ function mapDispatchToProps(dispatch:(AC:MessagesActionsType) => void):mapDispat
     }
 }
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(DialogsFuncContainer)
+const DialogsWithAuthRedirectContainer = withAuthRedirect(Dialogs as ComponentType)
+
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(DialogsWithAuthRedirectContainer)

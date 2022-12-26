@@ -3,7 +3,8 @@ import { Profile } from './Profile'
 import { getUserTC, PostType, ProfileType } from '../../../redux/profile-reducer'
 import { RootType } from '../../../redux/store'
 import { connect } from "react-redux"
-import {Redirect, withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import { withAuthRedirect } from '../../../hoc/withAuthRedirect'
 
 class ProfileClassContainer extends React.Component<any, any> {
 
@@ -13,7 +14,7 @@ class ProfileClassContainer extends React.Component<any, any> {
     }
 
     render() {
-        return this.props.isAuth ? <Profile profile={this.props.profile}/> : <Redirect to={'/login'}></Redirect>
+        return <Profile profile={this.props.profile}/>
     }
 }
 
@@ -21,7 +22,6 @@ type mapStateToPropsType = {
     profile: ProfileType,
     postsData: Array<PostType>,
     newPostText: string,
-    isAuth: boolean,
 }
 
 function mapStateToProps(state: RootType):mapStateToPropsType {
@@ -29,10 +29,11 @@ function mapStateToProps(state: RootType):mapStateToPropsType {
         profile: state.profilePage.profile,
         postsData: state.profilePage.postsData,
         newPostText: state.profilePage.newPostText,
-        isAuth: state.auth.isAuth
     }
 }
 
 const ProfileClassWithRouterContainer = withRouter(ProfileClassContainer)
 
-export const ProfileContainer = connect(mapStateToProps, {getUserTC})(ProfileClassWithRouterContainer)
+const ProfileWithAuthRedirectContainer = withAuthRedirect(ProfileClassWithRouterContainer)
+
+export const ProfileContainer = connect(mapStateToProps, {getUserTC})(ProfileWithAuthRedirectContainer)

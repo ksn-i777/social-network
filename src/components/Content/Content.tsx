@@ -15,7 +15,7 @@ export function Content() {
         <div className={s.content}>
             <Route path={'/profile/:userId?'} render={() => <ProfileContainer/>}></Route>
             <Route path={'/friends'} render={() => <FriendsContainer/>}></Route>
-            <Route path={'/messages'} render={() => <DialogsContainer/>}></Route>
+            <Route path={'/dialogs'} render={() => <DialogsContainer/>}></Route>
             <Route path={"/news"} render={() => <News/>}></Route>
             <Route path={"/music"} render={() => <Music/>}></Route>
             <Route path={"/settings"} render={() => <Settings/>}></Route>

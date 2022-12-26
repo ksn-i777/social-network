@@ -10,7 +10,7 @@ import {
 } from '../../../redux/friends-reducer'
 import {Friends} from './Friends'
 import {Preloader} from '../../Preloader/Preloader'
-import {Redirect} from 'react-router-dom';
+import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
 
 /* type MapDispachToPropsType = {
     follow: (userId: string) => void,
@@ -50,22 +50,20 @@ class FriendsClassContainer extends React.Component<any, any> {
     }
 
     render() {
-        return !this.props.isAuth
-            ? <Redirect to={'/login'}></Redirect>
-            : this.props.preloaderStatus
-                ? <Preloader/>
-                : <Friends
-                    friendsData={this.props.friendsData}
-                    currentPage={this.props.currentPage}
-                    pageSize={this.props.pageSize}
-                    totalUsersCount={this.props.totalUsersCount}
-                    disabledButtons={this.props.disabledButtons}
 
-                    createFollow={this.props.createFollowTC}
-                    deleteFollow={this.props.deleteFollowTC}
+        return this.props.preloaderStatus
+            ? <Preloader/>
+            : <Friends
+                friendsData={this.props.friendsData}
+                currentPage={this.props.currentPage}
+                pageSize={this.props.pageSize}
+                totalUsersCount={this.props.totalUsersCount}
+                disabledButtons={this.props.disabledButtons}
 
-                    changeCurrentPage={(currentPageNumber: number) => {this.props.changeCurrentPageTC(currentPageNumber)}}
-                />
+                createFollow={this.props.createFollowTC}
+                deleteFollow={this.props.deleteFollowTC}
+
+                changeCurrentPage={(currentPageNumber: number) => {this.props.changeCurrentPageTC(currentPageNumber)}}/>
     }
 }
 
@@ -76,13 +74,11 @@ type mapStateToPropsType = {
     totalUsersCount: number,
     preloaderStatus: boolean,
     disabledButtons: Array<string>,
-    isAuth: boolean,
 }
 
 function mapStateToProps(state: RootType):mapStateToPropsType {
     return {
         preloaderStatus: state.friendsPage.preloaderStatus,
-        isAuth: state.auth.isAuth,
 
         friendsData: state.friendsPage.friendsData,
         currentPage: state.friendsPage.currentPage,
@@ -101,4 +97,6 @@ const dispatchObj = {
 // если переименоать АС в редюсере так, чтобы свойство и значение имели одинаковое название, то dispatchObj будет таким
 // dispatchObj = {follow, unfollow, setUsers, setTotalUsersCount, setCurrentPage, changePreloaderStatus}
 
-export const FriendsContainer = connect(mapStateToProps, dispatchObj)(FriendsClassContainer)
+const FriendsWithAuthRedirectContainer = withAuthRedirect(FriendsClassContainer)
+
+export const FriendsContainer = connect(mapStateToProps, dispatchObj)(FriendsWithAuthRedirectContainer)

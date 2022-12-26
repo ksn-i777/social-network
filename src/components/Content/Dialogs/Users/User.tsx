@@ -5,7 +5,7 @@ import {UserType} from '../../../../redux/dialogs-reducer';
 
 export function User(props:UserType) {
     return(
-        <NavLink to={'/messages/'+props.id} className={s.navlink} activeClassName={s.navlinkActive}>
+        <NavLink to={'/dialogs/'+props.id} className={s.navlink} activeClassName={s.navlinkActive}>
             <img src={props.ava} alt="ava" className={s.ava}/>
             {props.name}
         </NavLink>

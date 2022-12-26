@@ -8,7 +8,7 @@ export function Nav() {
         <nav className={s.nav}>
             <NavLink to="/profile" className={s.navlink} activeClassName={s.navlinkActive}>Profile</NavLink>
             <NavLink to="/friends" className={s.navlink} activeClassName={s.navlinkActive}>Friends</NavLink>
-            <NavLink to="/messages" className={s.navlink} activeClassName={s.navlinkActive}>Messages</NavLink>
+            <NavLink to="/dialogs" className={s.navlink} activeClassName={s.navlinkActive}>Dialogs</NavLink>
             <NavLink to="/news" className={s.navlink} activeClassName={s.navlinkActive}>News</NavLink>
             <NavLink to="/music" className={s.navlink} activeClassName={s.navlinkActive}>Music</NavLink>
             <NavLink to="/settings" className={s.navlink} activeClassName={s.navlinkActive}>Settings</NavLink>
