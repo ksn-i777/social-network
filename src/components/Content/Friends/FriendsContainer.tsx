@@ -11,38 +11,7 @@ import {
 import {Friends} from './Friends'
 import {Preloader} from '../../Preloader/Preloader'
 import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
-
-/* type MapDispachToPropsType = {
-    follow: (userId: string) => void,
-    unfollow: (userId: string) => void,
-    setUsers: (users: Array<FriendType>) => void,
-    setTotalUsersCount: (totalUsersCount: number) => void,
-    setCurrentPage: (currentPage: number) => void,
-    changePreloaderStatus: (newPreloaderStatus: boolean) => void,
-}
-function mapDispachToProps(dispatch:(AC:FriendsActionsType) => void):MapDispachToPropsType {
-    return {
-        follow: (userId: string) => {
-            dispatch(followAC(userId))
-        },
-        unfollow: (userId: string) => {
-            dispatch(unfollowAC(userId))
-        },
-        setUsers: (users: Array<FriendType>) => {
-            dispatch(setUsersAC(users))
-        },
-        setTotalUsersCount: (totalUsersCount: number) => {
-            dispatch(setTotalUsersCountAC(totalUsersCount))
-        },
-        setCurrentPage: (currentPage: number) => {
-            dispatch(setCurrentPageAC(currentPage))
-        },
-        changePreloaderStatus: (newPreloaderStatus: boolean) => {
-            dispatch(changePreloaderStatusAC(newPreloaderStatus))
-        }
-    }
-} */
-
+import { compose } from "redux"
 class FriendsClassContainer extends React.Component<any, any> {
 
     componentDidMount() {
@@ -94,9 +63,13 @@ const dispatchObj = {
     createFollowTC,
     deleteFollowTC,
 }
-// если переименоать АС в редюсере так, чтобы свойство и значение имели одинаковое название, то dispatchObj будет таким
-// dispatchObj = {follow, unfollow, setUsers, setTotalUsersCount, setCurrentPage, changePreloaderStatus}
 
-const FriendsWithAuthRedirectContainer = withAuthRedirect(FriendsClassContainer)
+/* const FriendsWithAuthRedirectContainer = withAuthRedirect(FriendsClassContainer)
+const FriendsContainer = connect(mapStateToProps, dispatchObj)(FriendsWithAuthRedirectContainer) */
 
-export const FriendsContainer = connect(mapStateToProps, dispatchObj)(FriendsWithAuthRedirectContainer)
+//равнозначные записи выше и ниже
+
+export const FriendsContainer = compose(
+    connect(mapStateToProps, dispatchObj),
+    withAuthRedirect
+)(FriendsClassContainer)

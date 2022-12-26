@@ -1,17 +1,18 @@
-import React, {ComponentType} from "react";
-import s from "./Dialogs.module.css";
+import React, {ComponentType} from "react"
+import s from "./Dialogs.module.css"
 import {
     actionAddNewMessage,
     actionNewMessageText,
     MessagesActionsType,
     MessageType,
     UserType
-} from '../../../redux/dialogs-reducer';
-import {RootType} from '../../../redux/store';
-import {connect} from 'react-redux';
-import {Users} from './Users/Users';
-import {Messages} from './Messages/Messages';
-import { withAuthRedirect } from "../../../hoc/withAuthRedirect";
+} from '../../../redux/dialogs-reducer'
+import {RootType} from '../../../redux/store'
+import {connect} from 'react-redux'
+import {Users} from './Users/Users'
+import {Messages} from './Messages/Messages'
+import { withAuthRedirect } from "../../../hoc/withAuthRedirect"
+import { compose } from "redux"
 
 type DialogsPropsType = {
     usersData:Array<UserType>
@@ -58,6 +59,12 @@ function mapDispatchToProps(dispatch:(AC:MessagesActionsType) => void):mapDispat
     }
 }
 
-const DialogsWithAuthRedirectContainer = withAuthRedirect(Dialogs as ComponentType)
+/* const DialogsWithAuthRedirectContainer = withAuthRedirect(Dialogs as ComponentType)
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(DialogsWithAuthRedirectContainer) */
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(DialogsWithAuthRedirectContainer)
+//равнозначные записи выше и ниже
+
+export const DialogsContainer = compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(Dialogs as ComponentType)
