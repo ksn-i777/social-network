@@ -9,13 +9,13 @@ export type UserType = {
     name:string,
     ava:string,
 };
-export type TextType = {
+export type MessageType = {
     id:string,
     message:string,
 };
-export type MessagesPageType = {
+export type DialogsPageType = {
     usersData:Array<UserType>,
-    textsData:Array<TextType>,
+    messagesData:Array<MessageType>,
     newMessageText:string,
 };
 
@@ -28,7 +28,7 @@ export type AddNewMessageActionType = {
 };
 export type MessagesActionsType = NewMessageActionType | AddNewMessageActionType;
 
-const initialState:MessagesPageType = {
+const initialState:DialogsPageType = {
     usersData: [
         {id: v1(), name: 'Serg Sergeev', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
         {id: v1(), name: 'Eva Ivanova', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
@@ -36,7 +36,7 @@ const initialState:MessagesPageType = {
         {id: v1(), name: 'Kira Kirova', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
         {id: v1(), name: 'Lera Lerova', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
     ],
-    textsData: [
+    messagesData: [
         {id: v1(), message: '111'},
         {id: v1(), message: '222'},
         {id: v1(), message: '333'},
@@ -46,20 +46,20 @@ const initialState:MessagesPageType = {
     newMessageText: '',
 };
 
-export function messagesReducer(state:MessagesPageType = initialState, action:MessagesActionsType):MessagesPageType {
+export function dialogsReducer(state:DialogsPageType = initialState, action:MessagesActionsType):DialogsPageType {
 
-    const copyState:MessagesPageType = {...state}
+    const copyState:DialogsPageType = {...state}
 
     switch (action.type) {
         case NEW_MESSAGE_TEXT:
             copyState.newMessageText = action.newText
             return copyState
         case ADD_NEW_MESSAGE:
-            const newMessage:TextType = {
+            const newMessage:MessageType = {
                 id: v1(),
                 message: copyState.newMessageText,
             }
-            copyState.textsData = [newMessage, ...state.textsData]
+            copyState.messagesData = [newMessage, ...state.messagesData]
             copyState.newMessageText = ''
             return copyState
         default:

@@ -5,6 +5,18 @@ import { RootType } from '../../../redux/store'
 import { connect } from "react-redux"
 import {Redirect, withRouter} from 'react-router-dom'
 
+class ProfileClassContainer extends React.Component<any, any> {
+
+    componentDidMount() {
+        let userID = this.props.match.params.userId
+        this.props.getUserTC(userID)
+    }
+
+    render() {
+        return this.props.isAuth ? <Profile profile={this.props.profile}/> : <Redirect to={'/login'}></Redirect>
+    }
+}
+
 type mapStateToPropsType = {
     profile: ProfileType,
     postsData: Array<PostType>,
@@ -18,17 +30,6 @@ function mapStateToProps(state: RootType):mapStateToPropsType {
         postsData: state.profilePage.postsData,
         newPostText: state.profilePage.newPostText,
         isAuth: state.auth.isAuth
-    }
-}
-class ProfileClassContainer extends React.Component<any, any> {
-
-    componentDidMount() {
-        let userID = this.props.match.params.userId
-        this.props.getUserTC(userID)
-    }
-
-    render() {
-        return this.props.isAuth ? <Profile profile={this.props.profile}/> : <Redirect to={'/login'}></Redirect>
     }
 }
 

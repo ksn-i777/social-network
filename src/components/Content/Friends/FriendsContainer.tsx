@@ -2,7 +2,6 @@ import React from "react"
 import {connect} from "react-redux"
 import {RootType} from '../../../redux/store'
 import {
-    FriendsPageType,
     getUsersTC,
     changeCurrentPageTC,
     createFollowTC,

@@ -1,9 +1,9 @@
 import {v1} from 'uuid';
-import {actionAddNewMessage, actionNewMessageText, MessagesPageType, messagesReducer} from './messages-reducer';
+import {actionAddNewMessage, actionNewMessageText, DialogsPageType, dialogsReducer} from './dialogs-reducer';
 
 test('correct add text of message', () => {
 
-    const startState:MessagesPageType = {
+    const startState:DialogsPageType = {
         usersData: [
             {id: v1(), name: 'Serg Sergeev', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
             {id: v1(), name: 'Eva Ivanova', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
@@ -11,7 +11,7 @@ test('correct add text of message', () => {
             {id: v1(), name: 'Kira Kirova', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
             {id: v1(), name: 'Lera Lerova', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
         ],
-        textsData: [
+        messagesData: [
             {id: v1(), message: '111'},
             {id: v1(), message: '222'},
             {id: v1(), message: '333'},
@@ -23,14 +23,14 @@ test('correct add text of message', () => {
 
     const action = actionNewMessageText('aaaaa')
 
-    const endState = messagesReducer(startState, action)
+    const endState = dialogsReducer(startState, action)
 
     expect(endState.newMessageText).toBe('aaaaa')
 })
 
 test('correct add message', () => {
 
-    const startState:MessagesPageType = {
+    const startState:DialogsPageType = {
         usersData: [
             {id: v1(), name: 'Serg Sergeev', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
             {id: v1(), name: 'Eva Ivanova', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
@@ -38,7 +38,7 @@ test('correct add message', () => {
             {id: v1(), name: 'Kira Kirova', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
             {id: v1(), name: 'Lera Lerova', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
         ],
-        textsData: [
+        messagesData: [
             {id: v1(), message: '111'},
             {id: v1(), message: '222'},
             {id: v1(), message: '333'},
@@ -50,8 +50,8 @@ test('correct add message', () => {
 
     const action = actionAddNewMessage()
 
-    const endState = messagesReducer(startState, action)
+    const endState = dialogsReducer(startState, action)
 
-    expect(endState.textsData.length).toBe(6)
-    expect(endState.textsData[0].message).toBe('bbb')
+    expect(endState.messagesData.length).toBe(6)
+    expect(endState.messagesData[0].message).toBe('bbb')
 })

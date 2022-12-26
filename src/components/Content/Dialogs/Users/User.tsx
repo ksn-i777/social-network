@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./User.module.css";
 import {NavLink} from "react-router-dom";
-import {UserType} from '../../../../redux/messages-reducer';
+import {UserType} from '../../../../redux/dialogs-reducer';
 
 export function User(props:UserType) {
     return(

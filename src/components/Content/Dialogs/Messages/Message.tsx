@@ -1,8 +1,8 @@
 import React from "react";
-import s from "./Text.module.css";
-import {TextType} from "../../../../redux/messages-reducer";
+import s from "./Message.module.css";
+import {MessageType} from "../../../../redux/dialogs-reducer";
 
-export function Text(props:TextType) {
+export function Message(props:MessageType) {
     return(
         <div className={s.text}>
             <div id={`${props.id}`}>{props.message}</div>
