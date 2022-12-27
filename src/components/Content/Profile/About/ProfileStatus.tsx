@@ -9,7 +9,9 @@ export class ProfileStatus extends React.Component {
     }
 
     activateEditMode = () => {
+        console.log(this.state.editMode)
         this.setState({editMode: true})
+        console.log(this.state.editMode)
     }
     deactivateEditMode = () => {
         this.setState({editMode: false})
@@ -17,7 +19,7 @@ export class ProfileStatus extends React.Component {
 
     render() {
         return this.state.editMode
-            ? <input onBlur={this.deactivateEditMode} className={s.statusInput} value={this.state.value} autoFocus/>
+            ? <input onBlur={this.deactivateEditMode} className={s.statusInput} defaultValue={this.state.value} autoFocus/>
             : <span onDoubleClick={this.activateEditMode} className={s.statusSpan}>{this.state.value}</span>
     }
 }
