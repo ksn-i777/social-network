@@ -11,10 +11,7 @@ export const authAPI = {
     },
 }
 
-export const UsersAPI = {
-    getProfile(id:number) {
-        return commonAxiosInstance.get(`profile/${id}`).then(res => res.data)
-    },
+export const usersAPI = {
     getUsers(currentPage:number, pageSize:number) {
         return commonAxiosInstance.get(`users?page=${currentPage}&count=${pageSize}`).then(res => res.data)
     },
@@ -23,5 +20,17 @@ export const UsersAPI = {
     },
     deleteFollow(id: string) {
         return commonAxiosInstance.delete(`follow/${id}`).then(res => res.data)
+    },
+}
+
+export const profileAPI = {
+    getProfile(id:number) {
+        return commonAxiosInstance.get(`profile/${id}`).then(res => res.data)
+    },
+    getProfileStatus(id:number) {
+        return commonAxiosInstance.get(`profile/status/${id}`).then(res => res.data)
+    },
+    updateProfileStatus(newStatus:string) {
+        return commonAxiosInstance.put(`status`, {status: newStatus}).then(res => res.data)
     },
 }

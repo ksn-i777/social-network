@@ -23,7 +23,7 @@ test('correct add text of post', () => {
             photos: {
               small: '',
               large: ''
-            }
+            },
         },
         postsData: [
             {id: v1(), message: 'Yaaahhhooo', likes: 77, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
@@ -33,6 +33,7 @@ test('correct add text of post', () => {
             {id: v1(), message: 'Hi. It is my first post', likes: 15, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
         ],
         newPostText: '',
+        status: ''
     }
 
     const action = newPostTextAC('qqq')
@@ -64,7 +65,7 @@ test('correct add post', () => {
             photos: {
               small: '',
               large: ''
-            }
+            },
         },
         postsData: [
             {id: v1(), message: 'Yaaahhhooo', likes: 77, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
@@ -74,6 +75,7 @@ test('correct add post', () => {
             {id: v1(), message: 'Hi. It is my first post', likes: 15, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
         ],
         newPostText: 'ttt',
+        status: '',
     }
 
     const action = addNewPostAC()

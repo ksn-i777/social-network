@@ -15,7 +15,7 @@ class ProfileClassContainer extends React.Component<any, any> {
     }
 
     render() {
-        return <Profile profile={this.props.profile}/>
+        return <Profile profile={this.props.profile} status={this.props.status}/>
     }
 }
 
@@ -23,6 +23,7 @@ type mapStateToPropsType = {
     profile: ProfileType,
     postsData: Array<PostType>,
     newPostText: string,
+    status: string,
 }
 
 function mapStateToProps(state: RootType):mapStateToPropsType {
@@ -30,6 +31,7 @@ function mapStateToProps(state: RootType):mapStateToPropsType {
         profile: state.profilePage.profile,
         postsData: state.profilePage.postsData,
         newPostText: state.profilePage.newPostText,
+        status: state.profilePage.status
     }
 }
 

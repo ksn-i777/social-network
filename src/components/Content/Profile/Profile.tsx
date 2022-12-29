@@ -8,12 +8,13 @@ import { ProfileType } from '../../../redux/profile-reducer'
 
 type ProfilePropsType = {
     profile: ProfileType,
+    status: string,
 }
 
 export function Profile(props: ProfilePropsType) {
     return !props.profile ? <Preloader/> :
         <div className={s.profile}>
-            <About {...props.profile}/>
+            <About profile={props.profile} status={props.status}/>
             <NewPostContainer/>
             <PostsContainer/>
         </div>

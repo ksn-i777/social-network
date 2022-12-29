@@ -1,4 +1,4 @@
-import {UsersAPI} from '../api/api';
+import {usersAPI} from '../api/api';
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -120,7 +120,7 @@ export function toggleButtonsDisabledAC(isDisabled: boolean, buttonID: string):B
 
 export const getUsersTC = (currentPage:number, pageSize:number) => (dispatch: (AC: FriendsActionsType) => void):void => {
     dispatch(changePreloaderStatusAC(true))
-    UsersAPI.getUsers(currentPage, pageSize).then(data => {
+    usersAPI.getUsers(currentPage, pageSize).then(data => {
         dispatch(changePreloaderStatusAC(false))
         dispatch(setUsersAC(data.items))
         dispatch(setTotalUsersCountAC(data.totalCount))
@@ -130,7 +130,7 @@ export const getUsersTC = (currentPage:number, pageSize:number) => (dispatch: (A
 export const changeCurrentPageTC = (currentPageNumber: number) => (dispatch: (AC: FriendsActionsType) => void):void => {
     dispatch(changePreloaderStatusAC(true))
     dispatch(setCurrentPageAC(currentPageNumber))
-    UsersAPI.getUsers(currentPageNumber, initialState.pageSize).then(data => {
+    usersAPI.getUsers(currentPageNumber, initialState.pageSize).then(data => {
         dispatch(changePreloaderStatusAC(false))
         dispatch(setUsersAC(data.items))
         dispatch(setTotalUsersCountAC(data.totalCount))
@@ -139,7 +139,7 @@ export const changeCurrentPageTC = (currentPageNumber: number) => (dispatch: (AC
 
 export const createFollowTC = (userID: string) => (dispatch: (AC: FriendsActionsType) => void):void => {
     dispatch(toggleButtonsDisabledAC(true, userID))
-    UsersAPI.createFollow(userID).then(data => {
+    usersAPI.createFollow(userID).then(data => {
         if(data.resultCode === 0) {dispatch(followAC(userID))}
         dispatch(toggleButtonsDisabledAC(false, userID))
     })
@@ -147,7 +147,7 @@ export const createFollowTC = (userID: string) => (dispatch: (AC: FriendsActions
 
 export const deleteFollowTC = (userID: string) => (dispatch: (AC: FriendsActionsType) => void):void => {
     dispatch(toggleButtonsDisabledAC(true, userID))
-    UsersAPI.deleteFollow(userID).then(data => {
+    usersAPI.deleteFollow(userID).then(data => {
         if(data.resultCode === 0) {dispatch(unfollowAC(userID))}
         dispatch(toggleButtonsDisabledAC(false, userID))
     })
