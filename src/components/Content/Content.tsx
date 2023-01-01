@@ -13,7 +13,8 @@ import {Login} from './Login/Login';
 export function Content() {
     return (
         <div className={s.content}>
-            <Route path={'/profile/:userId?'} render={() => <ProfileContainer/>}></Route>
+            <Route path={'/profile/:userId'} render={() => <ProfileContainer/>}></Route>
+            <Route exact path={'/profile/'} render={() => <ProfileContainer/>}></Route>
             <Route path={'/friends'} render={() => <FriendsContainer/>}></Route>
             <Route path={'/dialogs'} render={() => <DialogsContainer/>}></Route>
             <Route path={"/news"} render={() => <News/>}></Route>

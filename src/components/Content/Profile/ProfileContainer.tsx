@@ -1,6 +1,6 @@
 import React, {ComponentType} from "react"
 import { Profile } from './Profile'
-import { getUserTC, PostType, ProfileType } from '../../../redux/profile-reducer'
+import { getProfileTC, PostType, ProfileType, getProfileStatusTC, updateProfileStatusTC } from '../../../redux/profile-reducer'
 import { RootType } from '../../../redux/store'
 import { connect } from "react-redux"
 import { withRouter } from 'react-router-dom'
@@ -11,11 +11,13 @@ class ProfileClassContainer extends React.Component<any, any> {
 
     componentDidMount() {
         let userID = this.props.match.params.userId
-        this.props.getUserTC(userID)
+        if(!userID) {userID = 26782}
+        this.props.getProfileTC(userID)
+        this.props.getProfileStatusTC(userID)
     }
 
     render() {
-        return <Profile profile={this.props.profile} status={this.props.status}/>
+        return <Profile profile={this.props.profile} status={this.props.status} updateProfileStatusTC={updateProfileStatusTC}/>
     }
 }
 
@@ -42,7 +44,7 @@ const ProfileContainer = connect(mapStateToProps, {getUserTC})(ProfileWithAuthRe
 //равнозначные записи выше и ниже
 
 export const ProfileContainer = compose<ComponentType>(
-    connect(mapStateToProps, {getUserTC}),
+    connect(mapStateToProps, {getProfileTC, getProfileStatusTC, updateProfileStatusTC}),
     withAuthRedirect,
     withRouter 
 )(ProfileClassContainer)

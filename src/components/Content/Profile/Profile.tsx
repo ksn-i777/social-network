@@ -4,17 +4,18 @@ import { About } from './About/About'
 import { NewPostContainer } from './NewPost/NewPostContainer'
 import { PostsContainer } from './Posts/PostsContainer'
 import { Preloader } from '../../Preloader/Preloader'
-import { ProfileType } from '../../../redux/profile-reducer'
+import { ProfileType, SetProfileStatusActionType } from '../../../redux/profile-reducer'
 
 type ProfilePropsType = {
     profile: ProfileType,
     status: string,
+    updateProfileStatusTC: (status: string) => (dispatch: (AC: SetProfileStatusActionType) => void) => void,
 }
 
 export function Profile(props: ProfilePropsType) {
     return !props.profile ? <Preloader/> :
         <div className={s.profile}>
-            <About profile={props.profile} status={props.status}/>
+            <About profile={props.profile} status={props.status} updateProfileStatusTC={props.updateProfileStatusTC}/>
             <NewPostContainer/>
             <PostsContainer/>
         </div>

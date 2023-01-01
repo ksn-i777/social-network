@@ -28,9 +28,10 @@ export const profileAPI = {
         return commonAxiosInstance.get(`profile/${id}`).then(res => res.data)
     },
     getProfileStatus(id:number) {
-        return commonAxiosInstance.get(`profile/status/${id}`).then(res => res.data)
+        return commonAxiosInstance.get(`profile/status/${id}`).then(res => res)
     },
     updateProfileStatus(newStatus:string) {
+        debugger
         return commonAxiosInstance.put(`status`, {status: newStatus}).then(res => res.data)
     },
 }

@@ -60,7 +60,7 @@ export type ProfileActionsType = NewPostTextActionType | AddNewPostActionType | 
 
 const initialState:ProfilePageType = {
     profile: {
-        aboutMe: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque autem beatae blanditiis consequatur culpa dignissimos distinctio expedita inventore itaque, labore officiis porro possimus, quidem rerum similique sunt tempora vitae.',
+        aboutMe: '',
         contacts: {
           facebook: '',
           website: null,
@@ -77,21 +77,12 @@ const initialState:ProfilePageType = {
         userId: 0,
         photos: {
           small: '',
-          large: 'https://aif-s3.aif.ru/images/019/507/eeba36a2a2d37754bab8b462f4262d97.jpg'
+          large: ''
         },
     },
-    postsData: [
-        {id: v1(), message: 'Yaaahhhoooo', likes: 77, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
-        {id: v1(), message: 'Yo', likes: 20, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
-        {id: v1(), message: 'Bla bla', likes: 30, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
-        {id: v1(), message: 'Iiiiiiiiiiiiiiiiiiiiiiiiii', likes: 50, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
-        {id: v1(), message: 'Happy birthday to me!', likes: 100, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
-        {id: v1(), message: 'Have a good day!', likes: 60, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
-        {id: v1(), message: 'How are you?', likes: 30, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
-        {id: v1(), message: 'Hi. It is my first post', likes: 15, ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'},
-    ],
+    postsData: [],
     newPostText: '',
-    status: '---',
+    status: '',
 }
 
 export function profileReducer(state:ProfilePageType = initialState, action:ProfileActionsType):ProfilePageType {
@@ -122,19 +113,20 @@ export function newPostTextAC(newPostText:string):NewPostTextActionType {
 export function addNewPostAC():AddNewPostActionType {
     return {type: ADD_NEW_POST}
 }
-export function setProfileAC(profile:ProfilePageType|null):SetProfileActionType {
-    return profile ? {type: SET_PROFILE, profile} : {type: SET_PROFILE, profile: initialState.profile}
+export function setProfileAC(profile:ProfilePageType):SetProfileActionType {
+    return {type: SET_PROFILE, profile}
 }
 export function setProfileStatusAC(status: string):SetProfileStatusActionType {
     return {type: SET_PROFILE_STATUS, status}
 }
 
-export const getUserTC = (userID: number) => (dispatch: (AC: SetProfileActionType) => void):void => {
-    if(userID) {profileAPI.getProfile(userID).then(res => dispatch(setProfileAC(res)))}
-    else {dispatch(setProfileAC(null))}
+export const getProfileTC = (userID: number) => (dispatch: (AC: SetProfileActionType) => void):void => {
+    profileAPI.getProfile(userID).then(res => dispatch(setProfileAC(res)))
 }
 export const getProfileStatusTC = (userID: number) => (dispatch: (AC: SetProfileStatusActionType) => void):void => {
-    profileAPI.getProfileStatus(userID).then(res => dispatch(setProfileStatusAC(res.data)))
+    profileAPI.getProfileStatus(userID).then(res => {
+        dispatch(setProfileStatusAC(res.data))
+    })
 }
 export const updateProfileStatusTC = (status: string) => (dispatch: (AC: SetProfileStatusActionType) => void):void => {
     profileAPI.updateProfileStatus(status).then(res => {
