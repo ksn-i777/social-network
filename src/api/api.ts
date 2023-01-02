@@ -3,6 +3,9 @@ import axios from 'axios';
 export const commonAxiosInstance = axios.create({
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+    headers: {
+        'API-KEY': '2747a036-30e1-438f-a28d-363ba79ced59' 
+    }
 })
 
 export const authAPI = {
@@ -32,6 +35,6 @@ export const profileAPI = {
     },
     updateProfileStatus(newStatus:string) {
         debugger
-        return commonAxiosInstance.put(`status`, {status: newStatus}).then(res => res.data)
+        return commonAxiosInstance.put(`profile/status`, {status: newStatus}).then(res => res.data)
     },
 }
