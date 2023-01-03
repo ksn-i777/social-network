@@ -1,27 +1,34 @@
-import React, {ChangeEvent} from "react"
+import React, {ChangeEvent, useState} from "react"
+import { useDispatch } from "react-redux"
 import s from './About.module.css'
+import {SetProfileStatusActionType} from '../../../../redux/profile-reducer'
+import {AppDispatch} from '../../../../redux/store'
 
-export class ProfileStatus extends React.Component<any, any> {
+type ProfileStatusPropsType = {
+    status: string
+    updateProfileStatusTC: (status: string) => (dispatch: (AC: SetProfileStatusActionType) => void) => void,
+}
 
-    state = {
-        editMode: false,
-        status: this.props.status
+export function ProfileStatus(props: ProfileStatusPropsType) {
+
+    const dispatch = useDispatch<AppDispatch>()
+
+    const [localStatus, setLocalStatus] = useState<string>(props.status)
+    const [editMode, setEditMode] = useState<boolean>(false)
+
+    function activateEditMode() {
+        setEditMode(true)
+    }
+    function deactivateEditMode() {
+        setEditMode(false)
+        dispatch(props.updateProfileStatusTC(localStatus))
+    }
+    function changeStatus(e:ChangeEvent<HTMLInputElement>) {
+        setLocalStatus(e.currentTarget.value)
     }
 
-    activateEditMode = () => {
-        this.setState({editMode: true})
-    }
-    deactivateEditMode = () => {
-        this.setState({editMode: false})
-        this.props.updateProfileStatusTC(this.state.status)
-    }
-    changeStatus = (e:ChangeEvent<HTMLInputElement>) => {
-        this.setState({status: e.currentTarget.value})
-    }
-
-    render() {
-        return this.state.editMode
-            ? <input onChange={this.changeStatus} onBlur={this.deactivateEditMode} className={s.statusInput} value={this.state.status} autoFocus/>
-            : <span onDoubleClick={this.activateEditMode} className={s.statusSpan}>{this.props.status || '---'}</span>
-    }
+    return editMode
+        ? <input onChange={changeStatus} onBlur={deactivateEditMode} className={s.statusInput} value={localStatus} autoFocus/>
+        : <span onDoubleClick={activateEditMode} className={s.statusSpan}>{props.status || '---'}</span>
+    
 }

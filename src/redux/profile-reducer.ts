@@ -129,9 +129,7 @@ export const getProfileStatusTC = (userID: number) => (dispatch: (AC: SetProfile
     })
 }
 export const updateProfileStatusTC = (status: string) => (dispatch: (AC: SetProfileStatusActionType) => void):void => {
-    debugger
     profileAPI.updateProfileStatus(status).then(res => {
-        debugger
-        if(res.resultCode === 0) {dispatch(setProfileStatusAC(res.data))}
+        if(res.resultCode === 0) {dispatch(setProfileStatusAC(status))}
     })
 }
