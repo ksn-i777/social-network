@@ -5,6 +5,7 @@ import {navbarReducer} from './navbar-reducer'
 import {friendsReducer} from './friends-reducer'
 import {authReducer} from './auth-reducer'
 import thunkMiddleware from 'redux-thunk'
+import { reducer as formReducer } from 'redux-form'
 
 const RootReducer = combineReducers({
     profilePage: profileReducer,
@@ -12,10 +13,11 @@ const RootReducer = combineReducers({
     dialogsPage: dialogsReducer,
     navbar: navbarReducer,
     auth: authReducer,
-});
+    form: formReducer,
+})
 
-export const store = createStore(RootReducer, applyMiddleware(thunkMiddleware));
+export const store = createStore(RootReducer, applyMiddleware(thunkMiddleware))
 
 export type RootType = ReturnType<typeof RootReducer>
 
-export type AppDispatch = typeof store.dispatch;
+export type AppDispatch = typeof store.dispatch

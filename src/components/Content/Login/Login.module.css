@@ -1,4 +1,11 @@
-.h1 {
+.login {
+    display: grid;
+    justify-content: center;
+}
+.header {
     color: white;
-    text-align: center;
+    font-size: 30px;
+}
+.checkbox {
+    color: white;
 }
