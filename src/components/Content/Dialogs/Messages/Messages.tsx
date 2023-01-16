@@ -13,7 +13,6 @@ type NewMessageReduxFormDataType = {
 const NewMessageReduxForm = reduxForm<NewMessageReduxFormDataType>({form: 'newMessage'})(NewMessageForm)
 
 function NewMessageForm(props:any) {
-    console.log(props)
     return(
         <form onSubmit={props.handleSubmit}>
             <div>
