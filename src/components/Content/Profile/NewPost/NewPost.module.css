@@ -4,16 +4,14 @@
     gap: 15px;
 }
 .input {
-    border-radius: 8px;
-    border: none;
-    text-align: center;
+    border: 1px transparent solid;
     outline: none;
 }
 
 .button {
     outline: none;
-    border-radius: 8px;
     border: none;
+    border-radius: 8px;
     background-color: rgba(112, 128, 144, 1);
     color: white;
     cursor: pointer;

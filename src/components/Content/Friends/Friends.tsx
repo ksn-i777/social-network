@@ -1,19 +1,19 @@
-import React from "react"
-import {FriendType} from "../../../redux/friends-reducer"
-import {Friend} from "./Friend"
+import React from 'react'
+import {FriendType} from '../../../store/friends-reducer'
+import {Friend} from './Friend'
 import s from './Friends.module.css'
 
 type FriendsPropsType = {
-    friendsData: Array<FriendType>,
-    currentPage: number,
-    pageSize: number,
-    totalUsersCount: number,
-    disabledButtons: Array<string>,
+    friendsData: Array<FriendType>
+    currentPage: number
+    pageSize: number
+    totalUsersCount: number
+    disabledButtons: Array<string>
 
-    createFollow: (userId: string) => void,
-    deleteFollow: (userId: string) => void,
+    createFollow: (userId: string) => void
+    deleteFollow: (userId: string) => void
 
-    changeCurrentPage: (currentPageNumber: number) => void,
+    changeCurrentPage: (currentPageNumber: number) => void
 }
 
 export function Friends(props: FriendsPropsType) {

@@ -1,7 +1,7 @@
-import React from "react";
-import {Header} from './Header';
-import {getAuthUserTC} from '../../redux/auth-reducer';
-import {connect} from 'react-redux';
+import React from "react"
+import {Header} from './Header'
+import {getAuthUserTC} from '../../store/auth-reducer'
+import {connect} from 'react-redux'
 
 export class HeaderClassContainer extends React.Component<any, any> {
     componentDidMount() {

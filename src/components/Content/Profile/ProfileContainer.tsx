@@ -1,11 +1,11 @@
 import React, {ComponentType} from "react"
-import { Profile } from './Profile'
-import { getProfileTC, PostType, ProfileType, getProfileStatusTC, updateProfileStatusTC } from '../../../redux/profile-reducer'
-import { RootType } from '../../../redux/store'
-import { connect } from "react-redux"
-import { withRouter } from 'react-router-dom'
-import { withAuthRedirect } from '../../../hoc/withAuthRedirect'
-import { compose } from "redux"
+import {Profile} from './Profile'
+import {getProfileTC, PostType, ProfileType, getProfileStatusTC, updateProfileStatusTC} from '../../../store/profile-reducer'
+import {RootType} from '../../../store/store'
+import {connect} from "react-redux"
+import {withRouter} from 'react-router-dom'
+import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
+import {compose} from "redux"
 
 class ProfileClassContainer extends React.Component<any, any> {
 
@@ -22,16 +22,16 @@ class ProfileClassContainer extends React.Component<any, any> {
 }
 
 type mapStateToPropsType = {
-    profile: ProfileType,
-    postsData: Array<PostType>,
-    status: string,
+    profile: ProfileType
+    postsData: Array<PostType>
+    status: string
 }
 
 function mapStateToProps(state: RootType):mapStateToPropsType {
     return {
         profile: state.profilePage.profile,
         postsData: state.profilePage.postsData,
-        status: state.profilePage.status
+        status: state.profilePage.status,
     }
 }
 

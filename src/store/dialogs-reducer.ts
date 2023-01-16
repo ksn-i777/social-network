@@ -24,11 +24,11 @@ export type MessagesActionsType = AddNewMessageActionType
 
 const initialState:DialogsPageType = {
     usersData: [
-        {id: v1(), name: 'Serg Sergeev', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
-        {id: v1(), name: 'Eva Ivanova', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
-        {id: v1(), name: 'Leon Leonov', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
-        {id: v1(), name: 'Kira Kirova', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
-        {id: v1(), name: 'Lera Lerova', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
+        {id: v1(), name: 'Serg Sergeev', ava: ''},
+        {id: v1(), name: 'Eva Ivanova', ava: ''},
+        {id: v1(), name: 'Leon Leonov', ava: ''},
+        {id: v1(), name: 'Kira Kirova', ava: ''},
+        {id: v1(), name: 'Lera Lerova', ava: ''},
     ],
     messagesData: [
         {id: v1(), message: '111'},

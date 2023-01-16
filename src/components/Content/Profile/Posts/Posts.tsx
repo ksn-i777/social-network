@@ -1,11 +1,11 @@
-import React from "react";
-import s from "./Posts.module.css";
-import {Post} from "./Post";
-import {PostType} from '../../../../redux/profile-reducer';
+import React from 'react'
+import s from './Posts.module.css'
+import {Post} from "./Post"
+import {PostType} from '../../../../store/profile-reducer'
 
 type PostsPropsType = {
-    postsData:Array<PostType>;
-};
+    postsData:Array<PostType>
+}
 
 export function Posts(props: PostsPropsType) {
     return (

@@ -1,8 +1,12 @@
-import React from "react"
-import s from "./NewPost.module.css"
+import React from 'react'
+import s from './NewPost.module.css'
 import {Field, reduxForm} from 'redux-form'
+import {Input} from '../../../Common/ValidatedForms'
+import {maxLengthVC, requiredField} from '../../../../validators/validators'
 
 //form
+
+const maxLength = maxLengthVC(10)
 
 type NewPostReduxFormDatatype = {
     newPost: string
@@ -11,10 +15,15 @@ type NewPostReduxFormDatatype = {
 const NewPostReduxForm = reduxForm<NewPostReduxFormDatatype>({form: 'newPost'})(newPostForm)
 
 function newPostForm(props:any) {
-    console.log(props)
     return(
         <form onSubmit={props.handleSubmit} className={s.new}>
-            <Field name={'newPost'} component={'input'} className={s.input} placeholder={'Enter a post message'}/>
+            <Field
+                component={Input}
+                name={'newPost'}
+                className={s.input}
+                placeholder={'Enter a post message'}
+                validate={[requiredField, maxLength]}
+            />
             <button className={s.button}>Add post</button>
         </form>
     )

@@ -1,6 +1,6 @@
-import React from "react";
-import s from "./Post.module.css";
-import {PostType} from '../../../../redux/profile-reducer';
+import React from "react"
+import s from "./Post.module.css"
+import {PostType} from '../../../../store/profile-reducer'
 
 export function Post(props: PostType) {
     return (
@@ -11,6 +11,5 @@ export function Post(props: PostType) {
                 <div id={`${props.id}`} className={s.likes}>likes: {props.likes}</div>
             </div>
         </div>
-
     )
 }

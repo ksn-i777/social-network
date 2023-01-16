@@ -1,8 +1,8 @@
 import React from "react"
-import {addNewPostAC, ProfileActionsType} from '../../../../redux/profile-reducer'
+import {addNewPostAC, ProfileActionsType} from '../../../../store/profile-reducer'
 import {NewPost} from './NewPost'
 import {connect} from "react-redux"
-import {RootType} from "../../../../redux/store"
+import {RootType} from "../../../../store/store"
 
 type mapDispatchToPropsType = {
     addNewPost(newPostText:string):void
@@ -15,7 +15,7 @@ function mapStateToProps(state:RootType):{} {
 function mapDispatchToProps(dispatch:(AC:ProfileActionsType) => void):mapDispatchToPropsType {
     return {
         addNewPost: (newPostText:string) => {
-            dispatch (addNewPostAC(newPostText));
+            dispatch (addNewPostAC(newPostText))
         },
     }
 }

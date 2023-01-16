@@ -1,12 +1,12 @@
-import React from "react";
-import s from './OnlineFriends.module.css';
-import {OnlineFriend} from "./OnlineFriend";
-import {OnlineFriendType} from '../../../redux/navbar-reducer';
+import React from "react"
+import s from './OnlineFriends.module.css'
+import {OnlineFriend} from "./OnlineFriend"
+import {OnlineFriendType} from '../../../store/navbar-reducer'
 
 
 type OnlineFriendsPropsType = {
-    onlineFriendsData:Array<OnlineFriendType>,
-};
+    onlineFriendsData:Array<OnlineFriendType>
+}
 
 export function OnlineFriends(props:OnlineFriendsPropsType) {
 

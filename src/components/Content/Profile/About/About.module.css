@@ -5,12 +5,13 @@
 }
 
 .photo {
-    width: 458px;
+    width: 100%;
     height: 290px;
     border-radius: 8px;
 }
 
 .description {
+    width: 100%;
     height: 290px;
 }
 

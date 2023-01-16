@@ -1,12 +1,12 @@
 import React from "react"
 import s from './About.module.css'
-import { ProfileType, SetProfileStatusActionType } from './../../../../redux/profile-reducer'
+import {ProfileType, SetProfileStatusActionType} from '../../../../store/profile-reducer'
 import {ProfileStatus} from './ProfileStatus'
 
 type AboutPropsType = {
-    profile: ProfileType,
-    status: string,
-    updateProfileStatusTC: (status: string) => (dispatch: (AC: SetProfileStatusActionType) => void) => void,
+    profile: ProfileType
+    status: string
+    updateProfileStatusTC: (status: string) => (dispatch: (AC: SetProfileStatusActionType) => void) => void
 }
 
 export function About(props: AboutPropsType) {
@@ -20,4 +20,4 @@ export function About(props: AboutPropsType) {
             </div>
         </div>
     )
-};
+}

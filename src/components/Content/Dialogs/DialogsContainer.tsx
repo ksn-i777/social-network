@@ -5,18 +5,18 @@ import {
     MessagesActionsType,
     MessageType,
     UserType
-} from '../../../redux/dialogs-reducer'
-import {RootType} from '../../../redux/store'
+} from '../../../store/dialogs-reducer'
+import {RootType} from '../../../store/store'
 import {connect} from 'react-redux'
 import {Users} from './Users/Users'
 import {Messages} from './Messages/Messages'
-import { withAuthRedirect } from "../../../hoc/withAuthRedirect"
-import { compose } from "redux"
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect"
+import {compose} from "redux"
 
 type DialogsPropsType = {
     usersData:Array<UserType>
     messagesData:Array<MessageType>
-    sendNewMessage(newMessage:string):void,
+    sendNewMessage(newMessage:string):void
 }
 
 function Dialogs(props:DialogsPropsType) {
@@ -33,7 +33,7 @@ type mapStateToPropsType = {
     messagesData:Array<MessageType>
 }
 type mapDispatchToPropsType = {
-    sendNewMessage(newMessage:string):void,
+    sendNewMessage(newMessage:string):void
 }
 
 function mapStateToProps(state:RootType):mapStateToPropsType {

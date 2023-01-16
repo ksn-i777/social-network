@@ -1,8 +1,8 @@
-import React from "react";
-import {Posts} from "./Posts";
-import {connect} from "react-redux";
-import {RootType} from "../../../../redux/store";
-import {PostType} from '../../../../redux/profile-reducer';
+import React from "react"
+import {Posts} from "./Posts"
+import {connect} from "react-redux"
+import {RootType} from "../../../../store/store"
+import {PostType} from '../../../../store/profile-reducer'
 
 type mapStateToPropsType = {
     postsData: Array<PostType>

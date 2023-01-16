@@ -1,17 +1,17 @@
 import React from "react"
 import {connect} from "react-redux"
-import {RootType} from '../../../redux/store'
+import {RootType} from '../../../store/store'
 import {
     getUsersTC,
     changeCurrentPageTC,
     createFollowTC,
     deleteFollowTC,
     FriendType
-} from '../../../redux/friends-reducer'
+} from '../../../store/friends-reducer'
 import {Friends} from './Friends'
 import {Preloader} from '../../Preloader/Preloader'
 import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
-import { compose } from "redux"
+import {compose} from "redux"
 class FriendsClassContainer extends React.Component<any, any> {
 
     componentDidMount() {
@@ -37,18 +37,17 @@ class FriendsClassContainer extends React.Component<any, any> {
 }
 
 type mapStateToPropsType = {
-    friendsData: Array<FriendType>,
-    currentPage: number,
-    pageSize: number,
-    totalUsersCount: number,
-    preloaderStatus: boolean,
-    disabledButtons: Array<string>,
+    friendsData: Array<FriendType>
+    currentPage: number
+    pageSize: number
+    totalUsersCount: number
+    preloaderStatus: boolean
+    disabledButtons: Array<string>
 }
 
 function mapStateToProps(state: RootType):mapStateToPropsType {
     return {
         preloaderStatus: state.friendsPage.preloaderStatus,
-
         friendsData: state.friendsPage.friendsData,
         currentPage: state.friendsPage.currentPage,
         pageSize: state.friendsPage.pageSize,

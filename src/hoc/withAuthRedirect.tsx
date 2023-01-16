@@ -1,10 +1,10 @@
-import React, { ComponentType } from "react"
+import React, {ComponentType} from 'react'
 import {Redirect} from 'react-router-dom'
-import {connect} from "react-redux"
-import { RootType } from '../redux/store'
+import {connect} from 'react-redux'
+import {RootType} from '../store/store'
 
 type mapStateToPropsType = {
-    isAuth: boolean,
+    isAuth: boolean
 }
 function mapStateToProps(state: RootType):mapStateToPropsType {
     return {

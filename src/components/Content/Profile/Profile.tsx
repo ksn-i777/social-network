@@ -1,15 +1,15 @@
 import React from "react"
 import s from './Profile.module.css'
-import { About } from './About/About'
-import { NewPostContainer } from './NewPost/NewPostContainer'
-import { PostsContainer } from './Posts/PostsContainer'
-import { Preloader } from '../../Preloader/Preloader'
-import { ProfileType, SetProfileStatusActionType } from '../../../redux/profile-reducer'
+import {About} from './About/About'
+import {NewPostContainer} from './NewPost/NewPostContainer'
+import {PostsContainer} from './Posts/PostsContainer'
+import {Preloader} from '../../Preloader/Preloader'
+import {ProfileType, SetProfileStatusActionType} from '../../../store/profile-reducer'
 
 type ProfilePropsType = {
-    profile: ProfileType,
-    status: string,
-    updateProfileStatusTC: (status: string) => (dispatch: (AC: SetProfileStatusActionType) => void) => void,
+    profile: ProfileType
+    status: string
+    updateProfileStatusTC: (status: string) => (dispatch: (AC: SetProfileStatusActionType) => void) => void
 }
 
 export function Profile(props: ProfilePropsType) {

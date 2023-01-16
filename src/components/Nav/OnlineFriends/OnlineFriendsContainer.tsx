@@ -1,11 +1,11 @@
-import React from "react";
-import {connect} from "react-redux";
-import {OnlineFriends} from "./OnlineFriends";
-import {RootType} from "../../../redux/store";
-import {OnlineFriendType} from '../../../redux/navbar-reducer';
+import React from "react"
+import {connect} from "react-redux"
+import {OnlineFriends} from "./OnlineFriends"
+import {RootType} from "../../../store/store"
+import {OnlineFriendType} from '../../../store/navbar-reducer'
 
 type mapStateToPropsType = {
-    onlineFriendsData:Array<OnlineFriendType>,
+    onlineFriendsData:Array<OnlineFriendType>
 }
 
 function mapStateToProps(state:RootType):mapStateToPropsType {
