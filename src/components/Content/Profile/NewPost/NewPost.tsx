@@ -1,38 +1,36 @@
-import React, {ChangeEvent, KeyboardEvent} from "react";
-import s from "./NewPost.module.css";
+import React from "react"
+import s from "./NewPost.module.css"
+import {Field, reduxForm} from 'redux-form'
+
+//form
+
+type NewPostReduxFormDatatype = {
+    newPost: string
+}
+
+const NewPostReduxForm = reduxForm<NewPostReduxFormDatatype>({form: 'newPost'})(newPostForm)
+
+function newPostForm(props:any) {
+    console.log(props)
+    return(
+        <form onSubmit={props.handleSubmit} className={s.new}>
+            <Field name={'newPost'} component={'input'} className={s.input} placeholder={'Enter a post message'}/>
+            <button className={s.button}>Add post</button>
+        </form>
+    )
+}
+
+//new post
 
 type NewPostPropsType = {
-    newPostText: string,
-    changeNewPostText(newText:string):void,
-    addNewPost():void,
+    addNewPost(newPostText:string):void,
 };
 
 export function NewPost(props:NewPostPropsType) {
     
-    function onChangeNewPostText(e:ChangeEvent<HTMLInputElement>):void {
-        const newText:string = e.currentTarget.value
-        props.changeNewPostText(newText);
-    }
-
-    function onKeyAddNewPost(e:KeyboardEvent<HTMLInputElement>):void {
-        if ((e.code === "Enter" || e.code === "NumpadEnter") && props.newPostText !== '') {props.addNewPost()}
-    }
-
-    function onAddNewPost():void {
-        if(props.newPostText !== '') {props.addNewPost()}
+    function onAddNewPost(newPostFormData:NewPostReduxFormDatatype):void {
+        if(newPostFormData.newPost !== '') {props.addNewPost(newPostFormData.newPost)}
     }
     
-    return (
-        <div className={s.new}>
-            <input
-                value={props.newPostText}
-                onChange={onChangeNewPostText}
-                onKeyPress={onKeyAddNewPost}
-                className={s.input}
-                placeholder={'Enter a post message'}
-            />
-            <button onClick={onAddNewPost} className={s.button}>Add post</button>
-        </div>
-
-    )
+    return <NewPostReduxForm onSubmit={onAddNewPost}/>
 }

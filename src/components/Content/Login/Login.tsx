@@ -1,35 +1,20 @@
-import React from "react";
+import React from "react"
 import s from './Login.module.css'
-import {Field, reduxForm} from 'redux-form';
+import {Field, reduxForm} from 'redux-form'
 
-type FormDataType = {
+//form
+
+type LoginReduxFormDataType = {
     login: string
     password: string
     remember: boolean
 }
 
-export function Login() {
+const LoginReduxForm = reduxForm<LoginReduxFormDataType>({form: 'login'})(LoginForm)
 
-    function onSubmit(formData: FormDataType):void {
-        console.log(formData)
-    }
-
+function LoginForm(props:any) {
     return (
-        <div className={s.login}>
-            <div className={s.header}>Login please</div>
-            <LoginReduxForm onSubmit={onSubmit}/>
-        </div>
-    )
-}
-
-const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
-
-function LoginForm(props: { handleSubmit: any}) {
-
-    const { handleSubmit } = props
-
-    return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={props.handleSubmit}>
             <div>
                 <Field name={'login'} component={'input'} placeholder={'login'}/>
             </div>
@@ -44,8 +29,20 @@ function LoginForm(props: { handleSubmit: any}) {
             </div>
         </form>
     )
-
 }
 
+//login page
 
+export function Login() {
 
+    function onSubmit(loginFormData: LoginReduxFormDataType):void {
+        console.log(loginFormData)
+    }
+
+    return (
+        <div className={s.login}>
+            <div className={s.header}>Login please</div>
+            <LoginReduxForm onSubmit={onSubmit}/>
+        </div>
+    )
+}

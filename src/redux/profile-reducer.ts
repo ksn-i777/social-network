@@ -1,62 +1,57 @@
 import {v1} from 'uuid'
-import {profileAPI} from '../api/api';
+import {profileAPI} from '../api/api'
 
-const NEW_POST_TEXT = 'NEW-POST-TEXT'
 const ADD_NEW_POST = 'ADD-NEW-POST'
 const SET_PROFILE = 'SET_PROFILE'
 const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS'
 
 
 export type ProfileType = {
-    aboutMe: string,
+    aboutMe: string
     contacts: {
-        facebook: string,
-        website: null,
-        vk: string,
-        twitter: string,
-        instagram: string,
-        youtube: null,
-        github: string,
-        mainLink: null,
-    },
-    lookingForAJob: true,
-    lookingForAJobDescription: string,
-    fullName: string,
-    userId: number,
+        facebook: string
+        website: null
+        vk: string
+        twitter: string
+        instagram: string
+        youtube: null
+        github: string
+        mainLink: null
+    }
+    lookingForAJob: true
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
     photos: {
-        small: string,
-        large: string,
-    },
+        small: string
+        large: string
+    }
 }
 export type PostType = {
-    id: string,
-    message: string,
-    likes: number,
-    ava: string,
+    id: string
+    message: string
+    likes: number
+    ava: string
 }
 export type ProfilePageType = {
-    profile: ProfileType,
-    postsData: Array<PostType>,
-    newPostText: string,
-    status: string,
+    profile: ProfileType
+    postsData: Array<PostType>
+    status: string
 }
 
-export type NewPostTextActionType = {
-    type: typeof NEW_POST_TEXT,
-    newPostText: string,
-}
 export type AddNewPostActionType = {
-    type: typeof ADD_NEW_POST,
+    type: typeof ADD_NEW_POST
+    newPostText: string
 }
 export type SetProfileActionType = {
-    type: typeof SET_PROFILE,
+    type: typeof SET_PROFILE
     profile: any
 }
 export type SetProfileStatusActionType = {
-    type: typeof SET_PROFILE_STATUS,
+    type: typeof SET_PROFILE_STATUS
     status: string
 }
-export type ProfileActionsType = NewPostTextActionType | AddNewPostActionType | SetProfileActionType | SetProfileStatusActionType
+export type ProfileActionsType = AddNewPostActionType | SetProfileActionType | SetProfileStatusActionType
 
 const initialState:ProfilePageType = {
     profile: {
@@ -81,23 +76,20 @@ const initialState:ProfilePageType = {
         },
     },
     postsData: [],
-    newPostText: '',
     status: '',
 }
 
 export function profileReducer(state:ProfilePageType = initialState, action:ProfileActionsType):ProfilePageType {
 
     switch (action.type) {
-        case NEW_POST_TEXT:
-            return {...state, newPostText: action.newPostText}
         case ADD_NEW_POST:
             const newPost:PostType = {
                 id: v1(),
-                message: state.newPostText,
+                message: action.newPostText,
                 likes: 0,
                 ava: 'https://pm1.narvii.com/6783/e3b67784dbfabe6c0a7f15fa46043c2b522acfe5v2_hq.jpg'
             }
-            return {...state, postsData: [newPost, ...state.postsData], newPostText: ''}
+            return {...state, postsData: [newPost, ...state.postsData]}
         case SET_PROFILE:
             return {...state, profile: action.profile}
         case SET_PROFILE_STATUS:
@@ -107,11 +99,8 @@ export function profileReducer(state:ProfilePageType = initialState, action:Prof
     }
 }
 
-export function newPostTextAC(newPostText:string):NewPostTextActionType {
-    return {type: NEW_POST_TEXT, newPostText}
-}
-export function addNewPostAC():AddNewPostActionType {
-    return {type: ADD_NEW_POST}
+export function addNewPostAC(newPostText:string):AddNewPostActionType {
+    return {type: ADD_NEW_POST, newPostText}
 }
 export function setProfileAC(profile:ProfilePageType):SetProfileActionType {
     return {type: SET_PROFILE, profile}

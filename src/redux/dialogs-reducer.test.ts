@@ -1,32 +1,5 @@
 import {v1} from 'uuid';
-import {actionAddNewMessage, actionNewMessageText, DialogsPageType, dialogsReducer} from './dialogs-reducer';
-
-test('correct add text of message', () => {
-
-    const startState:DialogsPageType = {
-        usersData: [
-            {id: v1(), name: 'Serg Sergeev', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
-            {id: v1(), name: 'Eva Ivanova', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
-            {id: v1(), name: 'Leon Leonov', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
-            {id: v1(), name: 'Kira Kirova', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
-            {id: v1(), name: 'Lera Lerova', ava: 'https://fydi.ru/wp-content/uploads/2021/06/na-avy-parni-60.jpg'},
-        ],
-        messagesData: [
-            {id: v1(), message: '111'},
-            {id: v1(), message: '222'},
-            {id: v1(), message: '333'},
-            {id: v1(), message: '444'},
-            {id: v1(), message: '555'},
-        ],
-        newMessageText: ''
-    }
-
-    const action = actionNewMessageText('aaaaa')
-
-    const endState = dialogsReducer(startState, action)
-
-    expect(endState.newMessageText).toBe('aaaaa')
-})
+import {actionAddNewMessage, DialogsPageType, dialogsReducer} from './dialogs-reducer';
 
 test('correct add message', () => {
 
@@ -45,10 +18,9 @@ test('correct add message', () => {
             {id: v1(), message: '444'},
             {id: v1(), message: '555'},
         ],
-        newMessageText: 'bbb'
     }
 
-    const action = actionAddNewMessage()
+    const action = actionAddNewMessage('bbb')
 
     const endState = dialogsReducer(startState, action)
 

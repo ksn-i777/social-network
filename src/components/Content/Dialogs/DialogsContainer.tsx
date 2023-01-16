@@ -2,7 +2,6 @@ import React, {ComponentType} from "react"
 import s from "./Dialogs.module.css"
 import {
     actionAddNewMessage,
-    actionNewMessageText,
     MessagesActionsType,
     MessageType,
     UserType
@@ -17,16 +16,14 @@ import { compose } from "redux"
 type DialogsPropsType = {
     usersData:Array<UserType>
     messagesData:Array<MessageType>
-    newMessageText:string
-    changeNewMessageText(newText: string):void,
-    sendNewMessage():void,
+    sendNewMessage(newMessage:string):void,
 }
 
 function Dialogs(props:DialogsPropsType) {
     return (
         <div className={s.messages}>
             <Users usersData={props.usersData}/>
-            <Messages messagesData={props.messagesData} newMessageText={props.newMessageText} changeNewMessageText={props.changeNewMessageText} sendNewMessage={props.sendNewMessage}/>
+            <Messages messagesData={props.messagesData} sendNewMessage={props.sendNewMessage}/>
         </div>
     )
 }
@@ -34,27 +31,21 @@ function Dialogs(props:DialogsPropsType) {
 type mapStateToPropsType = {
     usersData:Array<UserType>
     messagesData:Array<MessageType>
-    newMessageText:string
 }
 type mapDispatchToPropsType = {
-    changeNewMessageText(newText: string):void,
-    sendNewMessage():void,
+    sendNewMessage(newMessage:string):void,
 }
 
 function mapStateToProps(state:RootType):mapStateToPropsType {
     return {
         usersData: state.dialogsPage.usersData,
         messagesData: state.dialogsPage.messagesData,
-        newMessageText: state.dialogsPage.newMessageText,
     }
 }
 function mapDispatchToProps(dispatch:(AC:MessagesActionsType) => void):mapDispatchToPropsType {
     return {
-        changeNewMessageText: (newText: string) => {
-            dispatch(actionNewMessageText(newText));
-        },
-        sendNewMessage: () => {
-            dispatch(actionAddNewMessage())
+        sendNewMessage: (newMessage:string) => {
+            dispatch(actionAddNewMessage(newMessage))
         },
     }
 }

@@ -1,30 +1,21 @@
-import React from "react";
-import {addNewPostAC, newPostTextAC, ProfileActionsType} from '../../../../redux/profile-reducer';
-import {NewPost} from './NewPost';
-import {connect} from "react-redux";
-import {RootType} from "../../../../redux/store";
+import React from "react"
+import {addNewPostAC, ProfileActionsType} from '../../../../redux/profile-reducer'
+import {NewPost} from './NewPost'
+import {connect} from "react-redux"
+import {RootType} from "../../../../redux/store"
 
-type mapStateToPropsType = {
-    newPostText: string,
-}
 type mapDispatchToPropsType = {
-    changeNewPostText(newText: string):void,
-    addNewPost():void,
+    addNewPost(newPostText:string):void
 }
 
-function mapStateToProps(state:RootType):mapStateToPropsType {
-    return {
-        newPostText: state.profilePage.newPostText,
-    }
+function mapStateToProps(state:RootType):{} {
+    return ({})
 }
 
 function mapDispatchToProps(dispatch:(AC:ProfileActionsType) => void):mapDispatchToPropsType {
     return {
-        changeNewPostText: (newText: string) => {
-            dispatch (newPostTextAC(newText));
-        },
-        addNewPost: () => {
-            dispatch (addNewPostAC());
+        addNewPost: (newPostText:string) => {
+            dispatch (addNewPostAC(newPostText));
         },
     }
 }
