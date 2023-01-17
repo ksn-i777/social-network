@@ -1,10 +1,10 @@
-import React from "react"
-import s from "./Messages.module.css"
-import {Message} from "./Message"
-import {MessageType} from "../../../../store/dialogs-reducer"
+import React from 'react'
+import s from './Messages.module.css'
+import {Message} from './Message'
+import {MessageType} from '../../../../store/dialogs-reducer'
 import {Field, reduxForm} from 'redux-form'
-import {Textarea} from '../../../Common/ValidatedForms'
-import {maxLengthVC, requiredField} from '../../../../validators/validators'
+import {Textarea} from '../../../Common/ValidatedForms/ValidatedForms'
+import {maxLengthVC} from '../../../../validators/validators'
 
 //form
 
@@ -24,7 +24,7 @@ function NewMessageForm(props:any) {
                     name={'newMessage'}
                     component={Textarea}
                     placeholder={'enter your message'}
-                    validate={[requiredField, maxLength]}
+                    validate={[maxLength]}
                 />
             </div>
             <button>Send message</button>

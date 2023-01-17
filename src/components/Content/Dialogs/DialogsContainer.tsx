@@ -6,7 +6,7 @@ import {
     MessageType,
     UserType
 } from '../../../store/dialogs-reducer'
-import {RootType} from '../../../store/store'
+import {AppStateType} from '../../../store/store'
 import {connect} from 'react-redux'
 import {Users} from './Users/Users'
 import {Messages} from './Messages/Messages'
@@ -36,7 +36,7 @@ type mapDispatchToPropsType = {
     sendNewMessage(newMessage:string):void
 }
 
-function mapStateToProps(state:RootType):mapStateToPropsType {
+function mapStateToProps(state:AppStateType):mapStateToPropsType {
     return {
         usersData: state.dialogsPage.usersData,
         messagesData: state.dialogsPage.messagesData,

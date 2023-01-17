@@ -24,11 +24,11 @@ export type MessagesActionsType = AddNewMessageActionType
 
 const initialState:DialogsPageType = {
     usersData: [
-        {id: v1(), name: 'Serg Sergeev', ava: ''},
-        {id: v1(), name: 'Eva Ivanova', ava: ''},
-        {id: v1(), name: 'Leon Leonov', ava: ''},
-        {id: v1(), name: 'Kira Kirova', ava: ''},
-        {id: v1(), name: 'Lera Lerova', ava: ''},
+        {id: v1(), name: 'Serg Sergeev', ava: 'https://www.meme-arsenal.com/memes/68c2a221bca55e0c5fec6213dc185d0d.jpg'},
+        {id: v1(), name: 'Eva Ivanova', ava: 'https://www.meme-arsenal.com/memes/68c2a221bca55e0c5fec6213dc185d0d.jpg'},
+        {id: v1(), name: 'Leon Leonov', ava: 'https://www.meme-arsenal.com/memes/68c2a221bca55e0c5fec6213dc185d0d.jpg'},
+        {id: v1(), name: 'Kira Kirova', ava: 'https://www.meme-arsenal.com/memes/68c2a221bca55e0c5fec6213dc185d0d.jpg'},
+        {id: v1(), name: 'Lera Lerova', ava: 'https://www.meme-arsenal.com/memes/68c2a221bca55e0c5fec6213dc185d0d.jpg'},
     ],
     messagesData: [
         {id: v1(), message: '111'},

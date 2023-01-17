@@ -12,6 +12,12 @@ export const authAPI = {
     getAuthUser() {
         return commonAxiosInstance.get(`auth/me`).then(res => res.data)
     },
+    login(email:string, password:string, rememberMe = false) {
+        return commonAxiosInstance.post(`auth/login`, {email, password, rememberMe}).then(res => res.data)
+    },
+    logout() {
+        return commonAxiosInstance.delete(`auth/login`).then(res => res.data)
+    },
 }
 
 export const usersAPI = {

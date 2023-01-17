@@ -1,8 +1,8 @@
 import React from 'react'
 import s from './NewPost.module.css'
 import {Field, reduxForm} from 'redux-form'
-import {Input} from '../../../Common/ValidatedForms'
-import {maxLengthVC, requiredField} from '../../../../validators/validators'
+import {Input} from '../../../Common/ValidatedForms/ValidatedForms'
+import {maxLengthVC} from '../../../../validators/validators'
 
 //form
 
@@ -18,11 +18,11 @@ function newPostForm(props:any) {
     return(
         <form onSubmit={props.handleSubmit} className={s.new}>
             <Field
+                className={s.input}
                 component={Input}
                 name={'newPost'}
-                className={s.input}
                 placeholder={'Enter a post message'}
-                validate={[requiredField, maxLength]}
+                validate={[maxLength]}
             />
             <button className={s.button}>Add post</button>
         </form>

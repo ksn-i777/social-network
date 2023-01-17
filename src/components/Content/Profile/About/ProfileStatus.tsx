@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState, useEffect} from 'react'
 import {useDispatch} from 'react-redux'
 import s from './About.module.css'
 import {SetProfileStatusActionType} from '../../../../store/profile-reducer'
-import {AppDispatch} from '../../../../store/store'
+import {AppDispatchType} from '../../../../store/store'
 
 type ProfileStatusPropsType = {
     status: string
@@ -16,7 +16,7 @@ export function ProfileStatus(props: ProfileStatusPropsType) {
         setLocalStatus(props.status)
     }, [props.status])
 
-    const dispatch = useDispatch<AppDispatch>()
+    const dispatch = useDispatch<AppDispatchType>()
 
     const [localStatus, setLocalStatus] = useState<string>('')
     const [editMode, setEditMode] = useState<boolean>(false)

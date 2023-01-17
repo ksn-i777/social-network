@@ -1,6 +1,6 @@
 import React from "react"
 import {Header} from './Header'
-import {getAuthUserTC} from '../../store/auth-reducer'
+import {getAuthUserTC, logoutUserTC} from '../../../store/auth-reducer'
 import {connect} from 'react-redux'
 
 export class HeaderClassContainer extends React.Component<any, any> {
@@ -8,7 +8,7 @@ export class HeaderClassContainer extends React.Component<any, any> {
         this.props.getAuthUserTC()
     }
     render() {
-        return <Header login={this.props.login} isAuth={this.props.isAuth}/>
+        return <Header login={this.props.login} isAuth={this.props.isAuth} logoutUserTC={this.props.logoutUserTC}/>
     }
 }
 
@@ -24,4 +24,4 @@ function mapStateToProps(state: { auth: { login: any; isAuth: any; }; }):mapStat
     }
 }
 
-export const HeaderContainer = connect(mapStateToProps, {getAuthUserTC})(HeaderClassContainer)
+export const HeaderContainer = connect(mapStateToProps, {getAuthUserTC, logoutUserTC})(HeaderClassContainer)

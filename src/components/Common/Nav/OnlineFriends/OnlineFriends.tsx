@@ -1,7 +1,7 @@
 import React from "react"
 import s from './OnlineFriends.module.css'
 import {OnlineFriend} from "./OnlineFriend"
-import {OnlineFriendType} from '../../../store/navbar-reducer'
+import {OnlineFriendType} from '../../../../store/navbar-reducer'
 
 
 type OnlineFriendsPropsType = {

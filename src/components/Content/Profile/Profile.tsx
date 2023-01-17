@@ -3,7 +3,7 @@ import s from './Profile.module.css'
 import {About} from './About/About'
 import {NewPostContainer} from './NewPost/NewPostContainer'
 import {PostsContainer} from './Posts/PostsContainer'
-import {Preloader} from '../../Preloader/Preloader'
+import {Preloader} from '../../Common/Preloader/Preloader'
 import {ProfileType, SetProfileStatusActionType} from '../../../store/profile-reducer'
 
 type ProfilePropsType = {

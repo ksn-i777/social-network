@@ -1,6 +1,6 @@
 import React from "react"
 import {connect} from "react-redux"
-import {RootType} from '../../../store/store'
+import {AppStateType} from '../../../store/store'
 import {
     getUsersTC,
     changeCurrentPageTC,
@@ -9,7 +9,7 @@ import {
     FriendType
 } from '../../../store/friends-reducer'
 import {Friends} from './Friends'
-import {Preloader} from '../../Preloader/Preloader'
+import {Preloader} from '../../Common/Preloader/Preloader'
 import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
 import {compose} from "redux"
 class FriendsClassContainer extends React.Component<any, any> {
@@ -45,7 +45,7 @@ type mapStateToPropsType = {
     disabledButtons: Array<string>
 }
 
-function mapStateToProps(state: RootType):mapStateToPropsType {
+function mapStateToProps(state: AppStateType):mapStateToPropsType {
     return {
         preloaderStatus: state.friendsPage.preloaderStatus,
         friendsData: state.friendsPage.friendsData,

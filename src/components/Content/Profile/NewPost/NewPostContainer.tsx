@@ -2,13 +2,13 @@ import React from "react"
 import {addNewPostAC, ProfileActionsType} from '../../../../store/profile-reducer'
 import {NewPost} from './NewPost'
 import {connect} from "react-redux"
-import {RootType} from "../../../../store/store"
+import {AppStateType} from "../../../../store/store"
 
 type mapDispatchToPropsType = {
     addNewPost(newPostText:string):void
 }
 
-function mapStateToProps(state:RootType):{} {
+function mapStateToProps(state:AppStateType):{} {
     return ({})
 }
 

@@ -2,7 +2,9 @@ import React from 'react'
 import s from './Login.module.css'
 import {Field, reduxForm} from 'redux-form'
 import {requiredField} from '../../../validators/validators'
-import {Input} from '../../Common/ValidatedForms'
+import {Input} from '../../Common/ValidatedForms/ValidatedForms'
+import {loginUserTC} from '../../../store/auth-reducer'
+import {connect} from 'react-redux'
 
 //form
 
@@ -35,10 +37,12 @@ function LoginForm(props:any) {
 
 //login page
 
-export function Login() {
+export const LoginContainer = connect(null, {loginUserTC})(Login)
+
+function Login(props:any) {
 
     function onSubmit(loginFormData: LoginReduxFormDataType):void {
-        console.log(loginFormData)
+        props.loginUserTC(loginFormData.login, loginFormData.password, loginFormData.remember)
     }
 
     return (

@@ -1,7 +1,7 @@
 import React, {ComponentType} from "react"
 import {Profile} from './Profile'
 import {getProfileTC, PostType, ProfileType, getProfileStatusTC, updateProfileStatusTC} from '../../../store/profile-reducer'
-import {RootType} from '../../../store/store'
+import {AppStateType} from '../../../store/store'
 import {connect} from "react-redux"
 import {withRouter} from 'react-router-dom'
 import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
@@ -27,7 +27,7 @@ type mapStateToPropsType = {
     status: string
 }
 
-function mapStateToProps(state: RootType):mapStateToPropsType {
+function mapStateToProps(state: AppStateType):mapStateToPropsType {
     return {
         profile: state.profilePage.profile,
         postsData: state.profilePage.postsData,
