@@ -9,3 +9,6 @@
 .checkbox {
     color: white;
 }
+.formError {
+    color: red;
+}

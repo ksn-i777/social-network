@@ -31,6 +31,7 @@ function LoginForm(props:any) {
             <div>
                 <button>Submit</button>
             </div>
+            <div className={s.formError}>{props.error}</div>
         </form>
     )
 }
