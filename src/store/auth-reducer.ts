@@ -38,25 +38,28 @@ export function setAuthUserDataAC(id:number|null, email:string|null, login:strin
 }
 
 export const getAuthUserTC = () => (dispatch: AppDispatchType) => {
-    authAPI.getAuthUser().then(data => {
-        if (data.resultCode === 0) {
-            dispatch(setAuthUserDataAC(data.data.id, data.data.email, data.data.login, true))
-        }
-    })
+    return authAPI.getAuthUser()
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setAuthUserDataAC(data.data.id, data.data.email, data.data.login, true))
+            }
+        })
 }
 export const loginUserTC = (email:string, password:string, rememberMe:boolean) => (dispatch: AppDispatchType) => {
-    authAPI.login(email, password, rememberMe).then(data => {
-        if (data.resultCode === 0) {
-            dispatch(getAuthUserTC())
-        } else {
-            dispatch(stopSubmit('login', {_error: data.messages.length > 0 ? data.messages[0] : 'some error'}))
-        }
-    })
+    return authAPI.login(email, password, rememberMe)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(getAuthUserTC())
+            } else {
+                dispatch(stopSubmit('login', {_error: data.messages.length > 0 ? data.messages[0] : 'some error'}))
+            }
+        })
 }
 export const logoutUserTC = () => (dispatch: AppDispatchType) => {
-    authAPI.logout().then(data => {
-        if (data.resultCode === 0) {
-            dispatch(setAuthUserDataAC(null, null, null, false))
-        }
-    })
+    return authAPI.logout()
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setAuthUserDataAC(null, null, null, false))
+            }
+        })
 }
