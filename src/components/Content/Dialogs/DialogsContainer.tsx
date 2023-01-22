@@ -1,4 +1,4 @@
-import React, {ComponentType} from "react"
+import React, { ComponentType } from "react"
 import s from "./Dialogs.module.css"
 import {
     actionAddNewMessage,
@@ -6,12 +6,13 @@ import {
     MessageType,
     UserType
 } from '../../../store/dialogs-reducer'
-import {AppStateType} from '../../../store/store'
-import {connect} from 'react-redux'
-import {Users} from './Users/Users'
-import {Messages} from './Messages/Messages'
-import {withAuthRedirect} from "../../../hoc/withAuthRedirect"
-import {compose} from "redux"
+import { AppStateType } from '../../../store/store'
+import { connect } from 'react-redux'
+import { Users } from './Users/Users'
+import { Messages } from './Messages/Messages'
+import { withAuthRedirect } from "../../../hoc/withAuthRedirect"
+import { compose } from "redux"
+import { getMessages, getUsers } from "../../../selectors/dialogs-selectors"
 
 type DialogsPropsType = {
     usersData:Array<UserType>
@@ -38,8 +39,8 @@ type mapDispatchToPropsType = {
 
 function mapStateToProps(state:AppStateType):mapStateToPropsType {
     return {
-        usersData: state.dialogsPage.usersData,
-        messagesData: state.dialogsPage.messagesData,
+        usersData: getUsers(state),
+        messagesData: getMessages(state),
     }
 }
 function mapDispatchToProps(dispatch:(AC:MessagesActionsType) => void):mapDispatchToPropsType {

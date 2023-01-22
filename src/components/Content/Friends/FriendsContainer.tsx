@@ -1,6 +1,6 @@
 import React from "react"
-import {connect} from "react-redux"
-import {AppStateType} from '../../../store/store'
+import { connect } from "react-redux"
+import { AppStateType } from '../../../store/store'
 import {
     getUsersTC,
     changeCurrentPageTC,
@@ -8,10 +8,11 @@ import {
     deleteFollowTC,
     FriendType
 } from '../../../store/friends-reducer'
-import {Friends} from './Friends'
-import {Preloader} from '../../Common/Preloader/Preloader'
-import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
-import {compose} from "redux"
+import { Friends } from './Friends'
+import { Preloader} from '../../Common/Preloader/Preloader'
+import { withAuthRedirect } from '../../../hoc/withAuthRedirect'
+import { compose } from "redux"
+import { getPreloaderStatus, getFriends, getCurrentPage, getPagesize, getTotalUsersCount, getDisabledButtons } from "../../../selectors/friends-selectors"
 class FriendsClassContainer extends React.Component<any, any> {
 
     componentDidMount() {
@@ -47,12 +48,12 @@ type mapStateToPropsType = {
 
 function mapStateToProps(state: AppStateType):mapStateToPropsType {
     return {
-        preloaderStatus: state.friendsPage.preloaderStatus,
-        friendsData: state.friendsPage.friendsData,
-        currentPage: state.friendsPage.currentPage,
-        pageSize: state.friendsPage.pageSize,
-        totalUsersCount: state.friendsPage.totalUsersCount,
-        disabledButtons: state.friendsPage.disabledButtons,
+        preloaderStatus: getPreloaderStatus(state),
+        friendsData: getFriends(state),
+        currentPage: getCurrentPage(state),
+        pageSize: getPagesize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        disabledButtons: getDisabledButtons(state),
     }
 }
 
