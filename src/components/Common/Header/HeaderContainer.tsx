@@ -1,7 +1,9 @@
 import React from "react"
-import {Header} from './Header'
-import {logoutUserTC} from '../../../store/auth-reducer'
-import {connect} from 'react-redux'
+import { Header } from './Header'
+import { logoutUserTC } from '../../../store/auth-reducer'
+import { connect } from 'react-redux'
+import { AppStateType } from "../../../store/store"
+import { getIsAuth, getLogin } from "../../../selectors/header-selectors"
 
 export class HeaderClassContainer extends React.Component<any, any> {
     render() {
@@ -14,10 +16,10 @@ type mapStateToPropsType = {
     isAuth: boolean
 }
 
-function mapStateToProps(state: { auth: { login: any; isAuth: any; }; }):mapStateToPropsType {
+function mapStateToProps(state: AppStateType):mapStateToPropsType {
     return {
-        login: state.auth.login,
-        isAuth: state.auth.isAuth
+        login: getLogin(state),
+        isAuth: getIsAuth(state)
     }
 }
 

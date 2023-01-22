@@ -1,8 +1,9 @@
 import React from "react"
-import {Posts} from "./Posts"
-import {connect} from "react-redux"
-import {AppStateType} from "../../../../store/store"
-import {PostType} from '../../../../store/profile-reducer'
+import { Posts } from "./Posts"
+import { connect } from "react-redux"
+import { AppStateType } from "../../../../store/store"
+import { PostType } from '../../../../store/profile-reducer'
+import { getPosts } from "../../../../selectors/posts-selectors"
 
 type mapStateToPropsType = {
     postsData: Array<PostType>
@@ -10,7 +11,7 @@ type mapStateToPropsType = {
 
 function mapStateToProps(state:AppStateType):mapStateToPropsType {
     return {
-        postsData: state.profilePage.postsData,
+        postsData: getPosts(state),
     }
 }
 

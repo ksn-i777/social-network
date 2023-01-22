@@ -1,11 +1,12 @@
-import React, {ComponentType} from "react"
-import {Profile} from './Profile'
-import {getProfileTC, PostType, ProfileType, getProfileStatusTC, updateProfileStatusTC} from '../../../store/profile-reducer'
-import {AppStateType} from '../../../store/store'
-import {connect} from "react-redux"
-import {withRouter} from 'react-router-dom'
-import {withAuthRedirect} from '../../../hoc/withAuthRedirect'
-import {compose} from "redux"
+import React, { ComponentType } from "react"
+import { Profile } from './Profile'
+import { getProfileTC, ProfileType, getProfileStatusTC, updateProfileStatusTC } from '../../../store/profile-reducer'
+import { AppStateType } from '../../../store/store'
+import { connect } from "react-redux"
+import { withRouter } from 'react-router-dom'
+import { withAuthRedirect } from '../../../hoc/withAuthRedirect'
+import { compose } from "redux"
+import { getProfile, getProfileStatus } from "../../../selectors/profile-selectors"
 
 class ProfileClassContainer extends React.Component<any, any> {
 
@@ -22,15 +23,13 @@ class ProfileClassContainer extends React.Component<any, any> {
 
 type mapStateToPropsType = {
     profile: ProfileType
-    postsData: Array<PostType>
     status: string
 }
 
 function mapStateToProps(state: AppStateType):mapStateToPropsType {
     return {
-        profile: state.profilePage.profile,
-        postsData: state.profilePage.postsData,
-        status: state.profilePage.status,
+        profile: getProfile(state),
+        status: getProfileStatus(state),
     }
 }
 
