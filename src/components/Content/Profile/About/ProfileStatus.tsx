@@ -18,7 +18,7 @@ export function ProfileStatus(props: ProfileStatusPropsType) {
 
     const dispatch = useDispatch<AppDispatchType>()
 
-    const [localStatus, setLocalStatus] = useState<string>('')
+    const [localStatus, setLocalStatus] = useState<string>(props.status)
     const [editMode, setEditMode] = useState<boolean>(false)
 
     function activateEditMode() {
