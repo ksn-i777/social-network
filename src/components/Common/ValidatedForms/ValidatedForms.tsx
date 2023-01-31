@@ -1,8 +1,7 @@
 import React from 'react'
 import s from './ValidatedForms.module.css'
 
-export function Input(props:any) {
-
+export const Input = React.memo((props: any) => {
     return (
         <div>
             <input
@@ -14,10 +13,9 @@ export function Input(props:any) {
             {props.meta.touched && props.meta.error && <span className={s.spanError}> {props.meta.error}</span>}
         </div>
     )
-}
+})
 
-export function Textarea(props:any) {
-
+export const Textarea = React.memo((props: any) => {
     return (
         <div>
             <textarea
@@ -29,4 +27,4 @@ export function Textarea(props:any) {
             {props.meta.touched && props.meta.error && <span className={s.spanError}> {props.meta.error}</span>}
         </div>
     )
-}
+})

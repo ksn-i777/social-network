@@ -1,8 +1,8 @@
 import React from 'react'
 import s from './NewPost.module.css'
-import {Field, reduxForm} from 'redux-form'
-import {Input} from '../../../Common/ValidatedForms/ValidatedForms'
-import {maxLengthVC} from '../../../../validators/validators'
+import { Field, reduxForm } from 'redux-form'
+import { Input } from '../../../Common/ValidatedForms/ValidatedForms'
+import { maxLengthVC } from '../../../../validators/validators'
 
 //form
 
@@ -12,10 +12,8 @@ type NewPostReduxFormDatatype = {
     newPost: string
 }
 
-const NewPostReduxForm = reduxForm<NewPostReduxFormDatatype>({form: 'newPost'})(newPostForm)
-
-function newPostForm(props:any) {
-    return(
+const newPostForm = React.memo((props: any) => {
+    return (
         <form onSubmit={props.handleSubmit} className={s.new}>
             <Field
                 className={s.input}
@@ -27,19 +25,21 @@ function newPostForm(props:any) {
             <button className={s.button}>Add post</button>
         </form>
     )
-}
+})
+
+const NewPostReduxForm = reduxForm<NewPostReduxFormDatatype>({ form: 'newPost' })(newPostForm)
 
 //new post
 
 type NewPostPropsType = {
-    addNewPost(newPostText:string):void,
-};
-
-export function NewPost(props:NewPostPropsType) {
-    
-    function onAddNewPost(newPostFormData:NewPostReduxFormDatatype):void {
-        if(newPostFormData.newPost !== '') {props.addNewPost(newPostFormData.newPost)}
-    }
-    
-    return <NewPostReduxForm onSubmit={onAddNewPost}/>
+    addNewPost(newPostText: string): void,
 }
+
+export const NewPost = React.memo((props: NewPostPropsType) => {
+
+    function onAddNewPost(newPostFormData: NewPostReduxFormDatatype): void {
+        if (newPostFormData.newPost !== '') { props.addNewPost(newPostFormData.newPost) }
+    }
+
+    return <NewPostReduxForm onSubmit={onAddNewPost} />
+})

@@ -15,37 +15,37 @@ import { compose } from "redux"
 import { getMessages, getUsers } from "../../../selectors/dialogs-selectors"
 
 type DialogsPropsType = {
-    usersData:Array<UserType>
-    messagesData:Array<MessageType>
-    sendNewMessage(newMessage:string):void
+    usersData: Array<UserType>
+    messagesData: Array<MessageType>
+    sendNewMessage(newMessage: string): void
 }
 
-function Dialogs(props:DialogsPropsType) {
+const Dialogs = (props: DialogsPropsType) => {
     return (
         <div className={s.messages}>
-            <Users usersData={props.usersData}/>
-            <Messages messagesData={props.messagesData} sendNewMessage={props.sendNewMessage}/>
+            <Users usersData={props.usersData} />
+            <Messages messagesData={props.messagesData} sendNewMessage={props.sendNewMessage} />
         </div>
     )
 }
 
 type mapStateToPropsType = {
-    usersData:Array<UserType>
-    messagesData:Array<MessageType>
+    usersData: Array<UserType>
+    messagesData: Array<MessageType>
 }
 type mapDispatchToPropsType = {
-    sendNewMessage(newMessage:string):void
+    sendNewMessage(newMessage: string): void
 }
 
-function mapStateToProps(state:AppStateType):mapStateToPropsType {
+function mapStateToProps(state: AppStateType): mapStateToPropsType {
     return {
         usersData: getUsers(state),
         messagesData: getMessages(state),
     }
 }
-function mapDispatchToProps(dispatch:(AC:MessagesActionsType) => void):mapDispatchToPropsType {
+function mapDispatchToProps(dispatch: (AC: MessagesActionsType) => void): mapDispatchToPropsType {
     return {
-        sendNewMessage: (newMessage:string) => {
+        sendNewMessage: (newMessage: string) => {
             dispatch(actionAddNewMessage(newMessage))
         },
     }

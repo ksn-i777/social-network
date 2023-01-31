@@ -1,7 +1,6 @@
-import React from "react";
+import React from "react"
 import s from './Settings.module.css'
 
-export function Settings() {
+export const Settings = React.memo(() => {
     return <div className={s.settings}>Settings</div>
-
-}
+})

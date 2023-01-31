@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import s from "./Header.module.css";
-import {NavLink} from 'react-router-dom';
+import React, { useState } from "react"
+import s from "./Header.module.css"
+import { NavLink } from 'react-router-dom'
 
 export type HeaderPropsType = {
     login: string
@@ -8,24 +8,24 @@ export type HeaderPropsType = {
     logoutUserTC: () => void
 }
 
-export function Header(props:HeaderPropsType) {
-    
+export const Header = React.memo((props: HeaderPropsType) => {
+
     const [editMode, setEditMode] = useState<boolean>(false)
 
     function logout() {
         setEditMode(false)
         props.logoutUserTC()
-        
+
     }
-  
-    return(
+
+    return (
         <header className={s.header}>
             <div className={s.title}>Social Network</div>
             {
-                props.isAuth && !editMode ? <span className={s.login} onClick={()=>{setEditMode(true)}}>{props.login}</span>
-                : props.isAuth && editMode ? <span className={s.login} onClick={logout}>Exit</span>
-                : <NavLink to={'/login'} className={s.login}>Login</NavLink>
+                props.isAuth && !editMode ? <span className={s.login} onClick={() => { setEditMode(true) }}>{props.login}</span>
+                    : props.isAuth && editMode ? <span className={s.login} onClick={logout}>Exit</span>
+                        : <NavLink to={'/login'} className={s.login}>Login</NavLink>
             }
         </header>
     )
-}
+})

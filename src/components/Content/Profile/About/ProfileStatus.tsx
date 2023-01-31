@@ -1,8 +1,8 @@
-import React, {ChangeEvent, useState, useEffect} from 'react'
-import {useDispatch} from 'react-redux'
+import React, { ChangeEvent, useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import s from './About.module.css'
-import {SetProfileStatusActionType} from '../../../../store/profile-reducer'
-import {AppDispatchType} from '../../../../store/store'
+import { SetProfileStatusActionType } from '../../../../store/profile-reducer'
+import { AppDispatchType } from '../../../../store/store'
 
 type ProfileStatusPropsType = {
     status: string
@@ -11,7 +11,7 @@ type ProfileStatusPropsType = {
     ) => (dispatch: (AC: SetProfileStatusActionType) => void) => void
 }
 
-export function ProfileStatus(props: ProfileStatusPropsType) {
+export const ProfileStatus = React.memo((props: ProfileStatusPropsType) => {
     useEffect(() => {
         setLocalStatus(props.status)
     }, [props.status])
@@ -45,4 +45,4 @@ export function ProfileStatus(props: ProfileStatusPropsType) {
             {props.status || '---'}
         </span>
     )
-}
+})

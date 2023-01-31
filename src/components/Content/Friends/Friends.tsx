@@ -1,6 +1,6 @@
 import React from 'react'
-import {FriendType} from '../../../store/friends-reducer'
-import {Friend} from './Friend'
+import { FriendType } from '../../../store/friends-reducer'
+import { Friend } from './Friend'
 import s from './Friends.module.css'
 
 type FriendsPropsType = {
@@ -16,13 +16,13 @@ type FriendsPropsType = {
     changeCurrentPage: (currentPageNumber: number) => void
 }
 
-export function Friends(props: FriendsPropsType) {
+export const Friends = React.memo((props: FriendsPropsType) => {
 
     const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 
     const arrPages = []
 
-    for (let i=1; i<=pagesCount; i++) {
+    for (let i = 1; i <= pagesCount; i++) {
         arrPages.push(i)
     }
 
@@ -54,4 +54,4 @@ export function Friends(props: FriendsPropsType) {
             </div>
         </div>
     )
-}
+})

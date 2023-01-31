@@ -1,4 +1,4 @@
-import React, { ComponentType } from "react"
+import React, { ComponentType, PureComponent } from "react"
 import { Profile } from './Profile'
 import { getProfileTC, ProfileType, getProfileStatusTC, updateProfileStatusTC } from '../../../store/profile-reducer'
 import { AppStateType } from '../../../store/store'
@@ -8,7 +8,7 @@ import { withAuthRedirect } from '../../../hoc/withAuthRedirect'
 import { compose } from "redux"
 import { getProfile, getProfileStatus } from "../../../selectors/profile-selectors"
 
-class ProfileClassContainer extends React.Component<any, any> {
+class ProfileClassContainer extends PureComponent<any, any> {
 
     componentDidMount() {
         let userID = this.props.match.params.userId
@@ -17,7 +17,7 @@ class ProfileClassContainer extends React.Component<any, any> {
     }
 
     render() {
-        return <Profile profile={this.props.profile} status={this.props.status} updateProfileStatusTC={updateProfileStatusTC}/>
+        return <Profile profile={this.props.profile} status={this.props.status} updateProfileStatusTC={updateProfileStatusTC} />
     }
 }
 
@@ -26,7 +26,7 @@ type mapStateToPropsType = {
     status: string
 }
 
-function mapStateToProps(state: AppStateType):mapStateToPropsType {
+function mapStateToProps(state: AppStateType): mapStateToPropsType {
     return {
         profile: getProfile(state),
         status: getProfileStatus(state),
@@ -40,7 +40,7 @@ const ProfileContainer = connect(mapStateToProps, {getUserTC})(ProfileWithAuthRe
 //равнозначные записи выше и ниже
 
 export const ProfileContainer = compose<ComponentType>(
-    connect(mapStateToProps, {getProfileTC, getProfileStatusTC, updateProfileStatusTC}),
+    connect(mapStateToProps, { getProfileTC, getProfileStatusTC, updateProfileStatusTC }),
     withAuthRedirect,
-    withRouter 
+    withRouter
 )(ProfileClassContainer)

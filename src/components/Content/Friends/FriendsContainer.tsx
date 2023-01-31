@@ -1,4 +1,4 @@
-import React from "react"
+import React, { PureComponent } from "react"
 import { connect } from "react-redux"
 import { AppStateType } from '../../../store/store'
 import {
@@ -9,20 +9,20 @@ import {
     FriendType
 } from '../../../store/friends-reducer'
 import { Friends } from './Friends'
-import { Preloader} from '../../Common/Preloader/Preloader'
+import { Preloader } from '../../Common/Preloader/Preloader'
 import { withAuthRedirect } from '../../../hoc/withAuthRedirect'
 import { compose } from "redux"
 import { getPreloaderStatus, getFriends, getCurrentPage, getPagesize, getTotalUsersCount, getDisabledButtons } from "../../../selectors/friends-selectors"
-class FriendsClassContainer extends React.Component<any, any> {
+
+class FriendsClassContainer extends PureComponent<any, any> {
 
     componentDidMount() {
         this.props.getUsersTC(this.props.currentPage, this.props.pageSize)
     }
 
     render() {
-
         return this.props.preloaderStatus
-            ? <Preloader/>
+            ? <Preloader />
             : <Friends
                 friendsData={this.props.friendsData}
                 currentPage={this.props.currentPage}
@@ -33,7 +33,7 @@ class FriendsClassContainer extends React.Component<any, any> {
                 createFollow={this.props.createFollowTC}
                 deleteFollow={this.props.deleteFollowTC}
 
-                changeCurrentPage={(currentPageNumber: number) => {this.props.changeCurrentPageTC(currentPageNumber)}}/>
+                changeCurrentPage={(currentPageNumber: number) => { this.props.changeCurrentPageTC(currentPageNumber) }} />
     }
 }
 
@@ -46,7 +46,7 @@ type mapStateToPropsType = {
     disabledButtons: Array<string>
 }
 
-function mapStateToProps(state: AppStateType):mapStateToPropsType {
+function mapStateToProps(state: AppStateType): mapStateToPropsType {
     return {
         preloaderStatus: getPreloaderStatus(state),
         friendsData: getFriends(state),
