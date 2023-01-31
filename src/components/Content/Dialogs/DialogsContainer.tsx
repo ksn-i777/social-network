@@ -1,8 +1,8 @@
 import React, { ComponentType } from "react"
 import s from "./Dialogs.module.css"
 import {
-    actionAddNewMessage,
-    MessagesActionsType,
+    addNewMessageAC,
+    DialogsActionsType,
     MessageType,
     UserType
 } from '../../../store/dialogs-reducer'
@@ -43,10 +43,10 @@ function mapStateToProps(state: AppStateType): mapStateToPropsType {
         messagesData: getMessages(state),
     }
 }
-function mapDispatchToProps(dispatch: (AC: MessagesActionsType) => void): mapDispatchToPropsType {
+function mapDispatchToProps(dispatch: (AC: DialogsActionsType) => void): mapDispatchToPropsType {
     return {
         sendNewMessage: (newMessage: string) => {
-            dispatch(actionAddNewMessage(newMessage))
+            dispatch(addNewMessageAC(newMessage))
         },
     }
 }

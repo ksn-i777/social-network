@@ -1,12 +1,12 @@
 import React from "react"
 import s from './About.module.css'
-import { ProfileType, SetProfileStatusActionType } from '../../../../store/profile-reducer'
+import { ProfileType } from '../../../../store/profile-reducer'
 import { ProfileStatus } from './ProfileStatus'
 
 type AboutPropsType = {
     profile: ProfileType
     status: string
-    updateProfileStatusTC: (status: string) => (dispatch: (AC: SetProfileStatusActionType) => void) => void
+    updateProfileStatusTC: (status: string) => void
 }
 
 export const About = React.memo((props: AboutPropsType) => {

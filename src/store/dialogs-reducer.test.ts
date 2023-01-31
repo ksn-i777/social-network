@@ -1,5 +1,5 @@
 import {v1} from 'uuid';
-import {actionAddNewMessage, DialogsPageType, dialogsReducer} from './dialogs-reducer';
+import {addNewMessageAC, DialogsPageType, dialogsReducer} from './dialogs-reducer';
 
 test('correct add message', () => {
 
@@ -20,7 +20,7 @@ test('correct add message', () => {
         ],
     }
 
-    const action = actionAddNewMessage('bbb')
+    const action = addNewMessageAC('bbb')
 
     const endState = dialogsReducer(startState, action)
 

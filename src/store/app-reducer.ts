@@ -1,12 +1,10 @@
-import { getAuthUserTC } from "./auth-reducer"
 import { AppDispatchType } from "./store"
+import { getAuthUserTC } from "./auth-reducer"
 
 //constants
-const INITIALIZATION_APP = 'INITIALIZATION_APP'
+const INITIALIZATION_APP = 'APP/INITIALIZATION_APP'
 
-const initState = {
-    initialized: false
-}
+const initState = {initialized: false}
 
 //reducer
 export function appReducer(state:InitStateType = initState, action:AppReducerActionsType):InitStateType {
@@ -19,16 +17,11 @@ export function appReducer(state:InitStateType = initState, action:AppReducerAct
 }
 
 //AC
-export function setInitializationAC() {
-    return ({type: INITIALIZATION_APP, initialized:true} as const)
-}
+export const setInitializationAC = () => ({type: INITIALIZATION_APP, initialized:true} as const)
 
 //TC
 export const setInitializationTC = () => (dispatch: AppDispatchType) => {
-    Promise.all([dispatch(getAuthUserTC())])
-        .then(() => {
-            dispatch(setInitializationAC())    
-        }) 
+    Promise.all([dispatch(getAuthUserTC())]).then(() => {dispatch(setInitializationAC())}) 
 }
 
 //types

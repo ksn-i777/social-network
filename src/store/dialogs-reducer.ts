@@ -1,26 +1,7 @@
-import {v1} from 'uuid'
+import { v1 } from 'uuid'
 
-const ADD_NEW_MESSAGE = 'ADD-NEW-MESSAGE'
-
-export type UserType = {
-    id:string
-    name:string
-    ava:string
-}
-export type MessageType = {
-    id:string
-    message:string
-}
-export type DialogsPageType = {
-    usersData:Array<UserType>
-    messagesData:Array<MessageType>
-}
-
-export type AddNewMessageActionType = {
-    type:typeof ADD_NEW_MESSAGE,
-    newMessage:string
-}
-export type MessagesActionsType = AddNewMessageActionType
+//constants
+const ADD_NEW_MESSAGE = 'DIALOGS/ADD-NEW-MESSAGE'
 
 const initialState:DialogsPageType = {
     usersData: [
@@ -37,9 +18,10 @@ const initialState:DialogsPageType = {
         {id: v1(), message: '444'},
         {id: v1(), message: '555'},
     ],
-};
+}
 
-export function dialogsReducer(state:DialogsPageType = initialState, action:MessagesActionsType):DialogsPageType {
+//reducer
+export function dialogsReducer(state:DialogsPageType = initialState, action:DialogsActionsType):DialogsPageType {
     switch (action.type) {
         case ADD_NEW_MESSAGE:
             return {...state, messagesData: [{id: v1(), message: action.newMessage}, ...state.messagesData]}
@@ -48,6 +30,13 @@ export function dialogsReducer(state:DialogsPageType = initialState, action:Mess
     }
 }
 
-export function actionAddNewMessage(newMessage:string):AddNewMessageActionType {
-    return {type: ADD_NEW_MESSAGE, newMessage}
-}
+//AC
+export const addNewMessageAC = (newMessage:string) => ({type: ADD_NEW_MESSAGE, newMessage} as const)
+
+//types
+export type UserType = {id:string, name:string, ava:string}
+export type MessageType = {id:string, message:string}
+export type DialogsPageType = {usersData:Array<UserType>, messagesData:Array<MessageType>}
+
+export type AddNewMessageActionType = ReturnType<typeof addNewMessageAC>
+export type DialogsActionsType = AddNewMessageActionType

@@ -1,70 +1,14 @@
-import {usersAPI} from '../api/api';
+import { usersAPI } from '../api/api'
+import { AppDispatchType } from './store'
 
-const FOLLOW = 'FOLLOW'
-const UNFOLLOW = 'UNFOLLOW'
-const SET_USERS = 'SET_USERS'
-const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
-const CHANGE_PRELOADER_STATUS = 'CHANGE_PRELOADER_STATUS'
-const TOGGLE_BUTTONS_DISABLED = 'TOGGLE_BUTTONS_DISABLED'
-
-export type FriendType = {
-    id: string
-    name: string
-    uniqueUrlName: string
-    photos: {
-        small: string
-        large: string
-    }
-    status: string
-    followed: boolean
-};
-export type FriendsPageType = {
-    friendsData: Array<FriendType>,
-    currentPage: number,
-    pageSize: number,
-    totalUsersCount: number,
-    preloaderStatus: boolean,
-    disabledButtons: Array<string>,
-};
-
-export type FollowActionType = {
-    type: typeof FOLLOW,
-    userId: string,
-};
-export type UnfollowActionType = {
-    type: typeof UNFOLLOW,
-    userId: string,
-};
-export type SetUsersActionType = {
-    type: typeof SET_USERS,
-    users: Array<FriendType>,
-};
-export type SetTotalUsersCountActionType = {
-    type: typeof SET_TOTAL_USERS_COUNT,
-    totalUsersCount: number,
-};
-export type SetCurrentPageActionType = {
-    type: typeof SET_CURRENT_PAGE,
-    currentPage: number,
-};
-export type ChangePreloaderStatusActionType = {
-    type: typeof CHANGE_PRELOADER_STATUS,
-    newPreloaderStatus: boolean,
-};
-export type BeDisableButtonActionType = {
-    type: typeof TOGGLE_BUTTONS_DISABLED,
-    isDisabled: boolean,
-    buttonID: string,
-};
-
-export type FriendsActionsType = FollowActionType
-    | UnfollowActionType
-    | SetUsersActionType
-    | SetTotalUsersCountActionType
-    | SetCurrentPageActionType
-    | ChangePreloaderStatusActionType
-    | BeDisableButtonActionType
+//constants
+const FOLLOW = 'FRIENDS/FOLLOW'
+const UNFOLLOW = 'FRIENDS/UNFOLLOW'
+const SET_USERS = 'FRIENDS/SET_USERS'
+const SET_TOTAL_USERS_COUNT = 'FRIENDS/SET_TOTAL_USERS_COUNT'
+const SET_CURRENT_PAGE = 'FRIENDS/SET_CURRENT_PAGE'
+const CHANGE_PRELOADER_STATUS = 'FRIENDS/CHANGE_PRELOADER_STATUS'
+const TOGGLE_BUTTONS_DISABLED = 'FRIENDS/TOGGLE_BUTTONS_DISABLED'
 
 const initialState:FriendsPageType = {
     friendsData: [],
@@ -73,10 +17,10 @@ const initialState:FriendsPageType = {
     totalUsersCount: 0,
     preloaderStatus: false,
     disabledButtons: [],
-};
+}
 
+//reducer
 export function friendsReducer(state:FriendsPageType = initialState, action:FriendsActionsType):FriendsPageType {
-
     switch (action.type) {
         case FOLLOW:
             return {...state, friendsData: state.friendsData.map(el => el.id === action.userId ? {...el, followed: true} : el)}
@@ -96,59 +40,76 @@ export function friendsReducer(state:FriendsPageType = initialState, action:Frie
             return state
     }
 }
-export function followAC(userId: string):FollowActionType {
-    return {type: FOLLOW, userId}
-}
-export function unfollowAC(userId: string):UnfollowActionType {
-    return {type: UNFOLLOW, userId}
-}
-export function setUsersAC(users: Array<FriendType>):SetUsersActionType {
-    return {type: SET_USERS, users}
-}
-export function setTotalUsersCountAC(totalUsersCount: number):SetTotalUsersCountActionType {
-    return {type: SET_TOTAL_USERS_COUNT, totalUsersCount}
-}
-export function setCurrentPageAC(currentPage: number):SetCurrentPageActionType {
-    return {type: SET_CURRENT_PAGE, currentPage}
-}
-export function changePreloaderStatusAC(newPreloaderStatus: boolean):ChangePreloaderStatusActionType {
-    return {type: CHANGE_PRELOADER_STATUS, newPreloaderStatus}
-}
-export function toggleButtonsDisabledAC(isDisabled: boolean, buttonID: string):BeDisableButtonActionType {
-    return {type: TOGGLE_BUTTONS_DISABLED, isDisabled, buttonID}
-}
 
-export const getUsersTC = (currentPage:number, pageSize:number) => (dispatch: (AC: FriendsActionsType) => void):void => {
+//AC
+export const followAC = (userId: string) => ({type: FOLLOW, userId} as const)
+export const unfollowAC = (userId: string) => ({type: UNFOLLOW, userId} as const)
+export const setUsersAC = (users: Array<FriendType>) => ({type: SET_USERS, users} as const)
+export const setTotalUsersCountAC = (totalUsersCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount} as const)
+export const setCurrentPageAC = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
+export const changePreloaderStatusAC = (newPreloaderStatus: boolean) => ({type: CHANGE_PRELOADER_STATUS, newPreloaderStatus} as const)
+export const toggleButtonsDisabledAC = (isDisabled: boolean, buttonID: string) => ({type: TOGGLE_BUTTONS_DISABLED, isDisabled, buttonID} as const)
+
+//TC
+export const getUsersTC = (currentPage:number, pageSize:number) => async (dispatch: AppDispatchType) => {
     dispatch(changePreloaderStatusAC(true))
-    usersAPI.getUsers(currentPage, pageSize).then(data => {
-        dispatch(changePreloaderStatusAC(false))
-        dispatch(setUsersAC(data.items))
-        dispatch(setTotalUsersCountAC(data.totalCount))
-    })
+    const data = await usersAPI.getUsers(currentPage, pageSize)
+    dispatch(changePreloaderStatusAC(false))
+    dispatch(setUsersAC(data.items))
+    dispatch(setTotalUsersCountAC(data.totalCount))
 }
-
-export const changeCurrentPageTC = (currentPageNumber: number) => (dispatch: (AC: FriendsActionsType) => void):void => {
+export const changeCurrentPageTC = (currentPageNumber: number) => async (dispatch: AppDispatchType) => {
     dispatch(changePreloaderStatusAC(true))
     dispatch(setCurrentPageAC(currentPageNumber))
-    usersAPI.getUsers(currentPageNumber, initialState.pageSize).then(data => {
-        dispatch(changePreloaderStatusAC(false))
-        dispatch(setUsersAC(data.items))
-        dispatch(setTotalUsersCountAC(data.totalCount))
-    })
+    const data = await usersAPI.getUsers(currentPageNumber, initialState.pageSize)
+    dispatch(changePreloaderStatusAC(false))
+    dispatch(setUsersAC(data.items))
+    dispatch(setTotalUsersCountAC(data.totalCount))
+}
+export const createFollowTC = (userID: string) => async (dispatch: AppDispatchType) => {
+    dispatch(toggleButtonsDisabledAC(true, userID))
+    const data = await usersAPI.createFollow(userID)
+    if(data.resultCode === 0) {dispatch(followAC(userID))}
+    dispatch(toggleButtonsDisabledAC(false, userID))
+}
+export const deleteFollowTC = (userID: string) => async (dispatch: AppDispatchType) => {
+    dispatch(toggleButtonsDisabledAC(true, userID))
+    const data = await usersAPI.deleteFollow(userID)
+    if(data.resultCode === 0) {dispatch(unfollowAC(userID))}
+    dispatch(toggleButtonsDisabledAC(false, userID))
 }
 
-export const createFollowTC = (userID: string) => (dispatch: (AC: FriendsActionsType) => void):void => {
-    dispatch(toggleButtonsDisabledAC(true, userID))
-    usersAPI.createFollow(userID).then(data => {
-        if(data.resultCode === 0) {dispatch(followAC(userID))}
-        dispatch(toggleButtonsDisabledAC(false, userID))
-    })
+//types
+export type FriendType = {
+    id: string
+    name: string
+    uniqueUrlName: string
+    photos: {small: string, large: string}
+    status: string
+    followed: boolean
+}
+export type FriendsPageType = {
+    friendsData: Array<FriendType>
+    currentPage: number
+    pageSize: number
+    totalUsersCount: number
+    preloaderStatus: boolean
+    disabledButtons: Array<string>
 }
 
-export const deleteFollowTC = (userID: string) => (dispatch: (AC: FriendsActionsType) => void):void => {
-    dispatch(toggleButtonsDisabledAC(true, userID))
-    usersAPI.deleteFollow(userID).then(data => {
-        if(data.resultCode === 0) {dispatch(unfollowAC(userID))}
-        dispatch(toggleButtonsDisabledAC(false, userID))
-    })
-}
+export type FollowActionType = ReturnType<typeof followAC>
+export type UnfollowActionType = ReturnType<typeof unfollowAC>
+export type SetUsersActionType = ReturnType<typeof setUsersAC>
+export type SetTotalUsersCountActionType = ReturnType<typeof setTotalUsersCountAC>
+export type SetCurrentPageActionType = ReturnType<typeof setCurrentPageAC>
+export type ChangePreloaderStatusActionType = ReturnType<typeof changePreloaderStatusAC>
+export type ToggleButtonsDisableActionType = ReturnType<typeof toggleButtonsDisabledAC>
+
+export type FriendsActionsType = 
+| FollowActionType
+| UnfollowActionType
+| SetUsersActionType
+| SetTotalUsersCountActionType
+| SetCurrentPageActionType
+| ChangePreloaderStatusActionType
+| ToggleButtonsDisableActionType

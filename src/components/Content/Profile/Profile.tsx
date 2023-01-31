@@ -4,12 +4,12 @@ import { About } from './About/About'
 import { NewPostContainer } from './NewPost/NewPostContainer'
 import { PostsContainer } from './Posts/PostsContainer'
 import { Preloader } from '../../Common/Preloader/Preloader'
-import { ProfileType, SetProfileStatusActionType } from '../../../store/profile-reducer'
+import { ProfileType } from '../../../store/profile-reducer'
 
 type ProfilePropsType = {
     profile: ProfileType
     status: string
-    updateProfileStatusTC: (status: string) => (dispatch: (AC: SetProfileStatusActionType) => void) => void
+    updateProfileStatusTC: (status: string) => void
 }
 
 export const Profile = React.memo((props: ProfilePropsType) => {

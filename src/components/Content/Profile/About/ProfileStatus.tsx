@@ -1,14 +1,11 @@
+import s from './About.module.css'
 import React, { ChangeEvent, useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import s from './About.module.css'
-import { SetProfileStatusActionType } from '../../../../store/profile-reducer'
 import { AppDispatchType } from '../../../../store/store'
 
 type ProfileStatusPropsType = {
     status: string
-    updateProfileStatusTC: (
-        status: string
-    ) => (dispatch: (AC: SetProfileStatusActionType) => void) => void
+    updateProfileStatusTC: (status: string) => void
 }
 
 export const ProfileStatus = React.memo((props: ProfileStatusPropsType) => {

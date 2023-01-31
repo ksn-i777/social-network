@@ -1,12 +1,3 @@
-export type OnlineFriendType = {
-    id:number
-    name:string
-    ava:string
-}
-export type NavbarType = {
-    onlineFriendsData:Array<OnlineFriendType>,
-}
-
 const initialState:NavbarType = {
     onlineFriendsData: [
         {id: 1, name: 'Serg Sergeev', ava: 'https://mixmag.io/wp-content/uploads/2021/05/discord-avatar-1024x576.jpg'},
@@ -15,6 +6,11 @@ const initialState:NavbarType = {
     ]
 }
 
+//reducer
 export function navbarReducer(navbar:NavbarType = initialState, action:any):NavbarType {
-    return navbar;
+    return navbar
 }
+
+//types
+export type OnlineFriendType = {id:number, name:string, ava:string}
+export type NavbarType = {onlineFriendsData:Array<OnlineFriendType>}
