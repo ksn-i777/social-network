@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FriendType } from '../../../store/friends-reducer'
 import { Friend } from './Friend'
 import s from './Friends.module.css'
@@ -26,6 +26,12 @@ export const Friends = React.memo((props: FriendsPropsType) => {
         arrPages.push(i)
     }
 
+    const portionsCount = Math.ceil(pagesCount / 20)
+
+    const [portionNumber, setPortionNumber] = useState(Math.ceil(props.currentPage / 20))
+    const leftPortionBorder = (portionNumber - 1) * 20 + 1
+    const rightPortionBorder = portionNumber * 20
+
     return (
         <div className={s.friends}>
             {props.friendsData.map((el) =>
@@ -42,7 +48,14 @@ export const Friends = React.memo((props: FriendsPropsType) => {
                 />
             )}
             <div className={s.pagesNumbersDiv}>
-                {arrPages.map((page, index) => {
+                <button
+                    className={portionNumber === 1 ? s.arrowDisabled : s.arrow}
+                    disabled={portionNumber === 1}
+                    onClick={() => { setPortionNumber(portionNumber - 1) }}
+                >
+                    {"<prev"}
+                </button>
+                {arrPages.filter(p => p >= leftPortionBorder && p <= rightPortionBorder).map((page, index) => {
                     return (
                         <span
                             key={index}
@@ -51,6 +64,13 @@ export const Friends = React.memo((props: FriendsPropsType) => {
                         </span>
                     )
                 })}
+                <button
+                    className={portionNumber === portionsCount ? s.arrowDisabled : s.arrow}
+                    disabled={portionNumber === portionsCount}
+                    onClick={() => { setPortionNumber(portionNumber + 1) }}
+                >
+                    {"next>"}
+                </button>
             </div>
         </div>
     )

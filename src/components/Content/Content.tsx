@@ -6,13 +6,14 @@ import { DialogsContainer } from './Dialogs/DialogsContainer'
 import { News } from './News/News'
 import { Music } from './Music/Music'
 import { Settings } from './Settings/Settings'
-import { Route } from 'react-router-dom'
+import { Redirect, Route } from 'react-router-dom'
 import { LoginContainer } from './Login/Login'
 
 
 export const Content = React.memo(() => {
     return (
         <div className={s.content}>
+            <Route path={'/'}><Redirect to={'/profile/26782'} /></Route>
             <Route path={'/profile/:userId'} render={() => <ProfileContainer />}></Route>
             <Route path={'/friends'} render={() => <FriendsContainer />}></Route>
             <Route path={'/dialogs'} render={() => <DialogsContainer />}></Route>
