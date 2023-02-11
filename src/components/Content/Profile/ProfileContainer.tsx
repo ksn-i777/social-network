@@ -1,6 +1,6 @@
 import React, { ComponentType, PureComponent } from "react"
 import { Profile } from './Profile'
-import { getProfileTC, ProfileType, getProfileStatusTC, updateProfileStatusTC } from '../../../store/profile-reducer'
+import { getProfileTC, ProfileType, getProfileStatusTC, updateProfileStatusTC, updatePhotoTC } from '../../../store/profile-reducer'
 import { AppStateType } from '../../../store/store'
 import { connect } from "react-redux"
 import { withRouter } from 'react-router-dom'
@@ -10,14 +10,30 @@ import { getProfile, getProfileStatus } from "../../../selectors/profile-selecto
 
 class ProfileClassContainer extends PureComponent<any, any> {
 
-    componentDidMount() {
+    refreshProfile() {
         let userID = this.props.match.params.userId
         this.props.getProfileTC(userID)
         this.props.getProfileStatusTC(userID)
     }
 
+    componentDidMount() {
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any): void {
+        if (this.props.match.params.userId !== prevProps.match.params.userId) {
+            this.refreshProfile()
+        }
+    }
+
     render() {
-        return <Profile profile={this.props.profile} status={this.props.status} updateProfileStatusTC={updateProfileStatusTC} />
+        return <Profile
+            isOwner={this.props.match.params.userId === '26782'}
+            profile={this.props.profile}
+            status={this.props.status}
+            updatePhotoTC={this.props.updatePhotoTC}
+            updateProfileStatusTC={updateProfileStatusTC}
+        />
     }
 }
 
@@ -40,7 +56,7 @@ const ProfileContainer = connect(mapStateToProps, {getUserTC})(ProfileWithAuthRe
 //равнозначные записи выше и ниже
 
 export const ProfileContainer = compose<ComponentType>(
-    connect(mapStateToProps, { getProfileTC, getProfileStatusTC, updateProfileStatusTC }),
+    connect(mapStateToProps, { getProfileTC, getProfileStatusTC, updateProfileStatusTC, updatePhotoTC }),
     withAuthRedirect,
     withRouter
 )(ProfileClassContainer)

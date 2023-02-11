@@ -6,6 +6,7 @@ import { AppDispatchType } from './store'
 const ADD_NEW_POST = 'PROFILE/ADD_NEW_POST'
 const SET_PROFILE = 'PROFILE/SET_PROFILE'
 const SET_PROFILE_STATUS = 'PROFILE/SET_PROFILE_STATUS'
+const UPDATE_PROFILE_PHOTOS = 'PROFILE/UPDATE_PROFILE_PHOTOS'
 
 const initialState:ProfilePageType = {
     profile: {
@@ -43,6 +44,8 @@ export function profileReducer(state:ProfilePageType = initialState, action:Prof
             return {...state, profile: action.profile}
         case SET_PROFILE_STATUS:
             return {...state, status: action.status}
+        case UPDATE_PROFILE_PHOTOS:
+            return {...state, profile: {...state.profile, photos: action.photos}}
         default:
             return state
     }
@@ -52,6 +55,7 @@ export function profileReducer(state:ProfilePageType = initialState, action:Prof
 export const addNewPostAC = (newPostText:string) => ({type: ADD_NEW_POST, newPostText} as const)
 export const setProfileAC = (profile:ProfileType) => ({type: SET_PROFILE, profile} as const)
 export const setProfileStatusAC = (status: string) => ({type: SET_PROFILE_STATUS, status} as const)
+export const updatePhotoAC = (photos: PhotosType) => ({type: UPDATE_PROFILE_PHOTOS, photos} as const)
 
 //TC
 export const getProfileTC = (userID: number) => async (dispatch: AppDispatchType) => {
@@ -66,6 +70,10 @@ export const updateProfileStatusTC = (status: string) => async (dispatch: AppDis
     const res = await profileAPI.updateProfileStatus(status)
     if(res.resultCode === 0) {dispatch(setProfileStatusAC(status))}
 }
+export const updatePhotoTC = (photo: any) => async (dispatch: AppDispatchType) => {
+    const res = await profileAPI.updatePhoto(photo)
+    if(res.resultCode === 0) {dispatch(updatePhotoAC(res.data.photos))}
+}
 
 //types
 export type ProfileType = {
@@ -75,12 +83,14 @@ export type ProfileType = {
     lookingForAJobDescription: string
     fullName: string
     userId: number
-    photos: {small: string, large: string}
+    photos: PhotosType
 }
+export type PhotosType = {small: string, large: string}
 export type PostType = {id: string, message: string, likes: number, ava: string}
 export type ProfilePageType = {profile: ProfileType, postsData: Array<PostType>, status: string}
 
 export type AddNewPostActionType = ReturnType<typeof addNewPostAC>
 export type SetProfileActionType = ReturnType<typeof setProfileAC>
 export type SetProfileStatusActionType = ReturnType<typeof setProfileStatusAC>
-export type ProfileActionsType = AddNewPostActionType | SetProfileActionType | SetProfileStatusActionType
+export type UpdatePhotoACActionType = ReturnType<typeof updatePhotoAC>
+export type ProfileActionsType = AddNewPostActionType | SetProfileActionType | SetProfileStatusActionType | UpdatePhotoACActionType

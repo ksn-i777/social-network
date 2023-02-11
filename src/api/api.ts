@@ -42,4 +42,13 @@ export const profileAPI = {
     updateProfileStatus(status:string) {
         return commonAxiosInstance.put('profile/status', {status}).then(res => res.data)
     },
+    updatePhoto(photo:any) {
+        const formData = new FormData()
+        formData.append("image", photo)
+        return commonAxiosInstance.put('profile/photo', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+        }).then(res => res.data)
+    },
 }
