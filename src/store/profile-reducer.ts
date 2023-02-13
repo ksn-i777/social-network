@@ -1,6 +1,7 @@
 import { v1 } from 'uuid'
 import { profileAPI } from '../api/api'
-import { AppDispatchType } from './store'
+import { ProfileInfoReduxFormDataType } from '../components/Content/Profile/About/ProfileInfoForm'
+import { AppDispatchType, AppStateType } from './store'
 
 //constants
 const ADD_NEW_POST = 'PROFILE/ADD_NEW_POST'
@@ -11,27 +12,15 @@ const UPDATE_PROFILE_PHOTOS = 'PROFILE/UPDATE_PROFILE_PHOTOS'
 const initialState:ProfilePageType = {
     profile: {
         aboutMe: '',
-        contacts: {
-          facebook: '',
-          website: null,
-          vk: '',
-          twitter: '',
-          instagram: '',
-          youtube: null,
-          github: '',
-          mainLink: null
-        },
+        contacts: {facebook: '', website: '', vk: '', twitter: '', instagram: '', youtube: '', github: '', mainLink: ''},
         lookingForAJob: true,
         lookingForAJobDescription: '',
         fullName: '',
         userId: 0,
-        photos: {
-          small: '',
-          large: ''
-        },
+        photos: {small: '', large: ''}
     },
-    postsData: [],
-    status: '',
+    postsData: [] as Array<PostType>,
+    status: ''
 }
 
 //reducer
@@ -74,12 +63,27 @@ export const updatePhotoTC = (photo: any) => async (dispatch: AppDispatchType) =
     const res = await profileAPI.updatePhoto(photo)
     if(res.resultCode === 0) {dispatch(updatePhotoAC(res.data.photos))}
 }
+export const updateProfileInfoTS = (profileInfoFormData: ProfileInfoReduxFormDataType) => async (dispatch: AppDispatchType, getState: () => AppStateType) => {
+    const profile = getState().profilePage.profile
+    const profileData = {
+        ...profile,
+        fullName: profileInfoFormData.fullName,
+        aboutMe: profileInfoFormData.aboutMe,
+        lookingForAJob: profileInfoFormData.lookingForAJob.toLowerCase() === 'yes' ? true : false,
+        lookingForAJobDescription: profileInfoFormData.lookingForAJobDescription,
+        contacts: {...profile.contacts, website: profileInfoFormData.contacts}
+    }
+    const res = await profileAPI.updateProfileInfo(profileData)
+    if(res.resultCode === 0) {
+        dispatch(getProfileTC(profileData.userId))
+    }
+}
 
 //types
 export type ProfileType = {
     aboutMe: string
-    contacts: {facebook: string, website: null, vk: string, twitter: string, instagram: string, youtube: null, github: string, mainLink: null}
-    lookingForAJob: true
+    contacts: {facebook: string, website: string, vk: string, twitter: string, instagram: string, youtube: string, github: string, mainLink: string}
+    lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
     userId: number

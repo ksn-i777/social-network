@@ -1,7 +1,11 @@
-import React, { ChangeEvent } from "react"
+import React, { ChangeEvent, useState } from "react"
 import s from './About.module.css'
-import { ProfileType } from '../../../../store/profile-reducer'
+import { ProfileType, updateProfileInfoTS } from '../../../../store/profile-reducer'
 import { ProfileStatus } from './ProfileStatus'
+import { ProfileInfoData } from "./ProfileInfoData"
+import { ProfileInfoReduxForm, ProfileInfoReduxFormDataType } from "./ProfileInfoForm"
+import { useDispatch } from "react-redux"
+import { AppDispatchType } from "../../../../store/store"
 
 type AboutPropsType = {
     isOwner: boolean
@@ -13,10 +17,27 @@ type AboutPropsType = {
 
 export const About = React.memo((props: AboutPropsType) => {
 
+    const dispatch = useDispatch<AppDispatchType>()
+
+    const [editMode, setEditMode] = useState<boolean>(false)
+
     const changePhoto = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files?.length) {
             props.updatePhotoTC(e.target.files[0])
         }
+    }
+
+    const onSubmit = (profileInfoFormData: ProfileInfoReduxFormDataType) => {
+        dispatch(updateProfileInfoTS(profileInfoFormData))
+        setEditMode(false)
+
+    }
+    const initialFormValues: Partial<ProfileInfoReduxFormDataType> = {
+        fullName: props.profile.fullName ? props.profile.fullName : '',
+        aboutMe: props.profile.aboutMe ? props.profile.aboutMe : '',
+        lookingForAJob: props.profile.lookingForAJob ? "yes" : "no",
+        lookingForAJobDescription: props.profile.lookingForAJobDescription ? props.profile.lookingForAJobDescription : '',
+        contacts: props.profile.contacts.website ? props.profile.contacts.website : ''
     }
 
     return (
@@ -26,9 +47,11 @@ export const About = React.memo((props: AboutPropsType) => {
                 {props.isOwner && <input type={'file'} className={s.changePhotoInput} onChange={changePhoto} />}
             </div>
             <div className={s.description}>
-                <p className={s.statusSpan}>Status: <ProfileStatus status={props.status} updateProfileStatusTC={props.updateProfileStatusTC} /></p>
-                <p className={s.h3}>About me</p>
-                <p className={s.p}>{props.profile.aboutMe}</p>
+                <ProfileStatus status={props.status} updateProfileStatusTC={props.updateProfileStatusTC} />
+                {editMode
+                    ? <ProfileInfoReduxForm initialValues={initialFormValues} onSubmit={onSubmit} />
+                    : <ProfileInfoData isOwner={props.isOwner} profile={props.profile} activateEditMode={() => { setEditMode(true) }} />
+                }
             </div>
         </div>
     )

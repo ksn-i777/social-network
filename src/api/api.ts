@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { ProfileType } from '../store/profile-reducer';
 
 export const commonAxiosInstance = axios.create({
     withCredentials: true,
@@ -50,5 +51,8 @@ export const profileAPI = {
               'Content-Type': 'multipart/form-data'
             }
         }).then(res => res.data)
+    },
+    updateProfileInfo(profileData:ProfileType) {
+        return commonAxiosInstance.put('profile/', profileData).then(res => res.data)
     },
 }

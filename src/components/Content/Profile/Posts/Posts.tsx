@@ -10,7 +10,7 @@ type PostsPropsType = {
 export const Posts = React.memo((props: PostsPropsType) => {
     return (
         <div className={s.posts}>
-            {props.postsData.map((el) => <Post key={el.id} id={el.id} message={el.message} likes={el.likes} ava={el.ava} />)}
+            {props.postsData && props.postsData.map((el) => <Post key={el.id} id={el.id} message={el.message} likes={el.likes} ava={el.ava} />)}
         </div>
     )
 })

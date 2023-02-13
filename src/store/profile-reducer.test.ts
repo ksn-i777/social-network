@@ -8,13 +8,13 @@ test('correct add post', () => {
             aboutMe: '',
             contacts: {
               facebook: '',
-              website: null,
+              website: '',
               vk: '',
               twitter: '',
               instagram: '',
-              youtube: null,
+              youtube: '',
               github: '',
-              mainLink: null
+              mainLink: ''
             },
             lookingForAJob: true,
             lookingForAJobDescription: '',

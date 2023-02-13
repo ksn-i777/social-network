@@ -38,7 +38,9 @@ type NewPostPropsType = {
 export const NewPost = React.memo((props: NewPostPropsType) => {
 
     function onAddNewPost(newPostFormData: NewPostReduxFormDatatype): void {
-        if (newPostFormData.newPost !== '') { props.addNewPost(newPostFormData.newPost) }
+        if (newPostFormData.newPost !== '') {
+            props.addNewPost(newPostFormData.newPost)
+        }
     }
 
     return <NewPostReduxForm onSubmit={onAddNewPost} />

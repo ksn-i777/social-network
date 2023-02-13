@@ -15,17 +15,14 @@ class ProfileClassContainer extends PureComponent<any, any> {
         this.props.getProfileTC(userID)
         this.props.getProfileStatusTC(userID)
     }
-
     componentDidMount() {
         this.refreshProfile()
     }
-
     componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any): void {
         if (this.props.match.params.userId !== prevProps.match.params.userId) {
             this.refreshProfile()
         }
     }
-
     render() {
         return <Profile
             isOwner={this.props.match.params.userId === '26782'}

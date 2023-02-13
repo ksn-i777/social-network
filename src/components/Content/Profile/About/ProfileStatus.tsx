@@ -39,7 +39,7 @@ export const ProfileStatus = React.memo((props: ProfileStatusPropsType) => {
         />
     ) : (
         <span onDoubleClick={activateEditMode} className={s.statusSpan}>
-            {props.status || '---'}
+            Status: {props.status || '---'}
         </span>
     )
 })
