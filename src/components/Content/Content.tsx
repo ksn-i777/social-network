@@ -9,6 +9,7 @@ import { Music } from './Music/Music'
 import { Settings } from './Settings/Settings'
 import { Redirect, Route } from 'react-router-dom'
 import { LoginContainer } from './Login/Login'
+import { ErrorPage } from './ErrorPage/ErrorPage'
 
 export const Content = React.memo(() => {
     return (
