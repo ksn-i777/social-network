@@ -8,40 +8,32 @@ import { AppStateType, AppDispatchType } from '../store/store'
 import { setInitializationTC } from '../store/app-reducer'
 import { useSelector } from 'react-redux'
 import { Preloader } from '../components/Common/Preloader/Preloader'
+import { LoginContainer } from '../components/Content/Login/Login'
 
 export const App = React.memo(() => {
 
-    const initialized = useSelector<AppStateType, boolean>(st => st.app.initialized)
-    const dispatch = useDispatch<AppDispatchType>()
+  const initialized = useSelector<AppStateType, boolean>(st => st.app.initialized)
+  const isAuth = useSelector<AppStateType, boolean>(st => st.auth.isAuth)
+  const dispatch = useDispatch<AppDispatchType>()
 
-    useEffect(() => {
-        dispatch(setInitializationTC())
-    }, [])
+  useEffect(() => {
+    dispatch(setInitializationTC())
+  }, [dispatch])
 
-    return (
-        <div className="body">
-            {initialized &&
-                <div className="app-wrapper">
-                    <HeaderContainer />
-                    <Nav />
-                    <Content />
-                </div>
-            }
-            {!initialized &&
-                <div className="app-wrapper">
-                    <HeaderContainer />
-                    <Nav />
-                    <div style={{
-                        gridArea: 'content',
-                        backgroundColor: 'rgba(21, 34, 42, 0.9)',
-                        border: '1px solid rgba(112, 128, 144, 0.9)',
-                        borderRadius: '8px'
-                    }}>
-                        <Preloader />
-                    </div>
-
-                </div>
-            }
-        </div>
-    )
+  return (
+    <div className="body">
+      <div className="app-wrapper">
+        <HeaderContainer />
+        {isAuth
+          ?
+          <div className='navAndContent'>
+            <Nav />
+            {initialized ? <Content /> : <div className='preloader'><Preloader /></div>}
+          </div>
+          :
+          <div className='loginContainer'><LoginContainer /></div>
+        }
+      </div>
+    </div>
+  )
 })

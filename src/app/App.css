@@ -11,13 +11,30 @@
 
 .app-wrapper {
     display: grid;
-    grid-template-areas: 
-    'header header'
-    'nav content';
     grid-template-rows: 70px 1fr;
-    grid-template-columns: 2fr 10fr;
     gap: 15px;
     margin: 0 auto;
     width: 1200px;
-    min-height: 101vh;
+    min-height: 100vh;
+}
+.navAndContent {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    gap: 15px;
+}
+.preloader {
+    background-color: rgba(21, 34, 42, 0.9);
+    border: 1px solid rgba(112, 128, 144, 0.9);
+    border-radius: 8px;
+}
+.loginContainer {
+    width: 300px;
+    height: 300px;
+    display: grid;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(21, 34, 42, 0.9);
+    border: 1px solid rgba(112, 128, 144, 0.9);
+    border-radius: 8px;
 }

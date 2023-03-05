@@ -7,10 +7,9 @@ import { store } from './store/store'
 import { Provider } from 'react-redux'
 
 ReactDOM.render(
-    // компонента, обеспечивающая изменения контента при кликах по навигационному меню
     <HashRouter>
         <Provider store={store}>
             <App />
         </Provider>
     </HashRouter>, document.getElementById('root')
-);
+)
